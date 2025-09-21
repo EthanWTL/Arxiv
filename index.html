@@ -3,65 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <title>Daily ArXiv Papers</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 20px; }
-    h1 { text-align: center; }
-    .paper { background: white; border-radius: 10px; padding: 15px; margin: 10px auto; max-width: 800px;
-             box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .title { font-weight: bold; font-size: 1.2em; }
-    .meta { color: #555; font-size: 0.9em; margin-bottom: 10px; }
-    .summary { font-size: 0.95em; margin-top: 5px; }
-    .link { margin-top: 10px; display: inline-block; background: #007acc; color: white;
-            padding: 6px 12px; border-radius: 5px; text-decoration: none; }
-    .link:hover { background: #005f99; }
-    .date-section { margin-top: 40px; }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Daily ArXiv Papers</h1>
-  <div id="content">Loading...</div>
+  <header class="site-header">
+    <h1>Daily ArXiv Papers</h1>
+    <div class="subtle">cs.AI · cs.CV · cs.LG · stat.ML</div>
+  </header>
 
-  <script>
-    async function loadPapers() {
-      const container = document.getElementById("content");
-      container.innerHTML = "";
+  <section class="controls">
+    <div class="control-row">
+      <label class="sr-only" for="search">Keyword search</label>
+      <input id="search" class="search" type="text" placeholder="Filter by keywords…" />
+      <label class="checkbox">
+        <input id="titleOnly" type="checkbox" />
+        <span>Title only</span>
+      </label>
+    </div>
 
-      const today = new Date();
-      for (let i = 0; i < 5; i++) {
-        const d = new Date(today);
-        d.setDate(today.getDate() - i);
-        const datestr = d.toISOString().split("T")[0];
-        const url = `paper_json/${datestr}.json`;
+    <div class="control-row">
+      <div class="chip-row" id="presetChips" aria-label="Quick filters">
+        <!-- Preset chips (click to toggle) -->
+        <button class="chip" data-term="multimodal">multimodal</button>
+        <button class="chip" data-term="reasoning">reasoning</button>
+        <button class="chip" data-term="LLM">LLM</button>
+        <button class="chip" data-term='"large language model"'>"large language model"</button>
+        <button class="chip" data-term="video generation">video generation</button>
+        <button class="chip" data-term="navigation">navigation</button>
+        <button class="chip" data-term="diffusion">diffusion</button>
+        <button class="chip" data-term="egocentric">egocentric</button>
+      </div>
+    </div>
 
-        try {
-          const res = await fetch(url);
-          if (!res.ok) continue;
-          const papers = await res.json();
-          if (!papers.length) continue;
+    <div class="control-row wrap">
+      <div class="label">Categories:</div>
+      <label class="pill"><input type="checkbox" class="cat" value="cs.AI" checked> cs.AI</label>
+      <label class="pill"><input type="checkbox" class="cat" value="cs.CV" checked> cs.CV</label>
+      <label class="pill"><input type="checkbox" class="cat" value="cs.LG" checked> cs.LG</label>
+      <label class="pill"><input type="checkbox" class="cat" value="stat.ML" checked> stat.ML</label>
 
-          const section = document.createElement("div");
-          section.className = "date-section";
-          section.innerHTML = `<h2>${datestr}</h2>`;
-          container.appendChild(section);
+      <div class="spacer"></div>
+      <label class="select">
+        <span>Days:</span>
+        <select id="days">
+          <option value="5" selected>5</option>
+          <option value="7">7</option>
+          <option value="10">10</option>
+        </select>
+      </label>
+    </div>
+  </section>
 
-          papers.forEach(p => {
-            const div = document.createElement("div");
-            div.className = "paper";
-            div.innerHTML = `
-              <div class="title">${p.title}</div>
-              <div class="meta">${p.published} | ${p.category.join(", ")}</div>
-              <div class="summary">${p.summary}</div>
-              <a class="link" href="${p.link}" target="_blank">PDF</a>
-            `;
-            section.appendChild(div);
-          });
-        } catch (e) {
-          console.log("No file for", datestr);
-        }
-      }
-    }
+  <main id="content" class="content">Loading…</main>
 
-    loadPapers();
-  </script>
+  <footer class="site-footer">
+    <span id="count">0</span> matching results
+  </footer>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
