@@ -1,11 +1,12 @@
 import arxiv
 import json
-import logging
+import os
+from datetime import datetime
 
-logging.basicConfig(level=logging.INFO)
-
-def fetch_recent_papers(category="cs.AI", max_results=5, output="test.json"):
-    logging.info(f"Fetching {max_results} most recent papers from {category}...")
+def fetch_recent_papers(category="cs.AI", max_results=5):
+    today = datetime.utcnow().strftime("%Y-%m-%d")
+    os.makedirs("paper_json", exist_ok=True)
+    output = f"paper_json/{today}.json"
 
     search = arxiv.Search(
         query=f"cat:{category}",
@@ -18,16 +19,16 @@ def fetch_recent_papers(category="cs.AI", max_results=5, output="test.json"):
     for result in search.results():
         papers.append({
             "title": result.title,
-            "authors": [a.name for a in result.authors],
-            "summary": result.summary,
             "published": result.published.strftime("%Y-%m-%d %H:%M:%S"),
-            "url": result.entry_id,
+            "category": [category],
+            "summary": result.summary,
+            "link": result.pdf_url,   # PDF link instead of entry_id
         })
 
     with open(output, "w", encoding="utf-8") as f:
         json.dump(papers, f, indent=2, ensure_ascii=False)
 
-    logging.info(f"Saved {len(papers)} papers to {output}")
+    print(f"Saved {len(papers)} papers to {output}")
 
 
 if __name__ == "__main__":
