@@ -17,7 +17,6 @@
       <input id="search" class="search" type="text" placeholder="Filter by keywords…" />
       <label class="checkbox"><input id="titleOnly" type="checkbox" /><span>Title only</span></label>
       <label class="checkbox"><input id="onlyReadLater" type="checkbox" /><span>Read-Later only</span></label>
-      <label class="checkbox"><input id="onlyStarred" type="checkbox" /><span>Starred only</span></label>
     </div>
 
     <div class="control-row">
@@ -41,7 +40,6 @@
       <label class="pill"><input type="checkbox" class="cat" value="stat.ML" checked> stat.ML</label>
 
       <div class="spacer"></div>
-
       <label class="select">
         <span>Days:</span>
         <select id="days">
@@ -50,27 +48,13 @@
           <option value="10">10</option>
         </select>
       </label>
-
-      <div class="spacer"></div>
-
-      <label class="select">
-        <span>Topic:</span>
-        <select id="topicFilter">
-          <option value="">(any)</option>
-        </select>
-      </label>
-      <button id="newTopicBtn" class="btn-secondary">New Topic</button>
-      <button id="renameTopicBtn" class="btn-secondary">Rename Topic</button>
-      <button id="deleteTopicBtn" class="btn-danger">Delete Topic</button>
     </div>
 
     <div class="control-row">
       <button id="exportReadLaterBtn" class="btn">Export Read-Later JSON</button>
-      <button id="exportStarsAllBtn" class="btn">Export All Topics (ZIP-like: multiple files)</button>
-      <button id="exportTopicBtn" class="btn">Export Selected Topic JSON</button>
       <label class="file">
         <input id="importBtn" type="file" accept=".json" />
-        <span>Import JSON</span>
+        <span>Import Read-Later JSON</span>
       </label>
     </div>
   </section>
@@ -89,13 +73,6 @@
       <div class="card-actions">
         <a class="link" target="_blank" rel="noopener noreferrer">PDF</a>
         <button class="tag-btn readlater"></button>
-        <div class="star-block">
-          <button class="tag-btn star"></button>
-          <select class="topicAdder">
-            <option value="">+ topic…</option>
-          </select>
-          <div class="topic-badges"></div>
-        </div>
       </div>
     </div>
   </template>
