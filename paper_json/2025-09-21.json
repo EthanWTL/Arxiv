@@ -1,0 +1,86 @@
+[
+  {
+    "title": "Generalizable Geometric Image Caption Synthesis",
+    "authors": [
+      "Yue Xin",
+      "Wenyuan Wang",
+      "Rui Pan",
+      "Ruida Wang",
+      "Howard Meng",
+      "Renjie Pi",
+      "Shizhe Diao",
+      "Tong Zhang"
+    ],
+    "summary": "Multimodal large language models have various practical applications that\ndemand strong reasoning abilities. Despite recent advancements, these models\nstill struggle to solve complex geometric problems. A key challenge stems from\nthe lack of high-quality image-text pair datasets for understanding geometric\nimages. Furthermore, most template-based data synthesis pipelines typically\nfail to generalize to questions beyond their predefined templates. In this\npaper, we bridge this gap by introducing a complementary process of\nReinforcement Learning with Verifiable Rewards (RLVR) into the data generation\npipeline. By adopting RLVR to refine captions for geometric images synthesized\nfrom 50 basic geometric relations and using reward signals derived from\nmathematical problem-solving tasks, our pipeline successfully captures the key\nfeatures of geometry problem-solving. This enables better task generalization\nand yields non-trivial improvements. Furthermore, even in out-of-distribution\nscenarios, the generated dataset enhances the general reasoning capabilities of\nmultimodal large language models, yielding accuracy improvements of\n$2.8\\%\\text{-}4.8\\%$ in statistics, arithmetic, algebraic, and numerical tasks\nwith non-geometric input images of MathVista and MathVerse, along with\n$2.4\\%\\text{-}3.9\\%$ improvements in Art, Design, Tech, and Engineering tasks\nin MMMU.",
+    "published": "2025-09-18 17:59:11",
+    "url": "http://arxiv.org/abs/2509.15217v1"
+  },
+  {
+    "title": "Explicit Context-Driven Neural Acoustic Modeling for High-Fidelity RIR Generation",
+    "authors": [
+      "Chen Si",
+      "Qianyi Wu",
+      "Chaitanya Amballa",
+      "Romit Roy Choudhury"
+    ],
+    "summary": "Realistic sound simulation plays a critical role in many applications. A key\nelement in sound simulation is the room impulse response (RIR), which\ncharacterizes how sound propagates from a source to a listener within a given\nspace. Recent studies have applied neural implicit methods to learn RIR using\ncontext information collected from the environment, such as scene images.\nHowever, these approaches do not effectively leverage explicit geometric\ninformation from the environment. To further exploit the potential of neural\nimplicit models with direct geometric features, we present Mesh-infused Neural\nAcoustic Field (MiNAF), which queries a rough room mesh at given locations and\nextracts distance distributions as an explicit representation of local context.\nOur approach demonstrates that incorporating explicit local geometric features\ncan better guide the neural network in generating more accurate RIR\npredictions. Through comparisons with conventional and state-of-the-art\nbaseline methods, we show that MiNAF performs competitively across various\nevaluation metrics. Furthermore, we verify the robustness of MiNAF in datasets\nwith limited training samples, demonstrating an advance in high-fidelity sound\nsimulation.",
+    "published": "2025-09-18 17:57:07",
+    "url": "http://arxiv.org/abs/2509.15210v1"
+  },
+  {
+    "title": "FlowRL: Matching Reward Distributions for LLM Reasoning",
+    "authors": [
+      "Xuekai Zhu",
+      "Daixuan Cheng",
+      "Dinghuai Zhang",
+      "Hengli Li",
+      "Kaiyan Zhang",
+      "Che Jiang",
+      "Youbang Sun",
+      "Ermo Hua",
+      "Yuxin Zuo",
+      "Xingtai Lv",
+      "Qizheng Zhang",
+      "Lin Chen",
+      "Fanghao Shao",
+      "Bo Xue",
+      "Yunchong Song",
+      "Zhenjie Yang",
+      "Ganqu Cui",
+      "Ning Ding",
+      "Jianfeng Gao",
+      "Xiaodong Liu",
+      "Bowen Zhou",
+      "Hongyuan Mei",
+      "Zhouhan Lin"
+    ],
+    "summary": "We propose FlowRL: matching the full reward distribution via flow balancing\ninstead of maximizing rewards in large language model (LLM) reinforcement\nlearning (RL). Recent advanced reasoning models adopt reward-maximizing methods\n(\\eg, PPO and GRPO), which tend to over-optimize dominant reward signals while\nneglecting less frequent but valid reasoning paths, thus reducing diversity. In\ncontrast, we transform scalar rewards into a normalized target distribution\nusing a learnable partition function, and then minimize the reverse KL\ndivergence between the policy and the target distribution. We implement this\nidea as a flow-balanced optimization method that promotes diverse exploration\nand generalizable reasoning trajectories. We conduct experiments on math and\ncode reasoning tasks: FlowRL achieves a significant average improvement of\n$10.0\\%$ over GRPO and $5.1\\%$ over PPO on math benchmarks, and performs\nconsistently better on code reasoning tasks. These results highlight reward\ndistribution-matching as a key step toward efficient exploration and diverse\nreasoning in LLM reinforcement learning.",
+    "published": "2025-09-18 17:56:36",
+    "url": "http://arxiv.org/abs/2509.15207v1"
+  },
+  {
+    "title": "Orion: Fuzzing Workflow Automation",
+    "authors": [
+      "Max Bazalii",
+      "Marius Fleischer"
+    ],
+    "summary": "Fuzz testing is one of the most effective techniques for finding software\nvulnerabilities. While modern fuzzers can generate inputs and monitor\nexecutions automatically, the overall workflow, from analyzing a codebase, to\nconfiguring harnesses, to triaging results, still requires substantial manual\neffort. Prior attempts focused on single stages such as harness synthesis or\ninput minimization, leaving researchers to manually connect the pieces into a\ncomplete fuzzing campaign.\n  We introduce Orion, a framework that automates the the manual bottlenecks of\nfuzzing by integrating LLM reasoning with traditional tools, allowing campaigns\nto scale to settings where human effort alone was impractical. Orion uses LLMs\nfor code reasoning and semantic guidance, while relying on deterministic tools\nfor verification, iterative refinement, and tasks that require precision.\nAcross our benchmark suite, Orion reduces human effort by 46-204x depending on\nthe workflow stage, and we demonstrate its effectiveness through the discovery\nof two previously unknown vulnerabilities in the widely used open-source clib\nlibrary.",
+    "published": "2025-09-18 17:52:06",
+    "url": "http://arxiv.org/abs/2509.15195v1"
+  },
+  {
+    "title": "TITAN: A Trajectory-Informed Technique for Adaptive Parameter Freezing in Large-Scale VQE",
+    "authors": [
+      "Yifeng Peng",
+      "Xinyi Li",
+      "Samuel Yen-Chi Chen",
+      "Kaining Zhang",
+      "Zhiding Liang",
+      "Ying Wang",
+      "Yuxuan Du"
+    ],
+    "summary": "Variational quantum Eigensolver (VQE) is a leading candidate for harnessing\nquantum computers to advance quantum chemistry and materials simulations, yet\nits training efficiency deteriorates rapidly for large Hamiltonians. Two issues\nunderlie this bottleneck: (i) the no-cloning theorem imposes a linear growth in\ncircuit evaluations with the number of parameters per gradient step; and (ii)\ndeeper circuits encounter barren plateaus (BPs), leading to exponentially\nincreasing measurement overheads. To address these challenges, here we propose\na deep learning framework, dubbed Titan, which identifies and freezes inactive\nparameters of a given ansatze at initialization for a specific class of\nHamiltonians, reducing the optimization overhead without sacrificing accuracy.\nThe motivation of Titan starts with our empirical findings that a subset of\nparameters consistently has a negligible influence on training dynamics. Its\ndesign combines a theoretically grounded data construction strategy, ensuring\neach training example is informative and BP-resilient, with an adaptive neural\narchitecture that generalizes across ansatze of varying sizes. Across benchmark\ntransverse-field Ising models, Heisenberg models, and multiple molecule systems\nup to 30 qubits, Titan achieves up to 3 times faster convergence and 40% to 60%\nfewer circuit evaluations than state-of-the-art baselines, while matching or\nsurpassing their estimation accuracy. By proactively trimming parameter space,\nTitan lowers hardware demands and offers a scalable path toward utilizing VQE\nto advance practical quantum chemistry and materials science.",
+    "published": "2025-09-18 17:50:02",
+    "url": "http://arxiv.org/abs/2509.15193v1"
+  }
+]
