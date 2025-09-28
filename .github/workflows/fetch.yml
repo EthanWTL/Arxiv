@@ -42,6 +42,12 @@ jobs:
       - name: Ensure output dir
         run: mkdir -p paper_json
 
+      - name: Show chosen inputs
+        run: |
+          echo "date=${{ github.event.inputs.date }}"
+          echo "categories=${{ github.event.inputs.categories }}"
+          echo "dry_run=${{ github.event.inputs.dry_run }}"
+          
       - name: Run fetch (manual or scheduled)
         shell: bash
         run: |

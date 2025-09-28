@@ -26,34 +26,56 @@ def parse_entry(e):
         "authors": authors,
     }
 
-def _ymdhm(d_utc):  # YYYYMMDDHHMM
+def _ymdhm(d_utc):   # YYYYMMDDHHMM
     return d_utc.strftime("%Y%m%d%H%M")
 
-def fetch_for_day(category: str, day_utc):
-    start = datetime(day_utc.year, day_utc.month, day_utc.day, 0, 0, tzinfo=timezone.utc)
-    end   = datetime(day_utc.year, day_utc.month, day_utc.day, 23, 59, tzinfo=timezone.utc)
+def _ymdhms(d_utc):  # YYYYMMDDHHMMSS
+    return d_utc.strftime("%Y%m%d%H%M%S")
 
-    # IMPORTANT: use +AND+ and +TO+ (not plain spaces)
-    q = f"cat:{category}+AND+submittedDate:[{_ymdhm(start)}+TO+{_ymdhm(end)}]"
-
+def _do_query(q, headers):
     params = {
         "search_query": q,
-        "sortBy": "submittedDate",
+        "sortBy": "submittedDate",  # sorting key can stay submittedDate either way
         "sortOrder": "ascending",
         "max_results": 300,
     }
-    headers = {"User-Agent": "daily-arxiv-fetch/0.2 (YOUR_REAL_EMAIL@domain)"}  # real email helps
-
     r = requests.get(ARXIV_API, params=params, headers=headers, timeout=30)
     r.raise_for_status()
-
-    # debug: print the final URL and count to the Actions logs
     print("[DEBUG] GET:", r.url)
-
     root = ET.fromstring(r.text)
     entries = root.findall("atom:entry", NS)
-    print(f"[DEBUG] {category}: {len(entries)} entries in window")
-    return [parse_entry(e) for e in entries]
+    return entries
+
+def fetch_for_day(category: str, day_utc):
+    # Day window in UTC
+    start = datetime(day_utc.year, day_utc.month, day_utc.day, 0, 0, 0, tzinfo=timezone.utc)
+    end   = datetime(day_utc.year, day_utc.month, day_utc.day, 23, 59, 59, tzinfo=timezone.utc)
+
+    headers = {"User-Agent": "daily-arxiv-fetch/0.2 (YOUR_REAL_EMAIL@domain)"}
+
+    # Try in descending order of “strictness”
+    queries = [
+        # 1) submittedDate with seconds
+        f"cat:{category}+AND+submittedDate:[{_ymdhms(start)}+TO+{_ymdhms(end)}]",
+        # 2) lastUpdatedDate with seconds
+        f"cat:{category}+AND+lastUpdatedDate:[{_ymdhms(start)}+TO+{_ymdhms(end)}]",
+        # 3) submittedDate with minutes
+        f"cat:{category}+AND+submittedDate:[{_ymdhm(start)}+TO+{_ymdhm(end)}]",
+        # 4) lastUpdatedDate with minutes
+        f"cat:{category}+AND+lastUpdatedDate:[{_ymdhm(start)}+TO+{_ymdhm(end)}]",
+    ]
+
+    for idx, q in enumerate(queries, 1):
+        entries = _do_query(q, headers)
+        print(f"[DEBUG] {category}: try#{idx} -> {len(entries)} entries")
+        if entries:
+            return [parse_entry(e) for e in entries]
+
+    # 5) Sanity check: recent without date filter so we know the pipeline works
+    fallback_q = f"cat:{category}"
+    entries = _do_query(fallback_q, headers)
+    print(f"[DEBUG] {category}: fallback(no date) -> {len(entries)} entries")
+    return [parse_entry(e) for e in entries] if entries else []
 
 def main():
     parser = argparse.ArgumentParser()
