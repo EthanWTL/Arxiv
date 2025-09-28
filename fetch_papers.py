@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
-"""
-fetch_papers.py
-Fetch ALL arXiv papers for selected categories (today only) and save JSON daily
-into paper_json/YYYY-MM-DD.json. Keeps only last N days.
-"""
-
+# fetch_papers.py
+import argparse
 import requests
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -13,26 +9,13 @@ from pathlib import Path
 
 ARXIV_API = "http://export.arxiv.org/api/query"
 NS = {"atom": "http://www.w3.org/2005/Atom"}
-
-# Categories to fetch
 CATEGORIES = ["cs.AI", "cs.CV", "cs.LG", "stat.ML"]
 
-OUTPUT_DIR = Path("paper_json")
-OUTPUT_DIR.mkdir(exist_ok=True)
-KEEP_DAYS = 5
-
-
 def parse_entry(e):
-    # Extract first PDF link safely
     arxiv_id = e.find("atom:id", NS).text
     pdf_link = arxiv_id.replace("abs", "pdf") + ".pdf"
-
-    # Some entries have multiple <category>; collect all
     cats = [c.attrib.get("term") for c in e.findall("atom:category", NS)]
-
-    # Authors (optional, useful for on-page filtering later if you add it)
     authors = [a.find("atom:name", NS).text for a in e.findall("atom:author", NS)]
-
     return {
         "id": arxiv_id,
         "title": e.find("atom:title", NS).text.strip(),
@@ -43,13 +26,18 @@ def parse_entry(e):
         "authors": authors,
     }
 
+def _ymdhm(d_utc):  # YYYYMMDDHHMM
+    return d_utc.strftime("%Y%m%d%H%M")
 
-def fetch_recent(category="cs.AI", max_results=300):
+def fetch_for_day(category: str, day_utc):
+    start = datetime(day_utc.year, day_utc.month, day_utc.day, 0, 0, tzinfo=timezone.utc)
+    end   = datetime(day_utc.year, day_utc.month, day_utc.day, 23, 59, tzinfo=timezone.utc)
+    q = f"cat:{category} AND submittedDate:[{_ymdhm(start)} TO {_ymdhm(end)}]"
     params = {
-        "search_query": f"cat:{category}",
+        "search_query": q,
         "sortBy": "submittedDate",
-        "sortOrder": "descending",
-        "max_results": max_results,
+        "sortOrder": "ascending",
+        "max_results": 300,
     }
     headers = {"User-Agent": "daily-arxiv-fetch/0.2 (your_email@example.com)"}
     r = requests.get(ARXIV_API, params=params, headers=headers, timeout=30)
@@ -57,40 +45,47 @@ def fetch_recent(category="cs.AI", max_results=300):
     root = ET.fromstring(r.text)
     return [parse_entry(e) for e in root.findall("atom:entry", NS)]
 
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--date", help="UTC date to fetch (YYYY-MM-DD). Defaults to today.")
+    parser.add_argument("--out-dir", default="paper_json", help="Output directory.")
+    parser.add_argument("--keep-days", type=int, default=5, help="How many daily JSONs to keep.")
+    parser.add_argument("--dry-run", action="store_true", help="Print stats and write to out-dir, but don't commit (handled by workflow).")
+    parser.add_argument("--categories", nargs="*", default=CATEGORIES, help="Override categories.")
+    args = parser.parse_args()
 
-def filter_by_date(entries, target_date):
-    results = []
-    for e in entries:
-        pub = datetime.fromisoformat(e["published"].replace("Z", "+00:00")).date()
-        if pub == target_date:
-            results.append(e)
-    return results
+    OUTPUT_DIR = Path(args.out_dir)
+    OUTPUT_DIR.mkdir(exist_ok=True)
 
+    if args.date:
+        day = datetime.strptime(args.date, "%Y-%m-%d").date()
+    else:
+        day = datetime.now(timezone.utc).date()
 
-if __name__ == "__main__":
-    today = datetime.now(timezone.utc).date()
-    all_today = []
-    for cat in CATEGORIES:
-        recent = fetch_recent(cat, max_results=300)
-        today_entries = filter_by_date(recent, today)
-        all_today.extend(today_entries)
+    all_entries = []
+    for cat in args.categories:
+        entries = fetch_for_day(cat, day)
+        all_entries.extend(entries)
 
-    # Deduplicate by arXiv id
-    seen = set()
-    deduped = []
-    for e in all_today:
+    # Deduplicate by id
+    seen, deduped = set(), []
+    for e in all_entries:
         if e["id"] not in seen:
-            deduped.append(e)
-            seen.add(e["id"])
+            deduped.append(e); seen.add(e["id"])
 
-    out_file = OUTPUT_DIR / f"{today}.json"
+    out_file = OUTPUT_DIR / f"{day}.json"
     with open(out_file, "w", encoding="utf-8") as f:
         json.dump(deduped, f, indent=2, ensure_ascii=False)
-    print(f"Saved {len(deduped)} papers to {out_file}")
+
+    print(f"[fetch_papers] Date={day} Categories={args.categories} -> {len(deduped)} papers")
+    print(f"[fetch_papers] Wrote: {out_file}")
 
     # keep only last N days
     json_files = sorted(OUTPUT_DIR.glob("*.json"))
-    if len(json_files) > KEEP_DAYS:
-        for old in json_files[:-KEEP_DAYS]:
+    if len(json_files) > args.keep_days:
+        for old in json_files[:-args.keep_days]:
             old.unlink()
-            print(f"Deleted old file {old}")
+            print(f"[fetch_papers] Deleted old file {old}")
+
+if __name__ == "__main__":
+    main()
