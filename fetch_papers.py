@@ -45,29 +45,42 @@ def _do_query(q, headers):
     root = ET.fromstring(r.text)
     return root.findall("atom:entry", NS)
 
+# add this extra line in parse_entry if you want to see revision dates too:
+# "updated": e.find("atom:updated", NS).text,
+
 def fetch_for_day(category: str, day_utc):
-    start = datetime(day_utc.year, day_utc.month, day_utc.day, 0, 0, 0, tzinfo=timezone.utc)
-    end   = datetime(day_utc.year, day_utc.month, day_utc.day, 23, 59, 59, tzinfo=timezone.utc)
-
+    """Fetch recent in the category and filter locally by the UTC date."""
+    # 1) get recent (descending) — 500 is usually plenty for a single day/window
+    params = {
+        "search_query": f"cat:{category}",
+        "sortBy": "submittedDate",
+        "sortOrder": "descending",
+        "max_results": 500,
+    }
     headers = {"User-Agent": "daily-arxiv-fetch/0.2 (YOUR_REAL_EMAIL@domain)"}
+    r = requests.get(ARXIV_API, params=params, headers=headers, timeout=30)
+    r.raise_for_status()
+    root = ET.fromstring(r.text)
+    entries = root.findall("atom:entry", NS)
+    print(f"[DEBUG] {category}: fetched {len(entries)} recent")
 
-    queries = [
-        f"cat:{category}+AND+submittedDate:[{_ymdhms(start)}+TO+{_ymdhms(end)}]",
-        f"cat:{category}+AND+lastUpdatedDate:[{_ymdhms(start)}+TO+{_ymdhms(end)}]",
-        f"cat:{category}+AND+submittedDate:[{_ymdhm(start)}+TO+{_ymdhm(end)}]",
-        f"cat:{category}+AND+lastUpdatedDate:[{_ymdhm(start)}+TO+{_ymdhm(end)}]",
-    ]
+    # 2) local filter by <published> date (and optionally include <updated> matches)
+    want = []
+    for e in entries:
+        pub = e.find("atom:published", NS).text  # e.g. '2025-09-24T12:34:56Z'
+        pub_day = datetime.fromisoformat(pub.replace("Z", "+00:00")).date()
+        if pub_day == day_utc:
+            want.append(parse_entry(e))
+            continue
 
-    for i, q in enumerate(queries, 1):
-        entries = _do_query(q, headers)
-        print(f"[DEBUG] {category}: try#{i} -> {len(entries)} entries")
-        if entries:
-            return [parse_entry(e) for e in entries]
+        # OPTIONAL: uncomment to also include revisions updated on that date
+        # upd = e.find("atom:updated", NS).text
+        # upd_day = datetime.fromisoformat(upd.replace("Z", "+00:00")).date()
+        # if upd_day == day_utc:
+        #     want.append(parse_entry(e))
 
-    # final sanity (no date filter). If still empty, that's fine—we'll  write an empty file.
-    entries = _do_query(f"cat:{category}", headers)
-    print(f"[DEBUG] {category}: fallback(no date) -> {len(entries)} entries")
-    return [parse_entry(e) for e in entries] if entries else []
+    print(f"[DEBUG] {category}: kept {len(want)} for {day_utc}")
+    return want
 
 def main():
     parser = argparse.ArgumentParser()
