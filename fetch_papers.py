@@ -32,18 +32,28 @@ def _ymdhm(d_utc):  # YYYYMMDDHHMM
 def fetch_for_day(category: str, day_utc):
     start = datetime(day_utc.year, day_utc.month, day_utc.day, 0, 0, tzinfo=timezone.utc)
     end   = datetime(day_utc.year, day_utc.month, day_utc.day, 23, 59, tzinfo=timezone.utc)
-    q = f"cat:{category} AND submittedDate:[{_ymdhm(start)} TO {_ymdhm(end)}]"
+
+    # IMPORTANT: use +AND+ and +TO+ (not plain spaces)
+    q = f"cat:{category}+AND+submittedDate:[{_ymdhm(start)}+TO+{_ymdhm(end)}]"
+
     params = {
         "search_query": q,
         "sortBy": "submittedDate",
         "sortOrder": "ascending",
         "max_results": 300,
     }
-    headers = {"User-Agent": "daily-arxiv-fetch/0.2 (your_email@example.com)"}
+    headers = {"User-Agent": "daily-arxiv-fetch/0.2 (YOUR_REAL_EMAIL@domain)"}  # real email helps
+
     r = requests.get(ARXIV_API, params=params, headers=headers, timeout=30)
     r.raise_for_status()
+
+    # debug: print the final URL and count to the Actions logs
+    print("[DEBUG] GET:", r.url)
+
     root = ET.fromstring(r.text)
-    return [parse_entry(e) for e in root.findall("atom:entry", NS)]
+    entries = root.findall("atom:entry", NS)
+    print(f"[DEBUG] {category}: {len(entries)} entries in window")
+    return [parse_entry(e) for e in entries]
 
 def main():
     parser = argparse.ArgumentParser()
