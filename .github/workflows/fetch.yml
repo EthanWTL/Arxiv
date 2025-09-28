@@ -3,7 +3,7 @@ name: Fetch Daily Arxiv Papers
 
 on:
   schedule:
-    - cron: "0 9 * * *"     # daily at 09:00 UTC
+    - cron: "0 2 * * *"     # run at 02:00 UTC daily (~after 20:00 ET)
   workflow_dispatch:
     inputs:
       date:
@@ -47,7 +47,7 @@ jobs:
           echo "date=${{ github.event.inputs.date }}"
           echo "categories=${{ github.event.inputs.categories }}"
           echo "dry_run=${{ github.event.inputs.dry_run }}"
-          
+
       - name: Run fetch (manual or scheduled)
         shell: bash
         run: |
