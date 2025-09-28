@@ -1,10 +1,7 @@
 "use strict";
 
 /** ============================== CONFIG ============================== **/
-const PRESET_TERMS = [
-  "multimodal","reasoning","llm","\"large language model\"",
-  "video generation","navigation","diffusion","egocentric",
-];
+const PRESET_TERMS = ["llm","multimodal","diffusion","video generation","reasoning"];
 
 /** ============================== STATE =============================== **/
 let ALL = [];                // papers for the currently selected date

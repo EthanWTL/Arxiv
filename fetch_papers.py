@@ -9,7 +9,7 @@ from pathlib import Path
 
 ARXIV_API = "http://export.arxiv.org/api/query"
 NS = {"atom": "http://www.w3.org/2005/Atom"}
-CATEGORIES = ["cs.AI", "cs.CV", "cs.LG", "stat.ML"]
+CATEGORIES = ["cs.AI","cs.CL","cs.CV","cs.LG","cs.MM","cs.GR","cs.RO"]
 
 def parse_entry(e):
     arxiv_id = e.find("atom:id", NS).text
@@ -64,7 +64,7 @@ def fetch_for_day(category: str, day_utc):
         if entries:
             return [parse_entry(e) for e in entries]
 
-    # final sanity (no date filter). If still empty, that's fine—we'll write an empty file.
+    # final sanity (no date filter). If still empty, that's fine—we'll  write an empty file.
     entries = _do_query(f"cat:{category}", headers)
     print(f"[DEBUG] {category}: fallback(no date) -> {len(entries)} entries")
     return [parse_entry(e) for e in entries] if entries else []
