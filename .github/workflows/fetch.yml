@@ -3,7 +3,7 @@ name: Fetch Daily Arxiv Papers
 
 on:
   schedule:
-    - cron: "0 9 * * *"     # daily
+    - cron: "0 9 * * *"     # daily at 09:00 UTC
   workflow_dispatch:
     inputs:
       date:
@@ -20,7 +20,7 @@ on:
         default: "true"
 
 permissions:
-  contents: write  # required to push when dry_run == false
+  contents: write  # needed for git push when not dry-run
 
 jobs:
   fetch-and-update:
@@ -43,13 +43,17 @@ jobs:
         run: mkdir -p paper_json
 
       - name: Run fetch (manual or scheduled)
+        shell: bash
         run: |
+          set -euo pipefail
+
           DATE_ARG=""
-          [ -n "${{ github.event.inputs.date }}" ] && DATE_ARG="--date ${{ github.event.inputs.date }}"
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            DATE_ARG="--date ${{ github.event.inputs.date }}"
+          fi
 
           CATS_ARG=""
           if [ -n "${{ github.event.inputs.categories }}" ]; then
-            # turn string to list
             CATS_ARG="--categories ${{ github.event.inputs.categories }}"
           fi
 
@@ -62,26 +66,25 @@ jobs:
           python fetch_papers.py $DATE_ARG $CATS_ARG $DRY_FLAG
 
       - name: Show results (debug)
+        shell: bash
         run: |
+          set -euo pipefail
           ls -la paper_json || true
-          FILE_TO_SHOW=$(ls -1 paper_json/*.json | tail -n 1 || true)
-          if [ -n "$FILE_TO_SHOW" ]; then
-            echo "Latest file: $FILE_TO_SHOW"
-            # show count quickly
-            python - <<'PY'
-import json,glob
-files=sorted(glob.glob("paper_json/*.json"))
-if files:
-    data=json.load(open(files[-1]))
-    print("Paper count:", len(data))
-    for k in ("id","title","published"):
-        print("First:", {k: data[0].get(k) if data else None})
-PY
+          FILE="$(ls -1 paper_json/*.json 2>/dev/null | tail -n 1 || true)"
+          if [ -n "$FILE" ]; then
+            echo "Latest file: $FILE"
+            python -c "import json,sys; 
+f='$FILE'; 
+data=json.load(open(f)); 
+print('Paper count:', len(data)); 
+print('First:', {'id': (data[0].get('id') if data else None), 
+                 'title': (data[0].get('title') if data else None), 
+                 'published': (data[0].get('published') if data else None)})"
           else
-            echo "No JSON files found."
+            echo 'No JSON files found.'
           fi
 
-      - name: Upload JSON as artifact (always helpful)
+      - name: Upload JSON as artifact
         uses: actions/upload-artifact@v4
         with:
           name: paper-json
@@ -90,7 +93,9 @@ PY
 
       - name: Commit & push (only when NOT dry-run)
         if: ${{ github.event.inputs.dry_run != 'true' || github.event_name == 'schedule' }}
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f paper_json/*.json || true
