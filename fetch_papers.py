@@ -35,7 +35,7 @@ def _ymdhms(d_utc):  # YYYYMMDDHHMMSS
 def _do_query(q, headers):
     params = {
         "search_query": q,
-        "sortBy": "submittedDate",  # sorting key can stay submittedDate either way
+        "sortBy": "submittedDate",
         "sortOrder": "ascending",
         "max_results": 300,
     }
@@ -43,37 +43,29 @@ def _do_query(q, headers):
     r.raise_for_status()
     print("[DEBUG] GET:", r.url)
     root = ET.fromstring(r.text)
-    entries = root.findall("atom:entry", NS)
-    return entries
+    return root.findall("atom:entry", NS)
 
 def fetch_for_day(category: str, day_utc):
-    # Day window in UTC
     start = datetime(day_utc.year, day_utc.month, day_utc.day, 0, 0, 0, tzinfo=timezone.utc)
     end   = datetime(day_utc.year, day_utc.month, day_utc.day, 23, 59, 59, tzinfo=timezone.utc)
 
     headers = {"User-Agent": "daily-arxiv-fetch/0.2 (YOUR_REAL_EMAIL@domain)"}
 
-    # Try in descending order of “strictness”
     queries = [
-        # 1) submittedDate with seconds
         f"cat:{category}+AND+submittedDate:[{_ymdhms(start)}+TO+{_ymdhms(end)}]",
-        # 2) lastUpdatedDate with seconds
         f"cat:{category}+AND+lastUpdatedDate:[{_ymdhms(start)}+TO+{_ymdhms(end)}]",
-        # 3) submittedDate with minutes
         f"cat:{category}+AND+submittedDate:[{_ymdhm(start)}+TO+{_ymdhm(end)}]",
-        # 4) lastUpdatedDate with minutes
         f"cat:{category}+AND+lastUpdatedDate:[{_ymdhm(start)}+TO+{_ymdhm(end)}]",
     ]
 
-    for idx, q in enumerate(queries, 1):
+    for i, q in enumerate(queries, 1):
         entries = _do_query(q, headers)
-        print(f"[DEBUG] {category}: try#{idx} -> {len(entries)} entries")
+        print(f"[DEBUG] {category}: try#{i} -> {len(entries)} entries")
         if entries:
             return [parse_entry(e) for e in entries]
 
-    # 5) Sanity check: recent without date filter so we know the pipeline works
-    fallback_q = f"cat:{category}"
-    entries = _do_query(fallback_q, headers)
+    # final sanity (no date filter). If still empty, that's fine—we'll write an empty file.
+    entries = _do_query(f"cat:{category}", headers)
     print(f"[DEBUG] {category}: fallback(no date) -> {len(entries)} entries")
     return [parse_entry(e) for e in entries] if entries else []
 
@@ -81,13 +73,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--date", help="UTC date to fetch (YYYY-MM-DD). Defaults to today.")
     parser.add_argument("--out-dir", default="paper_json", help="Output directory.")
-    parser.add_argument("--keep-days", type=int, default=5, help="How many daily JSONs to keep.")
-    parser.add_argument("--dry-run", action="store_true", help="Print stats and write to out-dir, but don't commit (handled by workflow).")
+    parser.add_argument("--dry-run", action="store_true", help="Skip commit in workflow (still writes files).")
     parser.add_argument("--categories", nargs="*", default=CATEGORIES, help="Override categories.")
     args = parser.parse_args()
 
-    OUTPUT_DIR = Path(args.out_dir)
-    OUTPUT_DIR.mkdir(exist_ok=True)
+    out_dir = Path(args.out_dir)
+    out_dir.mkdir(exist_ok=True)
 
     if args.date:
         day = datetime.strptime(args.date, "%Y-%m-%d").date()
@@ -96,28 +87,39 @@ def main():
 
     all_entries = []
     for cat in args.categories:
-        entries = fetch_for_day(cat, day)
-        all_entries.extend(entries)
+        all_entries.extend(fetch_for_day(cat, day))
 
-    # Deduplicate by id
+    # de-dupe
     seen, deduped = set(), []
     for e in all_entries:
         if e["id"] not in seen:
             deduped.append(e); seen.add(e["id"])
 
-    out_file = OUTPUT_DIR / f"{day}.json"
+    # write daily file (always, even if empty)
+    out_file = out_dir / f"{day}.json"
     with open(out_file, "w", encoding="utf-8") as f:
         json.dump(deduped, f, indent=2, ensure_ascii=False)
-
-    print(f"[fetch_papers] Date={day} Categories={args.categories} -> {len(deduped)} papers")
+    print(f"[fetch_papers] Date={day} -> {len(deduped)} papers")
     print(f"[fetch_papers] Wrote: {out_file}")
 
-    # keep only last N days
-    json_files = sorted(OUTPUT_DIR.glob("*.json"))
-    if len(json_files) > args.keep_days:
-        for old in json_files[:-args.keep_days]:
-            old.unlink()
-            print(f"[fetch_papers] Deleted old file {old}")
+    # update index.json (list of {date, count}) so the site can bound the calendar
+    index_path = out_dir / "index.json"
+    index = []
+    if index_path.exists():
+        try:
+            index = json.loads(index_path.read_text(encoding="utf-8"))
+            if not isinstance(index, list):
+                index = []
+        except Exception:
+            index = []
+
+    # replace or append today’s entry
+    day_str = str(day)
+    entry = {"date": day_str, "count": len(deduped)}
+    index = [e for e in index if e.get("date") != day_str] + [entry]
+    index.sort(key=lambda x: x["date"])  # ascending
+    index_path.write_text(json.dumps(index, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"[fetch_papers] Updated index: {index_path}")
 
 if __name__ == "__main__":
     main()

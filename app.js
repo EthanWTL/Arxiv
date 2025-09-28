@@ -5,71 +5,48 @@ const PRESET_TERMS = [
   "multimodal","reasoning","llm","\"large language model\"",
   "video generation","navigation","diffusion","egocentric",
 ];
-let RENDER_DAYS = 5;
 
 /** ============================== STATE =============================== **/
-let ALL = [];   // flat list of papers across days, each has __date
+let ALL = [];                // papers for the currently selected date
+let INDEX = [];              // [{date, count}, ...] from paper_json/index.json
 
 const els = {
   content: document.getElementById("content"),
   search: document.getElementById("search"),
   titleOnly: document.getElementById("titleOnly"),
-  onlyReadLater: document.getElementById("onlyReadLater"),
-  days: document.getElementById("days"),
   presetChips: document.getElementById("presetChips"),
-  exportReadLaterBtn: document.getElementById("exportReadLaterBtn"),
-  importBtn: document.getElementById("importBtn"),
   count: document.getElementById("count"),
   paperTpl: document.getElementById("paperTpl"),
+  date: document.getElementById("date"),
+  prevDay: document.getElementById("prevDay"),
+  nextDay: document.getElementById("nextDay"),
+  todayBtn: document.getElementById("todayBtn"),
 };
 
-const STORAGE_KEY_RL = "arxiv_read_later"; // stores array of IDs
-
-/** =========================== UTILITIES ============================= **/
-function fmtDateISO(d){ return d.toISOString().split("T")[0]; }
+function fmtISO(d){ return d.toISOString().split("T")[0]; }
+function parseISO(s){ const [y,m,d] = s.split("-").map(Number); return new Date(Date.UTC(y,m-1,d)); }
 function normalize(s){ return (s || "").toLowerCase(); }
 function debounce(fn, ms=250){ let t; return (...a)=>{clearTimeout(t); t=setTimeout(()=>fn(...a),ms)}; }
-function download(filename, dataStr){
-  const blob = new Blob([dataStr], {type: "application/json;charset=utf-8"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url; a.download = filename; document.body.appendChild(a); a.click();
-  setTimeout(()=>{URL.revokeObjectURL(url); a.remove();}, 0);
-}
-function getPaperId(p){ return p.id || p.link || p.title; }
-
-/** =========================== STORAGE =============================== **/
-function loadReadLater(){
-  try{
-    const s = localStorage.getItem(STORAGE_KEY_RL);
-    const arr = s ? JSON.parse(s) : [];
-    return new Set(Array.isArray(arr) ? arr : []);
-  }catch{ return new Set(); }
-}
-function saveReadLater(set){
-  localStorage.setItem(STORAGE_KEY_RL, JSON.stringify([...set]));
-}
 
 /** ============================ LOAD ================================= **/
-async function fetchDay(dateStr){
-  const url = `paper_json/${dateStr}.json`;
+async function fetchJSON(url){
   try{
     const res = await fetch(url, { cache: "no-store" });
-    if(!res.ok) return [];
-    const papers = await res.json();
-    return Array.isArray(papers) ? papers.map(p => ({...p, __date: dateStr})) : [];
-  }catch{ return []; }
+    if(!res.ok) return null;
+    return await res.json();
+  }catch{ return null; }
 }
 
-async function loadDays(nDays){
-  const today = new Date();
-  const tasks = [];
-  for(let i=0;i<nDays;i++){
-    const d = new Date(today); d.setDate(today.getDate() - i);
-    tasks.push(fetchDay(fmtDateISO(d)));
-  }
-  const results = await Promise.all(tasks);
-  ALL = results.flat();
+async function loadIndex(){
+  const idx = await fetchJSON("paper_json/index.json");
+  INDEX = Array.isArray(idx) ? idx.filter(x=>x && x.date).sort((a,b)=>a.date.localeCompare(b.date)) : [];
+}
+
+async function loadDate(dateStr){
+  els.content.textContent = "Loading…";
+  const data = await fetchJSON(`paper_json/${dateStr}.json`);
+  ALL = Array.isArray(data) ? data : [];
+  applyFilters();
 }
 
 /** ============================ FILTERS =============================== **/
@@ -102,11 +79,6 @@ function categoryMatches(paper, allowed){
   return cats.some(c => allowed.has(c));
 }
 
-function readLaterMatches(paper, onlyRL, rlSet){
-  if(!onlyRL) return true;
-  return rlSet.has(getPaperId(paper));
-}
-
 function getAllowedCats(){
   const boxes = [...document.querySelectorAll(".cat")];
   const checked = boxes.filter(b => b.checked).map(b => b.value);
@@ -114,68 +86,35 @@ function getAllowedCats(){
 }
 
 /** =========================== RENDER ================================= **/
-function groupByDate(papers){
-  const map = new Map();
-  for(const p of papers){
-    if(!map.has(p.__date)) map.set(p.__date, []);
-    map.get(p.__date).push(p);
-  }
-  return [...map.entries()].sort((a,b)=> a[0]<b[0]?1:-1);
-}
-
-function render(papers){
-  const groups = groupByDate(papers);
+function render(papers, dateStr){
   els.content.innerHTML = "";
+  const section = document.createElement("section");
+  section.className = "date-section";
+  const heading = document.createElement("h2");
+  heading.textContent = dateStr;
+  section.appendChild(heading);
 
-  if(groups.length === 0){
-    els.content.textContent = "No papers match your filters.";
+  if(!papers || papers.length === 0){
+    const empty = document.createElement("div");
+    empty.textContent = "No papers for this day (or none matched your filters).";
+    section.appendChild(empty);
+    els.content.appendChild(section);
     els.count.textContent = "0";
     return;
   }
 
-  const rlSet = loadReadLater();
-  let total = 0;
-
-  for(const [date, items] of groups){
-    if(items.length === 0) continue;
-    total += items.length;
-
-    const section = document.createElement("section");
-    section.className = "date-section";
-    section.innerHTML = `<h2>${date}</h2>`;
-    els.content.appendChild(section);
-
-    for(const p of items){
-      const id = getPaperId(p);
-      const node = els.paperTpl.content.firstElementChild.cloneNode(true);
-
-      node.querySelector(".title").textContent = p.title;
-      node.querySelector(".meta").textContent = `${p.published} | ${(p.category||[]).join(", ")}`;
-      node.querySelector(".summary").textContent = p.summary;
-
-      const link = node.querySelector(".link");
-      link.href = p.link; link.textContent = "PDF";
-
-      const rlBtn = node.querySelector(".tag-btn.readlater");
-      const active = rlSet.has(id);
-      rlBtn.classList.toggle("active", active);
-      rlBtn.textContent = active ? "✓ Read-Later" : "Read-Later";
-
-      rlBtn.addEventListener("click", () => {
-        const set = loadReadLater();
-        if(set.has(id)) set.delete(id); else set.add(id);
-        saveReadLater(set);
-        // Update button immediately
-        rlBtn.classList.toggle("active", set.has(id));
-        rlBtn.textContent = set.has(id) ? "✓ Read-Later" : "Read-Later";
-        // If filtering by read-later, re-apply filters to hide/show cards
-        if(els.onlyReadLater.checked) applyFilters();
-      });
-
-      section.appendChild(node);
-    }
+  for(const p of papers){
+    const node = els.paperTpl.content.firstElementChild.cloneNode(true);
+    node.querySelector(".title").textContent = p.title;
+    node.querySelector(".meta").textContent = `${p.published} | ${(p.category||[]).join(", ")}`;
+    node.querySelector(".summary").textContent = p.summary;
+    const link = node.querySelector(".link");
+    link.href = p.link; link.textContent = "PDF";
+    section.appendChild(node);
   }
-  els.count.textContent = String(total);
+
+  els.content.appendChild(section);
+  els.count.textContent = String(papers.length);
 }
 
 /** =========================== APPLY FILTERS ========================== **/
@@ -183,79 +122,67 @@ function applyFilters(){
   const terms = getActiveTerms();
   const titleOnly = els.titleOnly.checked;
   const cats = getAllowedCats();
-  const onlyRL = els.onlyReadLater.checked;
-  const rlSet = loadReadLater();
-
   const filtered = ALL.filter(p =>
     categoryMatches(p, cats) &&
-    textMatches(p, terms, titleOnly) &&
-    readLaterMatches(p, onlyRL, rlSet)
+    textMatches(p, terms, titleOnly)
   );
-
-  render(filtered);
+  render(filtered, els.date.value || "(no date)");
 }
 
-/** ======================== EXPORT / IMPORT =========================== **/
-function exportReadLater(){
-  const rl = [...loadReadLater()];
-  download("read_later.json", JSON.stringify(rl, null, 2));
+/** ============================ DATE UX =============================== **/
+function setDateBoundsFromIndex(){
+  if(INDEX.length === 0) return;
+  const min = INDEX[0].date;
+  const max = INDEX[INDEX.length - 1].date;
+  els.date.min = min;
+  els.date.max = max;
+  if(!els.date.value) els.date.value = max; // default to latest available
 }
 
-function importReadLaterFile(file){
-  const reader = new FileReader();
-  reader.onload = () => {
-    try{
-      const parsed = JSON.parse(reader.result);
-      if(!Array.isArray(parsed)) return alert("Expected an array of paper IDs.");
-      const set = loadReadLater();
-      for(const id of parsed) set.add(id);
-      saveReadLater(set);
-      applyFilters();
-    }catch{
-      alert("Failed to parse JSON.");
-    }
-  };
-  reader.readAsText(file);
+function findNeighborDate(current, dir){
+  if(INDEX.length === 0) return null;
+  const i = INDEX.findIndex(x => x.date === current);
+  if(i < 0) return null;
+  const j = i + (dir < 0 ? -1 : 1);
+  if(j < 0 || j >= INDEX.length) return null;
+  return INDEX[j].date;
 }
 
 /** ============================ INIT ================================= **/
-function initChipBehavior(){
-  els.presetChips.addEventListener("click",(e)=>{
-    const btn = e.target.closest(".chip"); if(!btn) return;
-    btn.classList.toggle("active"); applyFilters();
+function initChips(){ els.presetChips.addEventListener("click",(e)=>{ const btn=e.target.closest(".chip"); if(!btn) return; btn.classList.toggle("active"); applyFilters(); }); }
+function initCategories(){ document.querySelectorAll(".cat").forEach(cb => cb.addEventListener("change", applyFilters)); }
+function initSearch(){ els.search.addEventListener("input", debounce(applyFilters, 200)); els.titleOnly.addEventListener("change", applyFilters); }
+function initDateControls(){
+  els.date.addEventListener("change", async ()=>{
+    if(els.date.value){ await loadDate(els.date.value); }
   });
-}
-function initCategoryBehavior(){
-  document.querySelectorAll(".cat").forEach(cb => cb.addEventListener("change", applyFilters));
-}
-function initDaysBehavior(){
-  els.days.addEventListener("change", async ()=>{
-    RENDER_DAYS = parseInt(els.days.value, 10) || 5;
-    els.content.textContent = "Loading…";
-    await loadDays(RENDER_DAYS);
-    applyFilters();
+  els.todayBtn.addEventListener("click", async ()=>{
+    // pick latest available date (from index), not local today
+    if(INDEX.length){ els.date.value = INDEX[INDEX.length-1].date; await loadDate(els.date.value); }
   });
-}
-function initSearchBehavior(){
-  els.search.addEventListener("input", debounce(applyFilters, 200));
-  els.titleOnly.addEventListener("change", applyFilters);
-  els.onlyReadLater.addEventListener("change", applyFilters);
-}
-function initExportImport(){
-  els.exportReadLaterBtn.addEventListener("click", exportReadLater);
-  els.importBtn.addEventListener("change", e => {
-    if(e.target.files && e.target.files[0]) importReadLaterFile(e.target.files[0]);
-    e.target.value = "";
+  els.prevDay.addEventListener("click", async ()=>{
+    const n = findNeighborDate(els.date.value, -1);
+    if(n){ els.date.value = n; await loadDate(n); }
+  });
+  els.nextDay.addEventListener("click", async ()=>{
+    const n = findNeighborDate(els.date.value, +1);
+    if(n){ els.date.value = n; await loadDate(n); }
   });
 }
 
 document.addEventListener("DOMContentLoaded", async ()=>{
-  initChipBehavior();
-  initCategoryBehavior();
-  initDaysBehavior();
-  initSearchBehavior();
-  initExportImport();
+  initChips();
+  initCategories();
+  initSearch();
+  initDateControls();
 
-  await loadDays(RENDER_DAYS);
-  applyFilters();
+  await loadIndex();
+  setDateBoundsFromIndex();
+
+  if(els.date.value){
+    await loadDate(els.date.value);
+  }else{
+    // No index yet: show friendly message
+    els.content.textContent = "No data yet. Once the daily workflow runs, days will appear here.";
+  }
 });
