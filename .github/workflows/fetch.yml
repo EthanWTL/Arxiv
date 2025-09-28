@@ -73,32 +73,26 @@ jobs:
           FILE="$(ls -1 paper_json/*.json 2>/dev/null | tail -n 1 || true)"
           if [ -n "$FILE" ]; then
             echo "Latest file: $FILE"
-            python -c "import json,sys; 
-            f='$FILE'; 
-            data=json.load(open(f)); 
-            print('Paper count:', len(data)); 
-            print('First:', {'id': (data[0].get('id') if data else None), 
-                            'title': (data[0].get('title') if data else None), 
-                            'published': (data[0].get('published') if data else None)})"
-                      else
-                        echo 'No JSON files found.'
-                      fi
+            python -c "import json,sys; f=sys.argv[1]; d=json.load(open(f)); print('Paper count:', len(d)); print('First:', {'id': (d[0].get('id') if d else None), 'title': (d[0].get('title') if d else None), 'published': (d[0].get('published') if d else None)})" "$FILE"
+          else
+            echo 'No JSON files found.'
+          fi
 
-                  - name: Upload JSON as artifact
-                    uses: actions/upload-artifact@v4
-                    with:
-                      name: paper-json
-                      path: paper_json/*.json
-                      if-no-files-found: warn
+      - name: Upload JSON as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-json
+          path: paper_json/*.json
+          if-no-files-found: warn
 
-                  - name: Commit & push (only when NOT dry-run)
-                    if: ${{ github.event.inputs.dry_run != 'true' || github.event_name == 'schedule' }}
-                    shell: bash
-                    run: |
-                      set -euo pipefail
-                      git config user.name "github-actions[bot]"
-                      git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-                      git add -f paper_json/*.json || true
-                      git diff --cached --quiet && echo "No changes to commit" && exit 0
-                      git commit -m "Daily update: $(date -u +'%Y-%m-%d')"
-                      git push
+      - name: Commit & push (only when NOT dry-run)
+        if: ${{ github.event.inputs.dry_run != 'true' || github.event_name == 'schedule' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f paper_json/*.json || true
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "Daily update: $(date -u +'%Y-%m-%d')"
+          git push
