@@ -1,0 +1,492 @@
+[
+  {
+    "id": "http://arxiv.org/abs/2510.27630v2",
+    "title": "Interaction as Intelligence Part II: Asynchronous Human-Agent Rollout\n  for Long-Horizon Task Training",
+    "summary": "Large Language Model (LLM) agents have recently shown strong potential in\ndomains such as automated coding, deep research, and graphical user interface\nmanipulation. However, training them to succeed on long-horizon,\ndomain-specialized tasks remains challenging. Current methods primarily fall\ninto two categories. The first relies on dense human annotations through\nbehavior cloning, which is prohibitively expensive for long-horizon tasks that\ncan take days or months. The second depends on outcome-driven sampling, which\noften collapses due to the rarity of valid positive trajectories on\ndomain-specialized tasks. We introduce Apollo, a sampling framework that\nintegrates asynchronous human guidance with action-level data filtering.\nInstead of requiring annotators to shadow every step, Apollo allows them to\nintervene only when the agent drifts from a promising trajectory, by providing\nprior knowledge, strategic advice, etc. This lightweight design makes it\npossible to sustain interactions for over 30 hours and produces valuable\ntrajectories at a lower cost. Apollo then applies supervision control to filter\nout sub-optimal actions and prevent error propagation. Together, these\ncomponents enable reliable and effective data collection in long-horizon\nenvironments. To demonstrate the effectiveness of Apollo, we evaluate it using\nInnovatorBench. Our experiments show that when applied to train the GLM-4.5\nmodel on InnovatorBench, Apollo achieves more than a 50% improvement over the\nuntrained baseline and a 28% improvement over a variant trained without human\ninteraction. These results highlight the critical role of human-in-the-loop\nsampling and the robustness of Apollo's design in handling long-horizon,\ndomain-specialized tasks.",
+    "published": "2025-10-31T17:00:22Z",
+    "updated": "2025-11-03T10:53:11Z",
+    "link": "http://arxiv.org/pdf/2510.27630v2.pdf",
+    "category": [
+      "cs.AI"
+    ],
+    "authors": [
+      "Dayuan Fu",
+      "Yunze Wu",
+      "Xiaojie Cai",
+      "Lyumanshan Ye",
+      "Shijie Xia",
+      "Zhen Huang",
+      "Weiye Si",
+      "Tianze Xu",
+      "Jie Sun",
+      "Keyu Li",
+      "Mohan Jiang",
+      "Junfei Wang",
+      "Qishuo Hua",
+      "Pengrui Lu",
+      "Yang Xiao",
+      "Pengfei Liu"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.27629v2",
+    "title": "Best Practices for Biorisk Evaluations on Open-Weight Bio-Foundation\n  Models",
+    "summary": "Open-weight bio-foundation models present a dual-use dilemma. While holding\ngreat promise for accelerating scientific research and drug development, they\ncould also enable bad actors to develop more deadly bioweapons. To mitigate the\nrisk posed by these models, current approaches focus on filtering biohazardous\ndata during pre-training. However, the effectiveness of such an approach\nremains unclear, particularly against determined actors who might fine-tune\nthese models for malicious use. To address this gap, we propose \\eval, a\nframework to evaluate the robustness of procedures that are intended to reduce\nthe dual-use capabilities of bio-foundation models. \\eval assesses models'\nvirus understanding through three lenses, including sequence modeling,\nmutational effects prediction, and virulence prediction. Our results show that\ncurrent filtering practices may not be particularly effective: Excluded\nknowledge can be rapidly recovered in some cases via fine-tuning, and exhibits\nbroader generalizability in sequence modeling. Furthermore, dual-use signals\nmay already reside in the pretrained representations, and can be elicited via\nsimple linear probing. These findings highlight the challenges of data\nfiltering as a standalone procedure, underscoring the need for further research\ninto robust safety and security strategies for open-weight bio-foundation\nmodels.",
+    "published": "2025-10-31T17:00:20Z",
+    "updated": "2025-11-03T15:19:02Z",
+    "link": "http://arxiv.org/pdf/2510.27629v2.pdf",
+    "category": [
+      "cs.CR",
+      "cs.AI"
+    ],
+    "authors": [
+      "Boyi Wei",
+      "Zora Che",
+      "Nathaniel Li",
+      "Udari Madhushani Sehwag",
+      "Jasper Götting",
+      "Samira Nedungadi",
+      "Julian Michael",
+      "Summer Yue",
+      "Dan Hendrycks",
+      "Peter Henderson",
+      "Zifan Wang",
+      "Seth Donoughe",
+      "Mantas Mazeika"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.27598v2",
+    "title": "InnovatorBench: Evaluating Agents' Ability to Conduct Innovative LLM\n  Research",
+    "summary": "AI agents could accelerate scientific discovery by automating hypothesis\nformation, experiment design, coding, execution, and analysis, yet existing\nbenchmarks probe narrow skills in simplified settings. To address this gap, we\nintroduce InnovatorBench, a benchmark-platform pair for realistic, end-to-end\nassessment of agents performing Large Language Model (LLM) research. It\ncomprises 20 tasks spanning Data Construction, Filtering, Augmentation, Loss\nDesign, Reward Design, and Scaffold Construction, which require runnable\nartifacts and assessment of correctness, performance, output quality, and\nuncertainty. To support agent operation, we develop ResearchGym, a research\nenvironment offering rich action spaces, distributed and long-horizon\nexecution, asynchronous monitoring, and snapshot saving. We also implement a\nlightweight ReAct agent that couples explicit reasoning with executable\nplanning using frontier models such as Claude-4, GPT-5, GLM-4.5, and Kimi-K2.\nOur experiments demonstrate that while frontier models show promise in\ncode-driven research tasks, they struggle with fragile algorithm-related tasks\nand long-horizon decision making, such as impatience, poor resource management,\nand overreliance on template-based reasoning. Furthermore, agents require over\n11 hours to achieve their best performance on InnovatorBench, underscoring the\nbenchmark's difficulty and showing the potential of InnovatorBench to be the\nnext generation of code-based research benchmark.",
+    "published": "2025-10-31T16:22:23Z",
+    "updated": "2025-11-03T10:56:21Z",
+    "link": "http://arxiv.org/pdf/2510.27598v2.pdf",
+    "category": [
+      "cs.AI"
+    ],
+    "authors": [
+      "Yunze Wu",
+      "Dayuan Fu",
+      "Weiye Si",
+      "Zhen Huang",
+      "Mohan Jiang",
+      "Keyu Li",
+      "Shijie Xia",
+      "Jie Sun",
+      "Tianze Xu",
+      "Xiangkun Hu",
+      "Pengrui Lu",
+      "Xiaojie Cai",
+      "Lyumanshan Ye",
+      "Wenhong Zhu",
+      "Yang Xiao",
+      "Pengfei Liu"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.27181v2",
+    "title": "Dual-level Progressive Hardness-Aware Reweighting for Cross-View\n  Geo-Localization",
+    "summary": "Cross-view geo-localization (CVGL) between drone and satellite imagery\nremains challenging due to severe viewpoint gaps and the presence of hard\nnegatives, which are visually similar but geographically mismatched samples.\nExisting mining or reweighting strategies often use static weighting, which is\nsensitive to distribution shifts and prone to overemphasizing difficult samples\ntoo early, leading to noisy gradients and unstable convergence. In this paper,\nwe present a Dual-level Progressive Hardness-aware Reweighting (DPHR) strategy.\nAt the sample level, a Ratio-based Difficulty-Aware (RDA) module evaluates\nrelative difficulty and assigns fine-grained weights to negatives. At the batch\nlevel, a Progressive Adaptive Loss Weighting (PALW) mechanism exploits a\ntraining-progress signal to attenuate noisy gradients during early optimization\nand progressively enhance hard-negative mining as training matures. Experiments\non the University-1652 and SUES-200 benchmarks demonstrate the effectiveness\nand robustness of the proposed DPHR, achieving consistent improvements over\nstate-of-the-art methods.",
+    "published": "2025-10-31T05:08:46Z",
+    "updated": "2025-11-03T06:07:17Z",
+    "link": "http://arxiv.org/pdf/2510.27181v2.pdf",
+    "category": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "authors": [
+      "Guozheng Zheng",
+      "Jian Guan",
+      "Mingjie Xie",
+      "Xuanjia Zhao",
+      "Congyi Fan",
+      "Shiheng Zhang",
+      "Pengming Feng"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.19954v3",
+    "title": "RELATE: A Schema-Agnostic Perceiver Encoder for Multimodal Relational\n  Graphs",
+    "summary": "Relational multi-table data is common in domains such as e-commerce,\nhealthcare, and scientific research, and can be naturally represented as\nheterogeneous temporal graphs with multi-modal node attributes. Existing graph\nneural networks (GNNs) rely on schema-specific feature encoders, requiring\nseparate modules for each node type and feature column, which hinders\nscalability and parameter sharing. We introduce RELATE (Relational Encoder for\nLatent Aggregation of Typed Entities), a schema-agnostic, plug-and-play feature\nencoder that can be used with any general purpose GNN. RELATE employs shared\nmodality-specific encoders for categorical, numerical, textual, and temporal\nattributes, followed by a Perceiver-style cross-attention module that\naggregates features into a fixed-size, permutation-invariant node\nrepresentation. We evaluate RELATE on ReLGNN and HGT in the RelBench benchmark,\nwhere it achieves performance within 3% of schema-specific encoders while\nreducing parameter counts by up to 5x. This design supports varying schemas and\nenables multi-dataset pretraining for general-purpose GNNs, paving the way\ntoward foundation models for relational graph data.",
+    "published": "2025-10-22T18:27:49Z",
+    "updated": "2025-11-03T18:42:57Z",
+    "link": "http://arxiv.org/pdf/2510.19954v3.pdf",
+    "category": [
+      "cs.AI",
+      "cs.DB",
+      "cs.LG"
+    ],
+    "authors": [
+      "Joe Meyer",
+      "Divyansha Lachi",
+      "Mahmoud Mohammadi",
+      "Roshan Reddy Upendra",
+      "Eva L. Dyer",
+      "Mark Li",
+      "Tom Palczewski"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.26899v2",
+    "title": "How Similar Are Grokipedia and Wikipedia? A Multi-Dimensional Textual\n  and Structural Comparison",
+    "summary": "The launch of Grokipedia, an AI-generated encyclopedia developed by Elon\nMusk's xAI, was presented as a response to perceived ideological and structural\nbiases in Wikipedia, aiming to produce \"truthful\" entries via the large\nlanguage model Grok. Yet whether an AI-driven alternative can escape the biases\nand limitations of human-edited platforms remains unclear. This study\nundertakes a large-scale computational comparison of 1,800 matched article\npairs between Grokipedia and Wikipedia, drawn from the 2,000 most-edited\nWikipedia pages. Using metrics across lexical richness, readability, structural\norganization, reference density, and semantic similarity, we assess how closely\nthe two platforms align in form and substance. The results show that while\nGrokipedia exhibits strong semantic and stylistic alignment with Wikipedia, it\ntypically produces longer but less lexically diverse articles, with fewer\nreferences per word and greater structural variability. These findings suggest\nthat AI-generated encyclopedic content currently mirrors Wikipedia's\ninformational scope but diverges in editorial norms, favoring narrative\nexpansion over citation-based verification. The implications highlight new\ntensions around transparency, provenance, and the governance of knowledge in an\nera of automated text generation.",
+    "published": "2025-10-30T18:04:46Z",
+    "updated": "2025-11-03T12:50:56Z",
+    "link": "http://arxiv.org/pdf/2510.26899v2.pdf",
+    "category": [
+      "cs.CY",
+      "cs.AI",
+      "cs.SI"
+    ],
+    "authors": [
+      "Taha Yasseri"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.26012v2",
+    "title": "AutoSurvey2: Empowering Researchers with Next Level Automated Literature\n  Surveys",
+    "summary": "The rapid growth of research literature, particularly in large language\nmodels (LLMs), has made producing comprehensive and current survey papers\nincreasingly difficult. This paper introduces autosurvey2, a multi-stage\npipeline that automates survey generation through retrieval-augmented synthesis\nand structured evaluation. The system integrates parallel section generation,\niterative refinement, and real-time retrieval of recent publications to ensure\nboth topical completeness and factual accuracy. Quality is assessed using a\nmulti-LLM evaluation framework that measures coverage, structure, and relevance\nin alignment with expert review standards. Experimental results demonstrate\nthat autosurvey2 consistently outperforms existing retrieval-based and\nautomated baselines, achieving higher scores in structural coherence and\ntopical relevance while maintaining strong citation fidelity. By combining\nretrieval, reasoning, and automated evaluation into a unified framework,\nautosurvey2 provides a scalable and reproducible solution for generating\nlong-form academic surveys and contributes a solid foundation for future\nresearch on automated scholarly writing. All code and resources are available\nat https://github.com/annihi1ation/auto_research.",
+    "published": "2025-10-29T22:57:03Z",
+    "updated": "2025-11-02T22:15:47Z",
+    "link": "http://arxiv.org/pdf/2510.26012v2.pdf",
+    "category": [
+      "cs.AI"
+    ],
+    "authors": [
+      "Siyi Wu",
+      "Chiaxin Liang",
+      "Ziqian Bi",
+      "Leyi Zhao",
+      "Tianyang Wang",
+      "Junhao Song",
+      "Yichao Zhang",
+      "Keyu Chen",
+      "Xinyuan Song"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.23112v3",
+    "title": "GroupSHAP-Guided Integration of Financial News Keywords and Technical\n  Indicators for Stock Price Prediction",
+    "summary": "Recent advances in finance-specific language models such as FinBERT have\nenabled the quantification of public sentiment into index-based measures, yet\ncompressing diverse linguistic signals into single metrics overlooks contextual\nnuances and limits interpretability. To address this limitation, explainable AI\ntechniques, particularly SHAP (SHapley Additive Explanations), have been\nemployed to identify influential features. However, SHAP's computational cost\ngrows exponentially with input features, making it impractical for large-scale\ntext-based financial data. This study introduces a GRU-based forecasting\nframework enhanced with GroupSHAP, which quantifies contributions of\nsemantically related keyword groups rather than individual tokens,\nsubstantially reducing computational burden while preserving interpretability.\nWe employed FinBERT to embed news articles from 2015 to 2024, clustered them\ninto coherent semantic groups, and applied GroupSHAP to measure each group's\ncontribution to stock price movements. The resulting group-level SHAP variables\nacross multiple topics were used as input features for the prediction model.\nEmpirical results from one-day-ahead forecasting of the S&P 500 index\nthroughout 2024 demonstrate that our approach achieves a 32.2% reduction in MAE\nand a 40.5% reduction in RMSE compared with benchmark models without the\nGroupSHAP mechanism. This research presents the first application of GroupSHAP\nin news-driven financial forecasting, showing that grouped sentiment\nrepresentations simultaneously enhance interpretability and predictive\nperformance.",
+    "published": "2025-10-27T08:33:18Z",
+    "updated": "2025-11-03T13:06:41Z",
+    "link": "http://arxiv.org/pdf/2510.23112v3.pdf",
+    "category": [
+      "cs.CE",
+      "cs.AI"
+    ],
+    "authors": [
+      "Minjoo Kim",
+      "Jinwoong Kim",
+      "Sangjin Park"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2506.16791v4",
+    "title": "TabArena: A Living Benchmark for Machine Learning on Tabular Data",
+    "summary": "With the growing popularity of deep learning and foundation models for\ntabular data, the need for standardized and reliable benchmarks is higher than\never. However, current benchmarks are static. Their design is not updated even\nif flaws are discovered, model versions are updated, or new models are\nreleased. To address this, we introduce TabArena, the first continuously\nmaintained living tabular benchmarking system. To launch TabArena, we manually\ncurate a representative collection of datasets and well-implemented models,\nconduct a large-scale benchmarking study to initialize a public leaderboard,\nand assemble a team of experienced maintainers. Our results highlight the\ninfluence of validation method and ensembling of hyperparameter configurations\nto benchmark models at their full potential. While gradient-boosted trees are\nstill strong contenders on practical tabular datasets, we observe that deep\nlearning methods have caught up under larger time budgets with ensembling. At\nthe same time, foundation models excel on smaller datasets. Finally, we show\nthat ensembles across models advance the state-of-the-art in tabular machine\nlearning. We observe that some deep learning models are overrepresented in\ncross-model ensembles due to validation set overfitting, and we encourage model\ndevelopers to address this issue. We launch TabArena with a public leaderboard,\nreproducible code, and maintenance protocols to create a living benchmark\navailable at https://tabarena.ai.",
+    "published": "2025-06-20T07:14:48Z",
+    "updated": "2025-11-03T18:47:03Z",
+    "link": "http://arxiv.org/pdf/2506.16791v4.pdf",
+    "category": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "authors": [
+      "Nick Erickson",
+      "Lennart Purucker",
+      "Andrej Tschalzev",
+      "David Holzmüller",
+      "Prateek Mutalik Desai",
+      "David Salinas",
+      "Frank Hutter"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.27584v2",
+    "title": "Image Hashing via Cross-View Code Alignment in the Age of Foundation\n  Models",
+    "summary": "Efficient large-scale retrieval requires representations that are both\ncompact and discriminative. Foundation models provide powerful visual and\nmultimodal embeddings, but nearest neighbor search in these high-dimensional\nspaces is computationally expensive. Hashing offers an efficient alternative by\nenabling fast Hamming distance search with binary codes, yet existing\napproaches often rely on complex pipelines, multi-term objectives, designs\nspecialized for a single learning paradigm, and long training times. We\nintroduce CroVCA (Cross-View Code Alignment), a simple and unified principle\nfor learning binary codes that remain consistent across semantically aligned\nviews. A single binary cross-entropy loss enforces alignment, while coding-rate\nmaximization serves as an anti-collapse regularizer to promote balanced and\ndiverse codes. To implement this, we design HashCoder, a lightweight MLP\nhashing network with a final batch normalization layer to enforce balanced\ncodes. HashCoder can be used as a probing head on frozen embeddings or to adapt\nencoders efficiently via LoRA fine-tuning. Across benchmarks, CroVCA achieves\nstate-of-the-art results in just 5 training epochs. At 16 bits, it particularly\nwell-for instance, unsupervised hashing on COCO completes in under 2 minutes\nand supervised hashing on ImageNet100 in about 3 minutes on a single GPU. These\nresults highlight CroVCA's efficiency, adaptability, and broad applicability.",
+    "published": "2025-10-31T16:08:46Z",
+    "updated": "2025-11-03T10:21:43Z",
+    "link": "http://arxiv.org/pdf/2510.27584v2.pdf",
+    "category": [
+      "cs.CV",
+      "cs.IR",
+      "cs.LG"
+    ],
+    "authors": [
+      "Ilyass Moummad",
+      "Kawtar Zaher",
+      "Hervé Goëau",
+      "Alexis Joly"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.27255v2",
+    "title": "Enhancing Spatio-Temporal Zero-shot Action Recognition with\n  Language-driven Description Attributes",
+    "summary": "Vision-Language Models (VLMs) have demonstrated impressive capabilities in\nzero-shot action recognition by learning to associate video embeddings with\nclass embeddings. However, a significant challenge arises when relying solely\non action classes to provide semantic context, particularly due to the presence\nof multi-semantic words, which can introduce ambiguity in understanding the\nintended concepts of actions. To address this issue, we propose an innovative\napproach that harnesses web-crawled descriptions, leveraging a large-language\nmodel to extract relevant keywords. This method reduces the need for human\nannotators and eliminates the laborious manual process of attribute data\ncreation. Additionally, we introduce a spatio-temporal interaction module\ndesigned to focus on objects and action units, facilitating alignment between\ndescription attributes and video content. In our zero-shot experiments, our\nmodel achieves impressive results, attaining accuracies of 81.0%, 53.1%, and\n68.9% on UCF-101, HMDB-51, and Kinetics-600, respectively, underscoring the\nmodel's adaptability and effectiveness across various downstream tasks.",
+    "published": "2025-10-31T07:45:44Z",
+    "updated": "2025-11-03T07:33:58Z",
+    "link": "http://arxiv.org/pdf/2510.27255v2.pdf",
+    "category": [
+      "cs.CV"
+    ],
+    "authors": [
+      "Yehna Kim",
+      "Young-Eun Kim",
+      "Seong-Whan Lee"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.27408v2",
+    "title": "Estimation of aboveground biomass in a tropical dry forest: An\n  intercomparison of airborne, unmanned, and space laser scanning",
+    "summary": "According to the Paris Climate Change Agreement, all nations are required to\nsubmit reports on their greenhouse gas emissions and absorption every two years\nby 2024. Consequently, forests play a crucial role in reducing carbon\nemissions, which is essential for meeting these obligations. Recognizing the\nsignificance of forest conservation in the global battle against climate\nchange, Article 5 of the Paris Agreement emphasizes the need for high-quality\nforest data. This study focuses on enhancing methods for mapping aboveground\nbiomass in tropical dry forests. Tropical dry forests are considered one of the\nleast understood tropical forest environments; therefore, there is a need for\naccurate approaches to estimate carbon pools. We employ a comparative analysis\nof AGB estimates, utilizing different discrete and full-waveform laser scanning\ndatasets in conjunction with Ordinary Least Squares and Bayesian approaches\nSVM. Airborne Laser Scanning, Unmanned Laser Scanning, and Space Laser Scanning\nwere used as independent variables for extracting forest metrics. Variable\nselection, SVM regression tuning, and cross-validation via a machine-learning\napproach were applied to account for overfitting and underfitting. The results\nindicate that six key variables primarily related to tree height:\nElev\\.minimum, Elev\\.L3, lev\\.MAD.mode, Elev\\.mode, Elev\\.MAD\\.median, and\nElev\\.skewness, are important for AGB estimation using ALSD and ULSD, while\nLeaf Area Index, canopy coverage and height, terrain elevation, and\nfull-waveform signal energy emerged as the most vital variables. AGB values\nestimated from ten permanent tropical dry forest plots in Costa Rica Guanacaste\nprovince ranged from 26.02 Mg/ha to 175.43 Mg/ha. The SVM regressions\ndemonstrated a 17.89 error across all laser scanning systems, with SLSF W\nexhibiting the lowest error 17.07 in estimating total biomass per plot.",
+    "published": "2025-10-31T11:53:12Z",
+    "updated": "2025-11-03T15:11:02Z",
+    "link": "http://arxiv.org/pdf/2510.27408v2.pdf",
+    "category": [
+      "eess.SP",
+      "cs.LG"
+    ],
+    "authors": [
+      "Nelson Mattié",
+      "Arturo Sanchez-Azofeifa",
+      "Pablo Crespo-Peremarch",
+      "Juan-Ygnacio López-Hernández"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2508.20519v3",
+    "title": "Khiops: An End-to-End, Frugal AutoML and XAI Machine Learning Solution\n  for Large, Multi-Table Databases",
+    "summary": "Khiops is an open source machine learning tool designed for mining large\nmulti-table databases. Khiops is based on a unique Bayesian approach that has\nattracted academic interest with more than 20 publications on topics such as\nvariable selection, classification, decision trees and co-clustering. It\nprovides a predictive measure of variable importance using discretisation\nmodels for numerical data and value clustering for categorical data. The\nproposed classification/regression model is a naive Bayesian classifier\nincorporating variable selection and weight learning. In the case of\nmulti-table databases, it provides propositionalisation by automatically\nconstructing aggregates. Khiops is adapted to the analysis of large databases\nwith millions of individuals, tens of thousands of variables and hundreds of\nmillions of records in secondary tables. It is available on many environments,\nboth from a Python library and via a user interface.",
+    "published": "2025-08-28T08:00:48Z",
+    "updated": "2025-11-03T14:30:33Z",
+    "link": "http://arxiv.org/pdf/2508.20519v3.pdf",
+    "category": [
+      "cs.LG"
+    ],
+    "authors": [
+      "Marc Boullé",
+      "Nicolas Voisine",
+      "Bruno Guerraz",
+      "Carine Hue",
+      "Felipe Olmos",
+      "Vladimir Popescu",
+      "Stéphane Gouache",
+      "Stéphane Bouget",
+      "Alexis Bondu",
+      "Luc Aurelien Gauthier",
+      "Yassine Nair Benrekia",
+      "Fabrice Clérot",
+      "Vincent Lemaire"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.26466v2",
+    "title": "Representation-Level Counterfactual Calibration for Debiased Zero-Shot\n  Recognition",
+    "summary": "Object-context shortcuts remain a persistent challenge in vision-language\nmodels, undermining zero-shot reliability when test-time scenes differ from\nfamiliar training co-occurrences. We recast this issue as a causal inference\nproblem and ask: Would the prediction remain if the object appeared in a\ndifferent environment? To answer this at inference time, we estimate object and\nbackground expectations within CLIP's representation space, and synthesize\ncounterfactual embeddings by recombining object features with diverse\nalternative contexts sampled from external datasets, batch neighbors, or\ntext-derived descriptions. By estimating the Total Direct Effect and simulating\nintervention, we further subtract background-only activation, preserving\nbeneficial object-context interactions while mitigating hallucinated scores.\nWithout retraining or prompt design, our method substantially improves both\nworst-group and average accuracy on context-sensitive benchmarks, establishing\na new zero-shot state of the art. Beyond performance, our framework provides a\nlightweight representation-level counterfactual approach, offering a practical\ncausal avenue for debiased and reliable multimodal reasoning.",
+    "published": "2025-10-30T13:11:23Z",
+    "updated": "2025-11-03T05:03:18Z",
+    "link": "http://arxiv.org/pdf/2510.26466v2.pdf",
+    "category": [
+      "cs.CV",
+      "cs.LG"
+    ],
+    "authors": [
+      "Pei Peng",
+      "MingKun Xie",
+      "Hang Hao",
+      "Tong Jin",
+      "ShengJun Huang"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.10728v3",
+    "title": "Rough Path Signatures: Learning Neural RDEs for Portfolio Optimization",
+    "summary": "We tackle high-dimensional, path-dependent valuation and control and\nintroduce a deep BSDE/2BSDE solver that couples truncated log-signatures with a\nneural rough differential equation (RDE) backbone. The architecture aligns\nstochastic analysis with sequence-to-path learning: a CVaR-tilted terminal\nobjective targets left-tail risk, while an optional second-order (2BSDE) head\nsupplies curvature estimates for risk-sensitive control. Under matched compute\nand parameter budgets, the method improves accuracy, tail fidelity, and\ntraining stability across Asian and barrier option pricing and portfolio\ncontrol: at d=200 it achieves CVaR(0.99)=9.80% versus 12.00-13.10% for strong\nbaselines, attains the lowest HJB residual (0.011), and yields the lowest RMSEs\nfor Z and Gamma. Ablations over truncation depth, local windows, and tilt\nparameters confirm complementary gains from the sequence-to-path representation\nand the 2BSDE head. Taken together, the results highlight a bidirectional\ndialogue between stochastic analysis and modern deep learning: stochastic tools\ninform representations and objectives, while sequence-to-path models expand the\nclass of solvable financial models at scale.",
+    "published": "2025-10-12T18:02:12Z",
+    "updated": "2025-11-03T12:33:09Z",
+    "link": "http://arxiv.org/pdf/2510.10728v3.pdf",
+    "category": [
+      "q-fin.MF",
+      "cs.LG"
+    ],
+    "authors": [
+      "Ali Atiah Alzahrani"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.24043v3",
+    "title": "Localized Kernel Projection Outlyingness: A Two-Stage Approach for\n  Multi-Modal Outlier Detection",
+    "summary": "This paper presents Two-Stage LKPLO, a novel multi-stage outlier detection\nframework that overcomes the coexisting limitations of conventional\nprojection-based methods: their reliance on a fixed statistical metric and\ntheir assumption of a single data structure. Our framework uniquely synthesizes\nthree key concepts: (1) a generalized loss-based outlyingness measure (PLO)\nthat replaces the fixed metric with flexible, adaptive loss functions like our\nproposed SVM-like loss; (2) a global kernel PCA stage to linearize non-linear\ndata structures; and (3) a subsequent local clustering stage to handle\nmulti-modal distributions. Comprehensive 5-fold cross-validation experiments on\n10 benchmark datasets, with automated hyperparameter optimization, demonstrate\nthat Two-Stage LKPLO achieves state-of-the-art performance. It significantly\noutperforms strong baselines on datasets with challenging structures where\nexisting methods fail, most notably on multi-cluster data (Optdigits) and\ncomplex, high-dimensional data (Arrhythmia). Furthermore, an ablation study\nempirically confirms that the synergistic combination of both the kernelization\nand localization stages is indispensable for its superior performance. This\nwork contributes a powerful new tool for a significant class of outlier\ndetection problems and underscores the importance of hybrid, multi-stage\narchitectures.",
+    "published": "2025-10-28T03:53:46Z",
+    "updated": "2025-11-03T00:07:17Z",
+    "link": "http://arxiv.org/pdf/2510.24043v3.pdf",
+    "category": [
+      "cs.LG",
+      "stat.ML"
+    ],
+    "authors": [
+      "Akira Tamamori"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2503.08221v4",
+    "title": "EgoBlind: Towards Egocentric Visual Assistance for the Blind",
+    "summary": "We present EgoBlind, the first egocentric VideoQA dataset collected from\nblind individuals to evaluate the assistive capabilities of contemporary\nmultimodal large language models (MLLMs). EgoBlind comprises 1,392 first-person\nvideos from the daily lives of blind and visually impaired individuals. It also\nfeatures 5,311 questions directly posed or verified by the blind to reflect\ntheir in-situation needs for visual assistance. Each question has an average of\n3 manually annotated reference answers to reduce subjectiveness. Using\nEgoBlind, we comprehensively evaluate 16 advanced MLLMs and find that all\nmodels struggle. The best performers achieve an accuracy near 60\\%, which is\nfar behind human performance of 87.4\\%. To guide future advancements, we\nidentify and summarize major limitations of existing MLLMs in egocentric visual\nassistance for the blind and explore heuristic solutions for improvement. With\nthese efforts, we hope that EgoBlind will serve as a foundation for developing\neffective AI assistants to enhance the independence of the blind and visually\nimpaired. Data and code are available at https://github.com/doc-doc/EgoBlind.",
+    "published": "2025-03-11T09:40:31Z",
+    "updated": "2025-11-03T04:52:24Z",
+    "link": "http://arxiv.org/pdf/2503.08221v4.pdf",
+    "category": [
+      "cs.CV",
+      "cs.AI",
+      "cs.MM"
+    ],
+    "authors": [
+      "Junbin Xiao",
+      "Nanxin Huang",
+      "Hao Qiu",
+      "Zhulin Tao",
+      "Xun Yang",
+      "Richang Hong",
+      "Meng Wang",
+      "Angela Yao"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.15865v2",
+    "title": "Sound Clouds: Exploring ambient intelligence in public spaces to elicit\n  deep human experience of awe, wonder, and beauty",
+    "summary": "While the ambient intelligence (AmI) systems we encounter in our daily lives,\nincluding security monitoring and energy-saving systems, typically serve\npragmatic purposes, we wonder how we can design and implement ambient\nartificial intelligence experiences in public spaces that elicit deep human\nfeelings of awe, wonder, and beauty. As a manifestation, we introduce Sound\nClouds, an immersive art installation that generates live music based on\nparticipants' interaction with several human-height spheres. Our installation\nserves as a provocation into future ambient intelligence that provokes, not\nlimits, the future possibilities of AmI.",
+    "published": "2025-10-17T17:56:58Z",
+    "updated": "2025-11-03T18:03:46Z",
+    "link": "http://arxiv.org/pdf/2510.15865v2.pdf",
+    "category": [
+      "cs.HC",
+      "cs.MM",
+      "cs.SD"
+    ],
+    "authors": [
+      "Chengzhi Zhang",
+      "Dashiel Carrera",
+      "Daksh Kapoor",
+      "Jasmine Kaur",
+      "Jisu Kim",
+      "Brian Magerko"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.14270v2",
+    "title": "GauSSmart: Enhanced 3D Reconstruction through 2D Foundation Models and\n  Geometric Filtering",
+    "summary": "Scene reconstruction has emerged as a central challenge in computer vision,\nwith approaches such as Neural Radiance Fields (NeRF) and Gaussian Splatting\nachieving remarkable progress. While Gaussian Splatting demonstrates strong\nperformance on large-scale datasets, it often struggles to capture fine details\nor maintain realism in regions with sparse coverage, largely due to the\ninherent limitations of sparse 3D training data.\n  In this work, we propose GauSSmart, a hybrid method that effectively bridges\n2D foundational models and 3D Gaussian Splatting reconstruction. Our approach\nintegrates established 2D computer vision techniques, including convex\nfiltering and semantic feature supervision from foundational models such as\nDINO, to enhance Gaussian-based scene reconstruction. By leveraging 2D\nsegmentation priors and high-dimensional feature embeddings, our method guides\nthe densification and refinement of Gaussian splats, improving coverage in\nunderrepresented areas and preserving intricate structural details.\n  We validate our approach across three datasets, where GauSSmart consistently\noutperforms existing Gaussian Splatting in the majority of evaluated scenes.\nOur results demonstrate the significant potential of hybrid 2D-3D approaches,\nhighlighting how the thoughtful combination of 2D foundational models with 3D\nreconstruction pipelines can overcome the limitations inherent in either\napproach alone.",
+    "published": "2025-10-16T03:38:26Z",
+    "updated": "2025-11-03T14:19:02Z",
+    "link": "http://arxiv.org/pdf/2510.14270v2.pdf",
+    "category": [
+      "cs.CV",
+      "cs.GR"
+    ],
+    "authors": [
+      "Alexander Valverde",
+      "Brian Xu",
+      "Yuyin Zhou",
+      "Meng Xu",
+      "Hongyun Wang"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2509.16370v4",
+    "title": "Dual-Regularized Riccati Recursions for Interior-Point Optimal Control",
+    "summary": "We derive closed-form extensions of Riccati's recursions (both sequential and\nparallel) for solving dual-regularized LQR problems. We show how these methods\ncan be used to solve general constrained, non-convex, discrete-time optimal\ncontrol problems via a regularized interior point method, while guaranteeing\nthat each primal step is a descent direction of an Augmented Barrier-Lagrangian\nmerit function. We provide MIT-licensed implementations of our methods in C++\nand JAX.",
+    "published": "2025-09-19T19:26:22Z",
+    "updated": "2025-11-03T05:21:53Z",
+    "link": "http://arxiv.org/pdf/2509.16370v4.pdf",
+    "category": [
+      "math.OC",
+      "cs.MS",
+      "cs.RO",
+      "cs.SY",
+      "eess.SY",
+      "49M37, 90C51, 93B45",
+      "G.1.6"
+    ],
+    "authors": [
+      "João Sousa-Pinto",
+      "Dominique Orban"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.23204v2",
+    "title": "If They Disagree, Will You Conform? Exploring the Role of Robots' Value\n  Awareness in a Decision-Making Task",
+    "summary": "This study investigates whether the opinions of robotic agents can influence\nhuman decision-making when robots display value awareness (i.e., the capability\nof understanding human preferences and prioritizing them in decision-making).\nWe designed an experiment in which participants interacted with two Furhat\nrobots - one programmed to be Value-Aware and the other Non-Value-Aware -\nduring a labeling task for images representing human values. Results indicate\nthat participants distinguished the Value-Aware robot from the Non-Value-Aware\none. Although their explicit choices did not indicate a clear preference for\none robot over the other, participants directed their gaze more toward the\nValue-Aware robot. Additionally, the Value-Aware robot was perceived as more\nloyal, suggesting that value awareness in a social robot may enhance its\nperceived commitment to the group. Finally, when both robots disagreed with the\nparticipant, conformity occurred in about one out of four trials, and\nparticipants took longer to confirm their responses, suggesting that two robots\nexpressing dissent may introduce hesitation in decision-making. On one hand,\nthis highlights the potential risk that robots, if misused, could manipulate\nusers for unethical purposes. On the other hand, it reinforces the idea that\nsocial robots could encourage reflection in ambiguous situations and help users\navoid scams.",
+    "published": "2025-10-27T10:47:55Z",
+    "updated": "2025-11-03T15:59:37Z",
+    "link": "http://arxiv.org/pdf/2510.23204v2.pdf",
+    "category": [
+      "cs.RO",
+      "cs.HC"
+    ],
+    "authors": [
+      "Giulia Pusceddu",
+      "Giulio Antonio Abbo",
+      "Francesco Rea",
+      "Tony Belpaeme",
+      "Alessandra Sciutti"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.23026v2",
+    "title": "Mixed-Density Diffuser: Efficient Planning with Non-uniform Temporal\n  Resolution",
+    "summary": "Recent studies demonstrate that diffusion planners benefit from sparse-step\nplanning over single-step planning. Training models to skip steps in their\ntrajectories helps capture long-term dependencies without additional or memory\ncomputational cost. However, predicting excessively sparse plans degrades\nperformance. We hypothesize this temporal density threshold is non-uniform\nacross a temporal horizon and that certain parts of a planned trajectory should\nbe more densely planned. We propose Mixed Density Diffuser (MDD), a diffusion\nplanner where the densities throughout the horizon are tunable hyperparameters.\nMDD achieves a new SOTA across the Maze2D, Franka Kitchen, and Antmaze D4RL\ntask domains.",
+    "published": "2025-10-27T05:45:59Z",
+    "updated": "2025-11-03T17:17:23Z",
+    "link": "http://arxiv.org/pdf/2510.23026v2.pdf",
+    "category": [
+      "cs.AI",
+      "cs.RO"
+    ],
+    "authors": [
+      "Crimson Stambaugh",
+      "Rajesh P. N. Rao"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.22825v2",
+    "title": "Kinematically Controllable Cable Robots with Reconfigurable\n  End-effectors",
+    "summary": "To enlarge the translational workspace of cable-driven robots, one common\napproach is to increase the number of cables. However, this introduces two\nchallenges: (1) cable interference significantly reduces the rotational\nworkspace, and (2) the solution of tensions in cables becomes non-unique,\nresulting in difficulties for kinematic control of the robot. In this work, we\ndesign structurally simple reconfigurable end-effectors for cable robots. By\nincorporating a spring, a helical-grooved shaft, and a matching nut, relative\nlinear motions between end-effector components are converted into relative\nrotations, thereby expanding the rotational workspace of the mechanism.\nMeanwhile, a bearing is introduced to provide an additional rotational degree\nof freedom, making the mechanism non-redundant. As a result, the robot's motion\ncan be controlled purely through kinematics without additional tension sensing\nand control.",
+    "published": "2025-10-26T20:38:26Z",
+    "updated": "2025-11-03T17:51:03Z",
+    "link": "http://arxiv.org/pdf/2510.22825v2.pdf",
+    "category": [
+      "cs.RO"
+    ],
+    "authors": [
+      "Nan Zhang"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.15530v4",
+    "title": "VO-DP: Semantic-Geometric Adaptive Diffusion Policy for Vision-Only\n  Robotic Manipulation",
+    "summary": "In the context of imitation learning, visuomotor-based diffusion policy\nlearning is one of the main directions in robotic manipulation. Most of these\napproaches rely on point clouds as observation inputs and construct scene\nrepresentations through point clouds feature learning, which enables them to\nachieve remarkable accuracy. However, the existing literature lacks an in-depth\nexploration of vision-only solutions that have significant potential. In this\npaper, we propose a Vision-Only and single-view Diffusion Policy learning\nmethod (VO-DP) that leverages pretrained visual foundation models to achieve\neffective fusion of semantic and geometric features. We utilize intermediate\nfeatures from VGGT incorporating semantic features from DINOv2 and geometric\nfeatures from Alternating Attention blocks. Features are fused via\ncross-attention and spatially compressed with a CNN to form the input to the\npolicy head. Extensive experiments demonstrate that VO-DP not only outperforms\nthe vision-only baseline DP significantly but also exhibits distinct\nperformance trends against the point cloud-based method DP3: in simulation\ntasks, VO-DP achieves an average success rate of 64.6% on par with DP3 64.0%\nand far higher than DP 34.8%, while in real-world tasks, it reaches 87.9%,\noutperforming both DP3 67.5% and DP 11.2% by a notable margin. Further\nrobustness evaluations confirm that VO-DP remains highly stable under varying\nconditions including color, size, background, and lighting. Lastly, we\nopen-source a training library for robotic manipulation. Built on Accelerate,\nthis library supports multi-machine and multi-GPU parallel training, as well as\nmixed precision training. It is compatible with visuomotor policies such as DP,\nDP3 and VO-DP, and also supports the RoboTwin simulator.",
+    "published": "2025-10-17T11:01:33Z",
+    "updated": "2025-11-03T10:10:38Z",
+    "link": "http://arxiv.org/pdf/2510.15530v4.pdf",
+    "category": [
+      "cs.RO",
+      "cs.CV",
+      "cs.LG"
+    ],
+    "authors": [
+      "Zehao Ni",
+      "Yonghao He",
+      "Lingfeng Qian",
+      "Jilei Mao",
+      "Fa Fu",
+      "Wei Sui",
+      "Hu Su",
+      "Junran Peng",
+      "Zhipeng Wang",
+      "Bin He"
+    ]
+  }
+]
