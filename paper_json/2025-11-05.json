@@ -1,0 +1,546 @@
+[
+  {
+    "id": "http://arxiv.org/abs/2511.02834v2",
+    "title": "Agent-Omni: Test-Time Multimodal Reasoning via Model Coordination for\n  Understanding Anything",
+    "summary": "Multimodal large language models (MLLMs) have shown strong capabilities but\nremain limited to fixed modality pairs and require costly fine-tuning with\nlarge aligned datasets. Building fully omni-capable models that can integrate\ntext, images, audio, and video remains impractical and lacks robust reasoning\nsupport. In this paper, we propose an Agent-Omni framework that coordinates\nexisting foundation models through a master-agent system, enabling flexible\nmultimodal reasoning without retraining. The master agent interprets user\nintent, delegates subtasks to modality-specific agents, and integrates their\noutputs into coherent responses. Extensive experiments across text, image,\naudio, video, and omni benchmarks show that Agent-Omni consistently achieves\nstate-of-the-art performance, particularly on tasks requiring complex\ncross-modal reasoning. Its agent-based design enables seamless integration of\nspecialized foundation models, ensuring adaptability to diverse inputs while\nmaintaining transparency and interpretability. In addition, the framework is\nmodular and easily extensible, allowing future improvements as stronger models\nbecome available.",
+    "published": "2025-11-04T18:59:09Z",
+    "updated": "2025-11-05T05:50:54Z",
+    "link": "http://arxiv.org/pdf/2511.02834v2.pdf",
+    "category": [
+      "cs.AI",
+      "cs.CL",
+      "cs.LG"
+    ],
+    "authors": [
+      "Huawei Lin",
+      "Yunzhi Shi",
+      "Tong Geng",
+      "Weijie Zhao",
+      "Wei Wang",
+      "Ravender Pal Singh"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02824v2",
+    "title": "Kosmos: An AI Scientist for Autonomous Discovery",
+    "summary": "Data-driven scientific discovery requires iterative cycles of literature\nsearch, hypothesis generation, and data analysis. Substantial progress has been\nmade towards AI agents that can automate scientific research, but all such\nagents remain limited in the number of actions they can take before losing\ncoherence, thus limiting the depth of their findings. Here we present Kosmos,\nan AI scientist that automates data-driven discovery. Given an open-ended\nobjective and a dataset, Kosmos runs for up to 12 hours performing cycles of\nparallel data analysis, literature search, and hypothesis generation before\nsynthesizing discoveries into scientific reports. Unlike prior systems, Kosmos\nuses a structured world model to share information between a data analysis\nagent and a literature search agent. The world model enables Kosmos to\ncoherently pursue the specified objective over 200 agent rollouts, collectively\nexecuting an average of 42,000 lines of code and reading 1,500 papers per run.\nKosmos cites all statements in its reports with code or primary literature,\nensuring its reasoning is traceable. Independent scientists found 79.4% of\nstatements in Kosmos reports to be accurate, and collaborators reported that a\nsingle 20-cycle Kosmos run performed the equivalent of 6 months of their own\nresearch time on average. Furthermore, collaborators reported that the number\nof valuable scientific findings generated scales linearly with Kosmos cycles\n(tested up to 20 cycles). We highlight seven discoveries made by Kosmos that\nspan metabolomics, materials science, neuroscience, and statistical genetics.\nThree discoveries independently reproduce findings from preprinted or\nunpublished manuscripts that were not accessed by Kosmos at runtime, while four\nmake novel contributions to the scientific literature.",
+    "published": "2025-11-04T18:50:52Z",
+    "updated": "2025-11-05T18:26:43Z",
+    "link": "http://arxiv.org/pdf/2511.02824v2.pdf",
+    "category": [
+      "cs.AI"
+    ],
+    "authors": [
+      "Ludovico Mitchener",
+      "Angela Yiu",
+      "Benjamin Chang",
+      "Mathieu Bourdenx",
+      "Tyler Nadolski",
+      "Arvis Sulovari",
+      "Eric C. Landsness",
+      "Daniel L. Barabasi",
+      "Siddharth Narayanan",
+      "Nicky Evans",
+      "Shriya Reddy",
+      "Martha Foiani",
+      "Aizad Kamal",
+      "Leah P. Shriver",
+      "Fang Cao",
+      "Asmamaw T. Wassie",
+      "Jon M. Laurent",
+      "Edwin Melville-Green",
+      "Mayk Caldas",
+      "Albert Bou",
+      "Kaleigh F. Roberts",
+      "Sladjana Zagorac",
+      "Timothy C. Orr",
+      "Miranda E. Orr",
+      "Kevin J. Zwezdaryk",
+      "Ali E. Ghareeb",
+      "Laurie McCoy",
+      "Bruna Gomes",
+      "Euan A. Ashley",
+      "Karen E. Duff",
+      "Tonio Buonassisi",
+      "Tom Rainforth",
+      "Randall J. Bateman",
+      "Michael Skarlinski",
+      "Samuel G. Rodriques",
+      "Michaela M. Hinks",
+      "Andrew D. White"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.01211v2",
+    "title": "Novelty and Impact of Economics Papers",
+    "summary": "We propose a framework that recasts scientific novelty not as a single\nattribute of a paper, but as a reflection of its position within the evolving\nintellectual landscape. We decompose this position into two orthogonal\ndimensions: \\textit{spatial novelty}, which measures a paper's intellectual\ndistinctiveness from its neighbors, and \\textit{temporal novelty}, which\ncaptures its engagement with a dynamic research frontier. To operationalize\nthese concepts, we leverage Large Language Models to develop semantic isolation\nmetrics that quantify a paper's location relative to the full-text literature.\nApplying this framework to a large corpus of economics articles, we uncover a\nfundamental trade-off: these two dimensions predict systematically different\noutcomes. Temporal novelty primarily predicts citation counts, whereas spatial\nnovelty predicts disruptive impact. This distinction allows us to construct a\ntypology of semantic neighborhoods, identifying four archetypes associated with\ndistinct and predictable impact profiles. Our findings demonstrate that novelty\ncan be understood as a multidimensional construct whose different forms,\nreflecting a paper's strategic location, have measurable and fundamentally\ndistinct consequences for scientific progress.",
+    "published": "2025-11-03T04:12:03Z",
+    "updated": "2025-11-04T20:08:10Z",
+    "link": "http://arxiv.org/pdf/2511.01211v2.pdf",
+    "category": [
+      "econ.GN",
+      "cs.CE",
+      "cs.CL",
+      "cs.DL",
+      "q-fin.EC"
+    ],
+    "authors": [
+      "Chaofeng Wu"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02826v2",
+    "title": "PLUTO-4: Frontier Pathology Foundation Models",
+    "summary": "Foundation models trained on large-scale pathology image corpora have\ndemonstrated strong transfer capabilities across diverse histopathology tasks.\nBuilding on this progress, we introduce PLUTO-4, our next generation of\npathology foundation models that extend the Pathology-Universal Transformer\n(PLUTO) to frontier scale. We share two complementary Vision Transformer\narchitectures in the PLUTO-4 family: a compact and efficient PLUTO-4S model\noptimized for multi-scale deployment using a FlexiViT setup with 2D-RoPE\nembeddings, and a frontier-scale PLUTO-4G model trained with a single patch\nsize to maximize representation capacity and stability. Both models are\npretrained using a self-supervised objective derived from DINOv2 on a large\nmulti-institutional corpus containing 551,164 WSIs from 137,144 patients across\nover 50 institutions, spanning over 60 disease types and over 100 stains.\nComprehensive evaluation across public and internal benchmarks demonstrates\nthat PLUTO-4 achieves state-of-the-art performance on tasks requiring varying\nspatial and biological context, including patch-level classification,\nsegmentation, and slide-level diagnosis. The compact PLUTO-4S provides\nhigh-throughput and robust performance for practical deployment, while PLUTO-4G\nestablishes new performance frontiers across multiple pathology benchmarks,\nincluding an 11% improvement in dermatopathology diagnosis. These diverse\nimprovements underscore PLUTO-4's potential to transform real-world\napplications as a backbone for translational research and diagnostic use cases.",
+    "published": "2025-11-04T18:54:58Z",
+    "updated": "2025-11-05T17:25:40Z",
+    "link": "http://arxiv.org/pdf/2511.02826v2.pdf",
+    "category": [
+      "cs.CV"
+    ],
+    "authors": [
+      "Harshith Padigela",
+      "Shima Nofallah",
+      "Atchuth Naveen Chilaparasetti",
+      "Ryun Han",
+      "Andrew Walker",
+      "Judy Shen",
+      "Chintan Shah",
+      "Blake Martin",
+      "Aashish Sood",
+      "Elliot Miller",
+      "Ben Glass",
+      "Andy Beck",
+      "Harsha Pokkalla",
+      "Syed Ashar Javed"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02505v2",
+    "title": "ESA: Energy-Based Shot Assembly Optimization for Automatic Video Editing",
+    "summary": "Shot assembly is a crucial step in film production and video editing,\ninvolving the sequencing and arrangement of shots to construct a narrative,\nconvey information, or evoke emotions. Traditionally, this process has been\nmanually executed by experienced editors. While current intelligent video\nediting technologies can handle some automated video editing tasks, they often\nfail to capture the creator's unique artistic expression in shot assembly. To\naddress this challenge, we propose an energy-based optimization method for\nvideo shot assembly. Specifically, we first perform visual-semantic matching\nbetween the script generated by a large language model and a video library to\nobtain subsets of candidate shots aligned with the script semantics. Next, we\nsegment and label the shots from reference videos, extracting attributes such\nas shot size, camera motion, and semantics. We then employ energy-based models\nto learn from these attributes, scoring candidate shot sequences based on their\nalignment with reference styles. Finally, we achieve shot assembly optimization\nby combining multiple syntax rules, producing videos that align with the\nassembly style of the reference videos. Our method not only automates the\narrangement and combination of independent shots according to specific logic,\nnarrative requirements, or artistic styles but also learns the assembly style\nof reference videos, creating a coherent visual sequence or holistic visual\nexpression. With our system, even users with no prior video editing experience\ncan create visually compelling videos. Project page:\nhttps://sobeymil.github.io/esa.com",
+    "published": "2025-11-04T11:48:22Z",
+    "updated": "2025-11-05T04:30:19Z",
+    "link": "http://arxiv.org/pdf/2511.02505v2.pdf",
+    "category": [
+      "cs.CV"
+    ],
+    "authors": [
+      "Yaosen Chen",
+      "Wei Wang",
+      "Tianheng Zheng",
+      "Xuming Wen",
+      "Han Yang",
+      "Yanru Zhang"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2504.20525v3",
+    "title": "Breaking Down Monocular Ambiguity: Exploiting Temporal Evolution for 3D\n  Lane Detection",
+    "summary": "Monocular 3D lane detection aims to estimate the 3D position of lanes from\nfrontal-view (FV) images. However, existing methods are fundamentally\nconstrained by the inherent ambiguity of single-frame input, which leads to\ninaccurate geometric predictions and poor lane integrity, especially for\ndistant lanes. To overcome this, we propose to unlock the rich information\nembedded in the temporal evolution of the scene as the vehicle moves. Our\nproposed Geometry-aware Temporal Aggregation Network (GTA-Net) systematically\nleverages the temporal information from complementary perspectives. First,\nTemporal Geometry Enhancement Module (TGEM) learns geometric consistency across\nconsecutive frames, effectively recovering depth information from motion to\nbuild a reliable 3D scene representation. Second, to enhance lane integrity,\nTemporal Instance-aware Query Generation (TIQG) module aggregates instance cues\nfrom past and present frames. Crucially, for lanes that are ambiguous in the\ncurrent view, TIQG innovatively synthesizes a pseudo future perspective to\ngenerate queries that reveal lanes which would otherwise be missed. The\nexperiments demonstrate that GTA-Net achieves new SoTA results, significantly\noutperforming existing monocular 3D lane detection solutions.",
+    "published": "2025-04-29T08:10:17Z",
+    "updated": "2025-11-05T02:18:03Z",
+    "link": "http://arxiv.org/pdf/2504.20525v3.pdf",
+    "category": [
+      "cs.CV"
+    ],
+    "authors": [
+      "Huan Zheng",
+      "Wencheng Han",
+      "Tianyi Yan",
+      "Cheng-zhong Xu",
+      "Jianbing Shen"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02483v2",
+    "title": "OLATverse: A Large-scale Real-world Object Dataset with Precise Lighting\n  Control",
+    "summary": "We introduce OLATverse, a large-scale dataset comprising around 9M images of\n765 real-world objects, captured from multiple viewpoints under a diverse set\nof precisely controlled lighting conditions. While recent advances in\nobject-centric inverse rendering, novel view synthesis and relighting have\nshown promising results, most techniques still heavily rely on the synthetic\ndatasets for training and small-scale real-world datasets for benchmarking,\nwhich limits their realism and generalization. To address this gap, OLATverse\noffers two key advantages over existing datasets: large-scale coverage of real\nobjects and high-fidelity appearance under precisely controlled illuminations.\nSpecifically, OLATverse contains 765 common and uncommon real-world objects,\nspanning a wide range of material categories. Each object is captured using 35\nDSLR cameras and 331 individually controlled light sources, enabling the\nsimulation of diverse illumination conditions. In addition, for each object, we\nprovide well-calibrated camera parameters, accurate object masks, photometric\nsurface normals, and diffuse albedo as auxiliary resources. We also construct\nan extensive evaluation set, establishing the first comprehensive real-world\nobject-centric benchmark for inverse rendering and normal estimation. We\nbelieve that OLATverse represents a pivotal step toward integrating the next\ngeneration of inverse rendering and relighting methods with real-world data.\nThe full dataset, along with all post-processing workflows, will be publicly\nreleased at https://vcai.mpi-inf.mpg.de/projects/OLATverse/.",
+    "published": "2025-11-04T11:13:43Z",
+    "updated": "2025-11-05T10:12:04Z",
+    "link": "http://arxiv.org/pdf/2511.02483v2.pdf",
+    "category": [
+      "cs.CV",
+      "cs.GR"
+    ],
+    "authors": [
+      "Xilong Zhou",
+      "Jianchun Chen",
+      "Pramod Rao",
+      "Timo Teufel",
+      "Linjie Lyu",
+      "Tigran Minasian",
+      "Oleksandr Sotnychenko",
+      "Xiao-Xiao Long",
+      "Marc Habermann",
+      "Christian Theobalt"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02802v2",
+    "title": "TabTune: A Unified Library for Inference and Fine-Tuning Tabular\n  Foundation Models",
+    "summary": "Tabular foundation models represent a growing paradigm in structured data\nlearning, extending the benefits of large-scale pretraining to tabular domains.\nHowever, their adoption remains limited due to heterogeneous preprocessing\npipelines, fragmented APIs, inconsistent fine-tuning procedures, and the\nabsence of standardized evaluation for deployment-oriented metrics such as\ncalibration and fairness. We present TabTune, a unified library that\nstandardizes the complete workflow for tabular foundation models through a\nsingle interface. TabTune provides consistent access to seven state-of-the-art\nmodels supporting multiple adaptation strategies, including zero-shot\ninference, meta-learning, supervised fine-tuning (SFT), and parameter-efficient\nfine-tuning (PEFT). The framework automates model-aware preprocessing, manages\narchitectural heterogeneity internally, and integrates evaluation modules for\nperformance, calibration, and fairness. Designed for extensibility and\nreproducibility, TabTune enables consistent benchmarking of adaptation\nstrategies of tabular foundation models.",
+    "published": "2025-11-04T18:25:17Z",
+    "updated": "2025-11-05T17:36:30Z",
+    "link": "http://arxiv.org/pdf/2511.02802v2.pdf",
+    "category": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "authors": [
+      "Aditya Tanna",
+      "Pratinav Seth",
+      "Mohamed Bouadi",
+      "Utsav Avaiya",
+      "Vinay Kumar Sankarapu"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.04263v3",
+    "title": "Efficient Latent Variable Causal Discovery: Combining Score Search and\n  Targeted Testing",
+    "summary": "Learning causal structure from observational data is especially challenging\nwhen latent variables or selection bias are present. The Fast Causal Inference\n(FCI) algorithm addresses this setting but performs exhaustive conditional\nindependence tests across many subsets, often leading to spurious\nindependences, missing or extra edges, and unreliable orientations. We present\na family of score-guided mixed-strategy causal search algorithms that extend\nthis framework. First, we introduce BOSS-FCI and GRaSP-FCI, variants of GFCI\n(Greedy Fast Causal Inference) that substitute BOSS (Best Order Score Search)\nor GRaSP (Greedy Relaxations of Sparsest Permutation) for FGES (Fast Greedy\nEquivalence Search), preserving correctness while trading off scalability and\nconservativeness. Second, we develop FCI Targeted-Testing (FCIT), a novel\nhybrid method that replaces exhaustive testing with targeted, score-informed\ntests guided by BOSS. FCIT guarantees well-formed PAGs and achieves higher\nprecision and efficiency across sample sizes. Finally, we propose a lightweight\nheuristic, LV-Dumb (Latent Variable \"Dumb\"), which returns the PAG of the BOSS\nDAG (Directed Acyclic Graph). Though not strictly sound for latent confounding,\nLV-Dumb often matches FCIT's accuracy while running substantially faster.\nSimulations and real-data analyses show that BOSS-FCI and GRaSP-FCI provide\nrobust baselines, FCIT yields the best balance of precision and reliability,\nand LV-Dumb offers a fast, near-equivalent alternative. Together, these methods\ndemonstrate that targeted and score-guided strategies can dramatically improve\nthe efficiency and correctness of latent-variable causal discovery.",
+    "published": "2025-10-05T16:09:31Z",
+    "updated": "2025-11-05T11:13:58Z",
+    "link": "http://arxiv.org/pdf/2510.04263v3.pdf",
+    "category": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "authors": [
+      "Joseph Ramsey",
+      "Bryan Andrews",
+      "Peter Spirtes"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02667v2",
+    "title": "Scalable Evaluation and Neural Models for Compositional Generalization",
+    "summary": "Compositional generalization-a key open challenge in modern machine\nlearning-requires models to predict unknown combinations of known concepts.\nHowever, assessing compositional generalization remains a fundamental challenge\ndue to the lack of standardized evaluation protocols and the limitations of\ncurrent benchmarks, which often favor efficiency over rigor. At the same time,\ngeneral-purpose vision architectures lack the necessary inductive biases, and\nexisting approaches to endow them compromise scalability. As a remedy, this\npaper introduces: 1) a rigorous evaluation framework that unifies and extends\nprevious approaches while reducing computational requirements from\ncombinatorial to constant; 2) an extensive and modern evaluation on the status\nof compositional generalization in supervised vision backbones, training more\nthan 5000 models; 3) Attribute Invariant Networks, a class of models\nestablishing a new Pareto frontier in compositional generalization, achieving a\n23.43% accuracy improvement over baselines while reducing parameter overhead\nfrom 600% to 16% compared to fully disentangled counterparts. Our code is\navailable at https://github.com/IBM/scalable-compositional-generalization.",
+    "published": "2025-11-04T15:45:45Z",
+    "updated": "2025-11-05T12:34:54Z",
+    "link": "http://arxiv.org/pdf/2511.02667v2.pdf",
+    "category": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "authors": [
+      "Giacomo Camposampiero",
+      "Pietro Barbiero",
+      "Michael Hersche",
+      "Roger Wattenhofer",
+      "Abbas Rahimi"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02659v2",
+    "title": "In Situ Training of Implicit Neural Compressors for Scientific\n  Simulations via Sketch-Based Regularization",
+    "summary": "Focusing on implicit neural representations, we present a novel in situ\ntraining protocol that employs limited memory buffers of full and sketched data\nsamples, where the sketched data are leveraged to prevent catastrophic\nforgetting. The theoretical motivation for our use of sketching as a\nregularizer is presented via a simple Johnson-Lindenstrauss-informed result.\nWhile our methods may be of wider interest in the field of continual learning,\nwe specifically target in situ neural compression using implicit neural\nrepresentation-based hypernetworks. We evaluate our method on a variety of\ncomplex simulation data in two and three dimensions, over long time horizons,\nand across unstructured grids and non-Cartesian geometries. On these tasks, we\nshow strong reconstruction performance at high compression rates. Most\nimportantly, we demonstrate that sketching enables the presented in situ scheme\nto approximately match the performance of the equivalent offline method.",
+    "published": "2025-11-04T15:36:00Z",
+    "updated": "2025-11-05T03:20:51Z",
+    "link": "http://arxiv.org/pdf/2511.02659v2.pdf",
+    "category": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CE",
+      "cs.NA",
+      "math.NA"
+    ],
+    "authors": [
+      "Cooper Simpson",
+      "Stephen Becker",
+      "Alireza Doostan"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02573v2",
+    "title": "RIS-Assisted 3D Spherical Splatting for Object Composition Visualization\n  using Detection Transformers",
+    "summary": "The pursuit of immersive and structurally aware multimedia experiences has\nintensified interest in sensing modalities that reconstruct objects beyond the\nlimits of visible light. Conventional optical pipelines degrade under occlusion\nor low illumination, motivating the use of radio-frequency (RF) sensing, whose\nelectromagnetic waves penetrate materials and encode both geometric and\ncompositional information. Yet, uncontrolled multipath propagation restricts\nreconstruction accuracy. Recent advances in Programmable Wireless Environments\n(PWEs) mitigate this limitation by enabling software-defined manipulation of\npropagation through Reconfigurable Intelligent Surfaces (RISs), thereby\nproviding controllable illumination diversity. Building on this capability,\nthis work introduces a PWE-driven RF framework for three-dimensional object\nreconstruction using material-aware spherical primitives. The proposed approach\ncombines RIS-enabled field synthesis with a Detection Transformer (DETR) that\ninfers spatial and material parameters directly from extracted RF features.\nSimulation results confirm the framework's ability to approximate object\ngeometries and classify material composition with an overall accuracy of\n79.35%, marking an initial step toward programmable and physically grounded\nRF-based 3D object composition visualization.",
+    "published": "2025-11-04T13:48:47Z",
+    "updated": "2025-11-05T07:03:30Z",
+    "link": "http://arxiv.org/pdf/2511.02573v2.pdf",
+    "category": [
+      "eess.SP",
+      "cs.LG"
+    ],
+    "authors": [
+      "Anastasios T. Sotiropoulos",
+      "Stavros Tsimpoukis",
+      "Dimitrios Tyrovolas",
+      "Sotiris Ioannidis",
+      "Panagiotis D. Diamantoulakis",
+      "George K. Karagiannidis",
+      "Christos K. Liaskos"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02481v2",
+    "title": "NOWS: Neural Operator Warm Starts for Accelerating Iterative Solvers",
+    "summary": "Partial differential equations (PDEs) underpin quantitative descriptions\nacross the physical sciences and engineering, yet high-fidelity simulation\nremains a major computational bottleneck for many-query, real-time, and design\ntasks. Data-driven surrogates can be strikingly fast but are often unreliable\nwhen applied outside their training distribution. Here we introduce Neural\nOperator Warm Starts (NOWS), a hybrid strategy that harnesses learned solution\noperators to accelerate classical iterative solvers by producing high-quality\ninitial guesses for Krylov methods such as conjugate gradient and GMRES. NOWS\nleaves existing discretizations and solver infrastructures intact, integrating\nseamlessly with finite-difference, finite-element, isogeometric analysis,\nfinite volume method, etc. Across our benchmarks, the learned initialization\nconsistently reduces iteration counts and end-to-end runtime, resulting in a\nreduction of the computational time of up to 90 %, while preserving the\nstability and convergence guarantees of the underlying numerical algorithms. By\ncombining the rapid inference of neural operators with the rigor of traditional\nsolvers, NOWS provides a practical and trustworthy approach to accelerate\nhigh-fidelity PDE simulations.",
+    "published": "2025-11-04T11:12:27Z",
+    "updated": "2025-11-05T09:40:46Z",
+    "link": "http://arxiv.org/pdf/2511.02481v2.pdf",
+    "category": [
+      "cs.LG"
+    ],
+    "authors": [
+      "Mohammad Sadegh Eshaghi",
+      "Cosmin Anitescu",
+      "Navid Valizadeh",
+      "Yizheng Wang",
+      "Xiaoying Zhuang",
+      "Timon Rabczuk"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2509.25914v4",
+    "title": "ReNF: Rethinking the Design Space of Neural Long-Term Time Series\n  Forecasters",
+    "summary": "Neural Forecasters (NFs) are a cornerstone of Long-term Time Series\nForecasting (LTSF). However, progress has been hampered by an overemphasis on\narchitectural complexity at the expense of fundamental forecasting principles.\nIn this work, we return to first principles to redesign the LTSF paradigm. We\nbegin by introducing a Multiple Neural Forecasting Theorem that provides a\ntheoretical basis for our approach. We propose Boosted Direct Output (BDO), a\nnovel forecasting strategy that synergistically combines the advantages of both\nAuto-Regressive (AR) and Direct Output (DO). In addition, we stabilize the\nlearning process by smoothly tracking the model's parameters. Extensive\nexperiments show that these principled improvements enable a simple MLP to\nachieve state-of-the-art performance, outperforming recent, complex models in\nnearly all cases, without any specific considerations in the area. Finally, we\nempirically verify our theorem, establishing a dynamic performance bound and\nidentifying promising directions for future research. The code for review is\navailable at: .",
+    "published": "2025-09-30T08:05:59Z",
+    "updated": "2025-11-05T07:17:17Z",
+    "link": "http://arxiv.org/pdf/2509.25914v4.pdf",
+    "category": [
+      "cs.LG"
+    ],
+    "authors": [
+      "Yihang Lu",
+      "Xianwei Meng",
+      "Enhong Chen"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02272v2",
+    "title": "Probabilistic Graph Cuts",
+    "summary": "Probabilistic relaxations of graph cuts offer a differentiable alternative to\nspectral clustering, enabling end-to-end and online learning without\neigendecompositions, yet prior work centered on RatioCut and lacked general\nguarantees and principled gradients. We present a unified probabilistic\nframework that covers a wide class of cuts, including Normalized Cut. Our\nframework provides tight analytic upper bounds on expected discrete cuts via\nintegral representations and Gauss hypergeometric functions with closed-form\nforward and backward. Together, these results deliver a rigorous, numerically\nstable foundation for scalable, differentiable graph partitioning covering a\nwide range of clustering and contrastive learning objectives.",
+    "published": "2025-11-04T05:24:56Z",
+    "updated": "2025-11-05T06:31:46Z",
+    "link": "http://arxiv.org/pdf/2511.02272v2.pdf",
+    "category": [
+      "cs.LG",
+      "cs.DS",
+      "stat.ML"
+    ],
+    "authors": [
+      "Ayoub Ghriss"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02101v2",
+    "title": "Measuring the Intrinsic Dimension of Earth Representations",
+    "summary": "Within the context of representation learning for Earth observation,\ngeographic Implicit Neural Representations (INRs) embed low-dimensional\nlocation inputs (longitude, latitude) into high-dimensional embeddings, through\nmodels trained on geo-referenced satellite, image or text data. Despite the\ncommon aim of geographic INRs to distill Earth's data into compact,\nlearning-friendly representations, we lack an understanding of how much\ninformation is contained in these Earth representations, and where that\ninformation is concentrated. The intrinsic dimension of a dataset measures the\nnumber of degrees of freedom required to capture its local variability,\nregardless of the ambient high-dimensional space in which it is embedded. This\nwork provides the first study of the intrinsic dimensionality of geographic\nINRs. Analyzing INRs with ambient dimension between 256 and 512, we find that\ntheir intrinsic dimensions fall roughly between 2 and 10 and are sensitive to\nchanging spatial resolution and input modalities during INR pre-training.\nFurthermore, we show that the intrinsic dimension of a geographic INR\ncorrelates with downstream task performance and can capture spatial artifacts,\nfacilitating model evaluation and diagnostics. More broadly, our work offers an\narchitecture-agnostic, label-free metric of information content that can enable\nunsupervised evaluation, model selection, and pre-training design across INRs.",
+    "published": "2025-11-03T22:22:44Z",
+    "updated": "2025-11-05T03:03:55Z",
+    "link": "http://arxiv.org/pdf/2511.02101v2.pdf",
+    "category": [
+      "cs.LG",
+      "cs.IT",
+      "math.IT"
+    ],
+    "authors": [
+      "Arjun Rao",
+      "Marc Rußwurm",
+      "Konstantin Klemmer",
+      "Esther Rolf"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.01852v2",
+    "title": "Proximal Regret and Proximal Correlated Equilibria: A New Tractable\n  Solution Concept for Online Learning and Games",
+    "summary": "Learning and computation of equilibria are central problems in game theory,\ntheory of computation, and artificial intelligence. In this work, we introduce\nproximal regret, a new notion of regret based on proximal operators that lies\nstrictly between external and swap regret. When every player employs a\nno-proximal-regret algorithm in a general convex game, the empirical\ndistribution of play converges to proximal correlated equilibria (PCE), a\nrefinement of coarse correlated equilibria. Our framework unifies several\nemerging notions in online learning and game theory-such as gradient\nequilibrium and semicoarse correlated equilibrium-and introduces new ones. Our\nmain result shows that the classic Online Gradient Descent (GD) algorithm\nachieves an optimal $O(\\sqrt{T})$ bound on proximal regret, revealing that GD,\nwithout modification, minimizes a stronger regret notion than external regret.\nThis provides a new explanation for the empirically superior performance of\ngradient descent in online learning and games. We further extend our analysis\nto Mirror Descent in the Bregman setting and to Optimistic Gradient Descent,\nwhich yields faster convergence in smooth convex games.",
+    "published": "2025-11-03T18:57:49Z",
+    "updated": "2025-11-05T18:50:55Z",
+    "link": "http://arxiv.org/pdf/2511.01852v2.pdf",
+    "category": [
+      "cs.GT",
+      "cs.LG"
+    ],
+    "authors": [
+      "Yang Cai",
+      "Constantinos Daskalakis",
+      "Haipeng Luo",
+      "Chen-Yu Wei",
+      "Weiqiang Zheng"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.01602v2",
+    "title": "L2T-Tune:LLM-Guided Hybrid Database Tuning with LHS and TD3",
+    "summary": "Configuration tuning is critical for database performance. Although recent\nadvancements in database tuning have shown promising results in throughput and\nlatency improvement, challenges remain. First, the vast knob space makes direct\noptimization unstable and slow to converge. Second, reinforcement learning\npipelines often lack effective warm-start guidance and require long offline\ntraining. Third, transferability is limited: when hardware or workloads change,\nexisting models typically require substantial retraining to recover\nperformance.\n  To address these limitations, we propose L2T-Tune, a new LLM-guided hybrid\ndatabase tuning framework that features a three-stage pipeline: Stage one\nperforms a warm start that simultaneously generates uniform samples across the\nknob space and logs them into a shared pool; Stage two leverages a large\nlanguage model to mine and prioritize tuning hints from manuals and community\ndocuments for rapid convergence. Stage three uses the warm-start sample pool to\nreduce the dimensionality of knobs and state features, then fine-tunes the\nconfiguration with the Twin Delayed Deep Deterministic Policy Gradient\nalgorithm.\n  We conduct experiments on L2T-Tune and the state-of-the-art models. Compared\nwith the best-performing alternative, our approach improves performance by an\naverage of 37.1% across all workloads, and by up to 73% on TPC-C. Compared with\nmodels trained with reinforcement learning, it achieves rapid convergence in\nthe offline tuning stage on a single server. Moreover, during the online tuning\nstage, it only takes 30 steps to achieve best results.",
+    "published": "2025-11-03T14:04:22Z",
+    "updated": "2025-11-05T07:10:19Z",
+    "link": "http://arxiv.org/pdf/2511.01602v2.pdf",
+    "category": [
+      "cs.DB",
+      "cs.LG"
+    ],
+    "authors": [
+      "Xinyue Yang",
+      "Chen Zheng",
+      "Yaoyang Hou",
+      "Renhao Zhang",
+      "Yinyan Zhang",
+      "Yanjun Wu",
+      "Heng Zhang"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.00804v2",
+    "title": "EraseFlow: Learning Concept Erasure Policies via GFlowNet-Driven\n  Alignment",
+    "summary": "Erasing harmful or proprietary concepts from powerful text to image\ngenerators is an emerging safety requirement, yet current \"concept erasure\"\ntechniques either collapse image quality, rely on brittle adversarial losses,\nor demand prohibitive retraining cycles. We trace these limitations to a myopic\nview of the denoising trajectories that govern diffusion based generation. We\nintroduce EraseFlow, the first framework that casts concept unlearning as\nexploration in the space of denoising paths and optimizes it with GFlowNets\nequipped with the trajectory balance objective. By sampling entire trajectories\nrather than single end states, EraseFlow learns a stochastic policy that steers\ngeneration away from target concepts while preserving the model's prior.\nEraseFlow eliminates the need for carefully crafted reward models and by doing\nthis, it generalizes effectively to unseen concepts and avoids hackable rewards\nwhile improving the performance. Extensive empirical results demonstrate that\nEraseFlow outperforms existing baselines and achieves an optimal trade off\nbetween performance and prior preservation.",
+    "published": "2025-11-02T04:59:38Z",
+    "updated": "2025-11-04T19:09:45Z",
+    "link": "http://arxiv.org/pdf/2511.00804v2.pdf",
+    "category": [
+      "cs.LG",
+      "cs.CV"
+    ],
+    "authors": [
+      "Abhiram Kusumba",
+      "Maitreya Patel",
+      "Kyle Min",
+      "Changhoon Kim",
+      "Chitta Baral",
+      "Yezhou Yang"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.18913v4",
+    "title": "ADPO: Anchored Direct Preference Optimization",
+    "summary": "Direct Preference Optimization (DPO) has become a standard for aligning\nmodels with human feedback, yet its reliance on hard, pairwise preferences\nmakes it brittle to annotator noise and distribution shift. We propose Anchored\nDirect Preference Optimization (ADPO), a theoretically grounded framework that\nextends preference learning to soft, listwise supervision through reference\nanchoring. Our key theoretical contributions are threefold: (1) we establish\nthat ADPO unifies major learning paradigms, including supervised fine-tuning,\nknowledge distillation, maximum-entropy reinforcement learning, and DPO, as\nspecial cases through different choices of target distribution, anchor policy,\nand temperature; (2) we prove that anchoring induces an implicit trust region\ngoverned by the softmax Fisher metric; and (3) we formalize the stability of\ndynamic anchor updates. Empirically, we discover a task-dependent tradeoff:\ndynamic anchors suit online exploration, while fixed anchors excel at offline\ndistillation, reducing teacher-student KL divergence by two to three orders of\nmagnitude (170 to 5000 times).",
+    "published": "2025-10-21T05:53:13Z",
+    "updated": "2025-11-05T14:26:44Z",
+    "link": "http://arxiv.org/pdf/2510.18913v4.pdf",
+    "category": [
+      "cs.LG",
+      "cs.AI",
+      "stat.ML"
+    ],
+    "authors": [
+      "Wang Zixian"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.00183v2",
+    "title": "PDE-SHARP: PDE Solver Hybrids through Analysis and Refinement Passes",
+    "summary": "Current LLM-driven approaches using test-time computing to generate PDE\nsolvers execute a large number of solver samples to identify high-accuracy\nsolvers. These paradigms are especially costly for complex PDEs requiring\nsubstantial computational resources for numerical evaluation. We introduce\nPDE-SHARP, a framework to reduce computational costs by replacing expensive\nscientific computation by cheaper LLM inference that achieves superior solver\naccuracy with 60-75% fewer computational evaluations. PDE-SHARP employs three\nstages: (1) Analysis: mathematical chain-of-thought analysis including PDE\nclassification, solution type detection, and stability analysis; (2) Genesis:\nsolver generation based on mathematical insights from the previous stage; and\n(3) Synthesis: collaborative selection-hybridization tournaments in which LLM\njudges iteratively refine implementations through flexible performance\nfeedback. To generate high-quality solvers, PDE-SHARP requires fewer than 13\nsolver evaluations on average compared to 30+ for baseline methods, improving\naccuracy uniformly across tested PDEs by $4\\times$ on average, and demonstrates\nrobust performance across LLM architectures, from general-purpose to\nspecialized reasoning models.",
+    "published": "2025-10-31T18:38:05Z",
+    "updated": "2025-11-05T17:58:32Z",
+    "link": "http://arxiv.org/pdf/2511.00183v2.pdf",
+    "category": [
+      "cs.LG"
+    ],
+    "authors": [
+      "Shaghayegh Fazliani",
+      "Madeleine Udell"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.00801v2",
+    "title": "Med-Banana-50K: A Cross-modality Large-Scale Dataset for Text-guided\n  Medical Image Editing",
+    "summary": "Recent advances in multimodal large language models have enabled remarkable\nmedical image editing capabilities. However, the research community's progress\nremains constrained by the absence of large-scale, high-quality, and openly\naccessible datasets built specifically for medical image editing with strict\nanatomical and clinical constraints. We introduce Med-Banana-50K, a\ncomprehensive 50K-image dataset for instruction-based medical image editing\nspanning three modalities (chest X-ray, brain MRI, fundus photography) and 23\ndisease types. Our dataset is constructed by leveraging Gemini-2.5-Flash-Image\nto generate bidirectional edits (lesion addition and removal) from real medical\nimages. What distinguishes Med-Banana-50K from general-domain editing datasets\nis our systematic approach to medical quality control: we employ LLM-as-Judge\nwith a medically grounded rubric (instruction compliance, structural\nplausibility, realism, and fidelity preservation) and history-aware iterative\nrefinement up to five rounds. Beyond single-turn editing, Med-Banana-50K\nincludes 37K failed attempts with full conversation logs for preference\nlearning and alignment research. By providing this large-scale, medically\nvalidated, and fully documented resource, Med-Banana-50K establishes a\nfoundation for training and evaluating the next generation of medical image\nediting models.Our dataset and code are publicly available at\n[https://github.com/richardChenzhihui/med-banana-50k].",
+    "published": "2025-11-02T04:46:43Z",
+    "updated": "2025-11-05T13:45:24Z",
+    "link": "http://arxiv.org/pdf/2511.00801v2.pdf",
+    "category": [
+      "cs.CV",
+      "cs.MM"
+    ],
+    "authors": [
+      "Zhihui Chen",
+      "Mengling Feng"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2508.08826v3",
+    "title": "Geometry-Aware Global Feature Aggregation for Real-Time Indirect\n  Illumination",
+    "summary": "Real-time rendering with global illumination is crucial to afford the user\nrealistic experience in virtual environments. We present a learning-based\nestimator to predict diffuse indirect illumination in screen space, which then\nis combined with direct illumination to synthesize globally-illuminated high\ndynamic range (HDR) results. Our approach tackles the challenges of capturing\nlong-range/long-distance indirect illumination when employing neural networks\nand is generalized to handle complex lighting and scenarios.\n  From the neural network thinking of the solver to the rendering equation, we\npresent a novel network architecture to predict indirect illumination. Our\nnetwork is equipped with a modified attention mechanism that aggregates global\ninformation guided by spacial geometry features, as well as a monochromatic\ndesign that encodes each color channel individually.\n  We conducted extensive evaluations, and the experimental results demonstrate\nour superiority over previous learning-based techniques. Our approach excels at\nhandling complex lighting such as varying-colored lighting and environment\nlighting. It can successfully capture distant indirect illumination and\nsimulates the interreflections between textured surfaces well (i.e., color\nbleeding effects); it can also effectively handle new scenes that are not\npresent in the training dataset.",
+    "published": "2025-08-12T10:36:03Z",
+    "updated": "2025-11-05T15:51:33Z",
+    "link": "http://arxiv.org/pdf/2508.08826v3.pdf",
+    "category": [
+      "cs.GR",
+      "cs.AI"
+    ],
+    "authors": [
+      "Meng Gai",
+      "Guoping Wang",
+      "Sheng Li"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2508.04825v2",
+    "title": "Voost: A Unified and Scalable Diffusion Transformer for Bidirectional\n  Virtual Try-On and Try-Off",
+    "summary": "Virtual try-on aims to synthesize a realistic image of a person wearing a\ntarget garment, but accurately modeling garment-body correspondence remains a\npersistent challenge, especially under pose and appearance variation. In this\npaper, we propose Voost - a unified and scalable framework that jointly learns\nvirtual try-on and try-off with a single diffusion transformer. By modeling\nboth tasks jointly, Voost enables each garment-person pair to supervise both\ndirections and supports flexible conditioning over generation direction and\ngarment category, enhancing garment-body relational reasoning without\ntask-specific networks, auxiliary losses, or additional labels. In addition, we\nintroduce two inference-time techniques: attention temperature scaling for\nrobustness to resolution or mask variation, and self-corrective sampling that\nleverages bidirectional consistency between tasks. Extensive experiments\ndemonstrate that Voost achieves state-of-the-art results on both try-on and\ntry-off benchmarks, consistently outperforming strong baselines in alignment\naccuracy, visual fidelity, and generalization.",
+    "published": "2025-08-06T19:10:58Z",
+    "updated": "2025-11-05T18:23:44Z",
+    "link": "http://arxiv.org/pdf/2508.04825v2.pdf",
+    "category": [
+      "cs.GR",
+      "cs.AI",
+      "cs.CV",
+      "cs.LG"
+    ],
+    "authors": [
+      "Seungyong Lee",
+      "Jeong-gi Kwak"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.26909v2",
+    "title": "NaviTrace: Evaluating Embodied Navigation of Vision-Language Models",
+    "summary": "Vision-language models demonstrate unprecedented performance and\ngeneralization across a wide range of tasks and scenarios. Integrating these\nfoundation models into robotic navigation systems opens pathways toward\nbuilding general-purpose robots. Yet, evaluating these models' navigation\ncapabilities remains constrained by costly real-world trials, overly simplified\nsimulations, and limited benchmarks. We introduce NaviTrace, a high-quality\nVisual Question Answering benchmark where a model receives an instruction and\nembodiment type (human, legged robot, wheeled robot, bicycle) and must output a\n2D navigation trace in image space. Across 1000 scenarios and more than 3000\nexpert traces, we systematically evaluate eight state-of-the-art VLMs using a\nnewly introduced semantic-aware trace score. This metric combines Dynamic Time\nWarping distance, goal endpoint error, and embodiment-conditioned penalties\nderived from per-pixel semantics and correlates with human preferences. Our\nevaluation reveals consistent gap to human performance caused by poor spatial\ngrounding and goal localization. NaviTrace establishes a scalable and\nreproducible benchmark for real-world robotic navigation. The benchmark and\nleaderboard can be found at\nhttps://leggedrobotics.github.io/navitrace_webpage/.",
+    "published": "2025-10-30T18:16:32Z",
+    "updated": "2025-11-04T21:17:12Z",
+    "link": "http://arxiv.org/pdf/2510.26909v2.pdf",
+    "category": [
+      "cs.RO"
+    ],
+    "authors": [
+      "Tim Windecker",
+      "Manthan Patel",
+      "Moritz Reuss",
+      "Richard Schwarzkopf",
+      "Cesar Cadena",
+      "Rudolf Lioutikov",
+      "Marco Hutter",
+      "Jonas Frey"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.26280v2",
+    "title": "Thor: Towards Human-Level Whole-Body Reactions for Intense Contact-Rich\n  Environments",
+    "summary": "Humanoids hold great potential for service, industrial, and rescue\napplications, in which robots must sustain whole-body stability while\nperforming intense, contact-rich interactions with the environment. However,\nenabling humanoids to generate human-like, adaptive responses under such\nconditions remains a major challenge. To address this, we propose Thor, a\nhumanoid framework for human-level whole-body reactions in contact-rich\nenvironments. Based on the robot's force analysis, we design a force-adaptive\ntorso-tilt (FAT2) reward function to encourage humanoids to exhibit human-like\nresponses during force-interaction tasks. To mitigate the high-dimensional\nchallenges of humanoid control, Thor introduces a reinforcement learning\narchitecture that decouples the upper body, waist, and lower body. Each\ncomponent shares global observations of the whole body and jointly updates its\nparameters. Finally, we deploy Thor on the Unitree G1, and it substantially\noutperforms baselines in force-interaction tasks. Specifically, the robot\nachieves a peak pulling force of 167.7 N (approximately 48% of the G1's body\nweight) when moving backward and 145.5 N when moving forward, representing\nimprovements of 68.9% and 74.7%, respectively, compared with the\nbest-performing baseline. Moreover, Thor is capable of pulling a loaded rack\n(130 N) and opening a fire door with one hand (60 N). These results highlight\nThor's effectiveness in enhancing humanoid force-interaction capabilities.",
+    "published": "2025-10-30T09:06:26Z",
+    "updated": "2025-11-05T04:06:01Z",
+    "link": "http://arxiv.org/pdf/2510.26280v2.pdf",
+    "category": [
+      "cs.RO"
+    ],
+    "authors": [
+      "Gangyang Li",
+      "Qing Shi",
+      "Youhao Hu",
+      "Jincheng Hu",
+      "Zhongyuan Wang",
+      "Xinlong Wang",
+      "Shaqi Luo"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.22336v2",
+    "title": "Toward Humanoid Brain-Body Co-design: Joint Optimization of Control and\n  Morphology for Fall Recovery",
+    "summary": "Humanoid robots represent a central frontier in embodied intelligence, as\ntheir anthropomorphic form enables natural deployment in humans' workspace.\nBrain-body co-design for humanoids presents a promising approach to realizing\nthis potential by jointly optimizing control policies and physical morphology.\nWithin this context, fall recovery emerges as a critical capability. It not\nonly enhances safety and resilience but also integrates naturally with\nlocomotion systems, thereby advancing the autonomy of humanoids. In this paper,\nwe propose RoboCraft, a scalable humanoid co-design framework for fall recovery\nthat iteratively improves performance through the coupled updates of control\npolicy and morphology. A shared policy pretrained across multiple designs is\nprogressively finetuned on high-performing morphologies, enabling efficient\nadaptation without retraining from scratch. Concurrently, morphology search is\nguided by human-inspired priors and optimization algorithms, supported by a\npriority buffer that balances reevaluation of promising candidates with the\nexploration of novel designs. Experiments show that RoboCraft achieves an\naverage performance gain of 44.55% on seven public humanoid robots, with\nmorphology optimization drives at least 40% of improvements in co-designing\nfour humanoid robots, underscoring the critical role of humanoid co-design.",
+    "published": "2025-10-25T15:40:18Z",
+    "updated": "2025-11-05T15:01:29Z",
+    "link": "http://arxiv.org/pdf/2510.22336v2.pdf",
+    "category": [
+      "cs.RO",
+      "cs.AI"
+    ],
+    "authors": [
+      "Bo Yue",
+      "Sheng Xu",
+      "Kui Jia",
+      "Guiliang Liu"
+    ]
+  }
+]
