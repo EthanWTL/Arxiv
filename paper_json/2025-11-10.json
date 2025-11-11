@@ -1,0 +1,586 @@
+[
+  {
+    "id": "http://arxiv.org/abs/2511.05459v2",
+    "title": "SWE-Compass: Towards Unified Evaluation of Agentic Coding Abilities for\n  Large Language Models",
+    "summary": "Evaluating large language models (LLMs) for software engineering has been\nlimited by narrow task coverage, language bias, and insufficient alignment with\nreal-world developer workflows. Existing benchmarks often focus on algorithmic\nproblems or Python-centric bug fixing, leaving critical dimensions of software\nengineering underexplored. To address these gaps, we introduce SWE-Compass1, a\ncomprehensive benchmark that unifies heterogeneous code-related evaluations\ninto a structured and production-aligned framework. SWE-Compass spans 8 task\ntypes, 8 programming scenarios, and 10 programming languages, with 2000\nhigh-quality instances curated from authentic GitHub pull requests and refined\nthrough systematic filtering and validation. We benchmark ten state-of-the-art\nLLMs under two agentic frameworks, SWE-Agent and Claude Code, revealing a clear\nhierarchy of difficulty across task types, languages, and scenarios. Moreover,\nby aligning evaluation with real-world developer practices, SWE-Compass\nprovides a rigorous and reproducible foundation for diagnosing and advancing\nagentic coding capabilities in large language models.",
+    "published": "2025-11-07T18:01:32Z",
+    "updated": "2025-11-10T03:18:54Z",
+    "link": "http://arxiv.org/pdf/2511.05459v2.pdf",
+    "category": [
+      "cs.SE",
+      "cs.AI"
+    ],
+    "authors": [
+      "Jingxuan Xu",
+      "Ken Deng",
+      "Weihao Li",
+      "Songwei Yu",
+      "Huaixi Tang",
+      "Haoyang Huang",
+      "Zhiyi Lai",
+      "Zizheng Zhan",
+      "Yanan Wu",
+      "Chenchen Zhang",
+      "Kepeng Lei",
+      "Yifan Yao",
+      "Xinping Lei",
+      "Wenqiang Zhu",
+      "Zongxian Feng",
+      "Han Li",
+      "Junqi Xiong",
+      "Dailin Li",
+      "Zuchen Gao",
+      "Kun Wu",
+      "Wen Xiang",
+      "Ziqi Zhan",
+      "Yuanxing Zhang",
+      "Wuxuan Gong",
+      "Ziyuan Gao",
+      "Guanxiang Wang",
+      "Yirong Xue",
+      "Xiaojiang Zhang",
+      "Jinghui Wang",
+      "Huiming Wang",
+      "Wenhao Zhuang",
+      "Zhaoxiang Zhang",
+      "Yuqun Zhang",
+      "Haotian Zhang",
+      "Bin Chen",
+      "Jiaheng Liu"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.05350v2",
+    "title": "Perceptually Aligning Representations of Music via Noise-Augmented\n  Autoencoders",
+    "summary": "We argue that training autoencoders to reconstruct inputs from noised\nversions of their encodings, when combined with perceptual losses, yields\nencodings that are structured according to a perceptual hierarchy. We\ndemonstrate the emergence of this hierarchical structure by showing that, after\ntraining an audio autoencoder in this manner, perceptually salient information\nis captured in coarser representation structures than with conventional\ntraining. Furthermore, we show that such perceptual hierarchies improve latent\ndiffusion decoding in the context of estimating surprisal in music pitches and\npredicting EEG-brain responses to music listening. Pretrained weights are\navailable on github.com/CPJKU/pa-audioic.",
+    "published": "2025-11-07T15:44:12Z",
+    "updated": "2025-11-10T14:11:02Z",
+    "link": "http://arxiv.org/pdf/2511.05350v2.pdf",
+    "category": [
+      "cs.SD",
+      "cs.AI"
+    ],
+    "authors": [
+      "Mathias Rose Bjare",
+      "Giorgia Cantisani",
+      "Marco Pasini",
+      "Stefan Lattner",
+      "Gerhard Widmer"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.05308v2",
+    "title": "Rethinking Metrics and Diffusion Architecture for 3D Point Cloud\n  Generation",
+    "summary": "As 3D point clouds become a cornerstone of modern technology, the need for\nsophisticated generative models and reliable evaluation metrics has grown\nexponentially. In this work, we first expose that some commonly used metrics\nfor evaluating generated point clouds, particularly those based on Chamfer\nDistance (CD), lack robustness against defects and fail to capture geometric\nfidelity and local shape consistency when used as quality indicators. We\nfurther show that introducing samples alignment prior to distance calculation\nand replacing CD with Density-Aware Chamfer Distance (DCD) are simple yet\nessential steps to ensure the consistency and robustness of point cloud\ngenerative model evaluation metrics. While existing metrics primarily focus on\ndirectly comparing 3D Euclidean coordinates, we present a novel metric, named\nSurface Normal Concordance (SNC), which approximates surface similarity by\ncomparing estimated point normals. This new metric, when combined with\ntraditional ones, provides a more comprehensive evaluation of the quality of\ngenerated samples. Finally, leveraging recent advancements in transformer-based\nmodels for point cloud analysis, such as serialized patch attention , we\npropose a new architecture for generating high-fidelity 3D structures, the\nDiffusion Point Transformer. We perform extensive experiments and comparisons\non the ShapeNet dataset, showing that our model outperforms previous solutions,\nparticularly in terms of quality of generated point clouds, achieving new\nstate-of-the-art. Code available at\nhttps://github.com/matteo-bastico/DiffusionPointTransformer.",
+    "published": "2025-11-07T15:07:24Z",
+    "updated": "2025-11-10T08:55:03Z",
+    "link": "http://arxiv.org/pdf/2511.05308v2.pdf",
+    "category": [
+      "cs.CV",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "authors": [
+      "Matteo Bastico",
+      "David Ryckelynck",
+      "Laurent Corté",
+      "Yannick Tillier",
+      "Etienne Decencière"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.05271v2",
+    "title": "DeepEyesV2: Toward Agentic Multimodal Model",
+    "summary": "Agentic multimodal models should not only comprehend text and images, but\nalso actively invoke external tools, such as code execution environments and\nweb search, and integrate these operations into reasoning. In this work, we\nintroduce DeepEyesV2 and explore how to build an agentic multimodal model from\nthe perspectives of data construction, training methods, and model evaluation.\nWe observe that direct reinforcement learning alone fails to induce robust\ntool-use behavior. This phenomenon motivates a two-stage training pipeline: a\ncold-start stage to establish tool-use patterns, and reinforcement learning\nstage to further refine tool invocation. We curate a diverse, moderately\nchallenging training dataset, specifically including examples where tool use is\nbeneficial. We further introduce RealX-Bench, a comprehensive benchmark\ndesigned to evaluate real-world multimodal reasoning, which inherently requires\nthe integration of multiple capabilities, including perception, search, and\nreasoning. We evaluate DeepEyesV2 on RealX-Bench and other representative\nbenchmarks, demonstrating its effectiveness across real-world understanding,\nmathematical reasoning, and search-intensive tasks. Moreover, DeepEyesV2\nexhibits task-adaptive tool invocation, tending to use image operations for\nperception tasks and numerical computations for reasoning tasks. Reinforcement\nlearning further enables complex tool combinations and allows model to\nselectively invoke tools based on context. We hope our study can provide\nguidance for community in developing agentic multimodal models.",
+    "published": "2025-11-07T14:31:20Z",
+    "updated": "2025-11-10T15:43:16Z",
+    "link": "http://arxiv.org/pdf/2511.05271v2.pdf",
+    "category": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "authors": [
+      "Jack Hong",
+      "Chenxiao Zhao",
+      "ChengLin Zhu",
+      "Weiheng Lu",
+      "Guohai Xu",
+      "Xing Yu"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.03138v3",
+    "title": "DeepKnown-Guard: A Proprietary Model-Based Safety Response Framework for\n  AI Agents",
+    "summary": "With the widespread application of Large Language Models (LLMs), their\nassociated security issues have become increasingly prominent, severely\nconstraining their trustworthy deployment in critical domains. This paper\nproposes a novel safety response framework designed to systematically safeguard\nLLMs at both the input and output levels. At the input level, the framework\nemploys a supervised fine-tuning-based safety classification model. Through a\nfine-grained four-tier taxonomy (Safe, Unsafe, Conditionally Safe, Focused\nAttention), it performs precise risk identification and differentiated handling\nof user queries, significantly enhancing risk coverage and business scenario\nadaptability, and achieving a risk recall rate of 99.3%. At the output level,\nthe framework integrates Retrieval-Augmented Generation (RAG) with a\nspecifically fine-tuned interpretation model, ensuring all responses are\ngrounded in a real-time, trustworthy knowledge base. This approach eliminates\ninformation fabrication and enables result traceability. Experimental results\ndemonstrate that our proposed safety control model achieves a significantly\nhigher safety score on public safety evaluation benchmarks compared to the\nbaseline model, TinyR1-Safety-8B. Furthermore, on our proprietary high-risk\ntest set, the framework's components attained a perfect 100% safety score,\nvalidating their exceptional protective capabilities in complex risk scenarios.\nThis research provides an effective engineering pathway for building\nhigh-security, high-trust LLM applications.",
+    "published": "2025-11-05T03:04:35Z",
+    "updated": "2025-11-10T01:31:25Z",
+    "link": "http://arxiv.org/pdf/2511.03138v3.pdf",
+    "category": [
+      "cs.AI"
+    ],
+    "authors": [
+      "Qi Li",
+      "Jianjun Xu",
+      "Pingtao Wei",
+      "Jiu Li",
+      "Peiqiang Zhao",
+      "Jiwei Shi",
+      "Xuan Zhang",
+      "Yanhui Yang",
+      "Xiaodong Hui",
+      "Peng Xu",
+      "Wenqin Shao"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.04914v2",
+    "title": "MERaLiON-SER: Robust Speech Emotion Recognition Model for English and\n  SEA Languages",
+    "summary": "We present MERaLiON-SER, a robust speech emotion recognition model de- signed\nfor English and Southeast Asian languages. The model is trained using a hybrid\nobjective combining weighted categorical cross-entropy and Concordance\nCorrelation Coefficient (CCC) losses for joint discrete and dimensional emotion\nmodelling. This dual approach enables the model to capture both the distinct\ncategories of emotion (like happy or angry) and the fine-grained, such as\narousal (intensity), valence (positivity/negativity), and dominance (sense of\ncontrol), lead- ing to a more comprehensive and robust representation of human\naffect. Extensive evaluations across multilingual Singaporean languages\n(English, Chinese, Malay, and Tamil ) and other public benchmarks show that\nMERaLiON-SER consistently surpasses both open-source speech encoders and large\nAudio-LLMs. These results underscore the importance of specialised speech-only\nmodels for accurate paralin- guistic understanding and cross-lingual\ngeneralisation. Furthermore, the proposed framework provides a foundation for\nintegrating emotion-aware perception into future agentic audio systems,\nenabling more empathetic and contextually adaptive multimodal reasoning.",
+    "published": "2025-11-07T01:28:40Z",
+    "updated": "2025-11-10T06:49:45Z",
+    "link": "http://arxiv.org/pdf/2511.04914v2.pdf",
+    "category": [
+      "cs.SD",
+      "cs.AI"
+    ],
+    "authors": [
+      "Hardik B. Sailor",
+      "Aw Ai Ti",
+      "Chen Fang Yih Nancy",
+      "Chiu Ying Lay",
+      "Ding Yang",
+      "He Yingxu",
+      "Jiang Ridong",
+      "Li Jingtao",
+      "Liao Jingyi",
+      "Liu Zhuohan",
+      "Lu Yanfeng",
+      "Ma Yi",
+      "Manas Gupta",
+      "Muhammad Huzaifah Bin Md Shahrin",
+      "Nabilah Binte Md Johan",
+      "Nattadaporn Lertcheva",
+      "Pan Chunlei",
+      "Pham Minh Duc",
+      "Siti Maryam Binte Ahmad Subaidi",
+      "Siti Umairah Binte Mohammad Salleh",
+      "Sun Shuo",
+      "Tarun Kumar Vangani",
+      "Wang Qiongqiong",
+      "Won Cheng Yi Lewis",
+      "Wong Heng Meng Jeremy",
+      "Wu Jinyang",
+      "Zhang Huayun",
+      "Zhang Longyin",
+      "Zou Xunlong"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.04875v2",
+    "title": "Minimal and Mechanistic Conditions for Behavioral Self-Awareness in LLMs",
+    "summary": "Recent studies have revealed that LLMs can exhibit behavioral self-awareness:\nthe ability to accurately describe or predict their own learned behaviors\nwithout explicit supervision. This capability raises safety concerns as it may,\nfor example, allow models to better conceal their true abilities during\nevaluation. We attempt to characterize the minimal conditions under which such\nself-awareness emerges, and the mechanistic processes through which it\nmanifests. Through controlled finetuning experiments on instruction-tuned LLMs\nwith low-rank adapters (LoRA), we find: (1) that self-awareness can be reliably\ninduced using a single rank-1 LoRA adapter; (2) that the learned self-aware\nbehavior can be largely captured by a single steering vector in activation\nspace, recovering nearly all of the fine-tune's behavioral effect; and (3) that\nself-awareness is non-universal and domain-localized, with independent\nrepresentations across tasks. Together, these findings suggest that behavioral\nself-awareness emerges as a domain-specific, linear feature that can be easily\ninduced and modulated.",
+    "published": "2025-11-06T23:28:16Z",
+    "updated": "2025-11-10T01:27:05Z",
+    "link": "http://arxiv.org/pdf/2511.04875v2.pdf",
+    "category": [
+      "cs.CL",
+      "cs.AI",
+      "cs.LG"
+    ],
+    "authors": [
+      "Matthew Bozoukov",
+      "Matthew Nguyen",
+      "Shubkarman Singh",
+      "Bart Bussmann",
+      "Patrick Leask"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.04638v2",
+    "title": "Addressing divergent representations from causal interventions on neural\n  networks",
+    "summary": "A common approach to mechanistic interpretability is to causally manipulate\nmodel representations via targeted interventions in order to understand what\nthose representations encode. Here we ask whether such interventions create\nout-of-distribution (divergent) representations, and whether this raises\nconcerns about how faithful their resulting explanations are to the target\nmodel in its natural state. First, we demonstrate empirically that common\ncausal intervention techniques often do shift internal representations away\nfrom the natural distribution of the target model. Then, we provide a\ntheoretical analysis of two classes of such divergences: \"harmless\" divergences\nthat occur in the null-space of the weights and from covariance within\nbehavioral decision boundaries, and \"pernicious\" divergences that activate\nhidden network pathways and cause dormant behavioral changes. Finally, in an\neffort to mitigate the pernicious cases, we modify the Counterfactual Latent\n(CL) loss from Grant (2025) that regularizes interventions to remain closer to\nthe natural distributions, reducing the likelihood of harmful divergences while\npreserving the interpretive power of interventions. Together, these results\nhighlight a path towards more reliable interpretability methods.",
+    "published": "2025-11-06T18:32:34Z",
+    "updated": "2025-11-09T20:35:15Z",
+    "link": "http://arxiv.org/pdf/2511.04638v2.pdf",
+    "category": [
+      "cs.LG",
+      "cs.AI"
+    ],
+    "authors": [
+      "Satchel Grant",
+      "Simon Jerome Han",
+      "Alexa R. Tartaglini",
+      "Christopher Potts"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.04583v2",
+    "title": "Jr. AI Scientist and Its Risk Report: Autonomous Scientific Exploration\n  from a Baseline Paper",
+    "summary": "Understanding the current capabilities and risks of AI Scientist systems is\nessential for ensuring trustworthy and sustainable AI-driven scientific\nprogress while preserving the integrity of the academic ecosystem. To this end,\nwe develop Jr. AI Scientist, a state-of-the-art autonomous AI scientist system\nthat mimics the core research workflow of a novice student researcher: Given\nthe baseline paper from the human mentor, it analyzes its limitations,\nformulates novel hypotheses for improvement, and iteratively conducts\nexperiments until improvements are realized, and writes a paper with the\nresults. Unlike previous approaches that assume full automation or operate on\nsmall-scale code, Jr. AI Scientist follows a well-defined research workflow and\nleverages modern coding agents to handle complex, multi-file implementations,\nleading to scientifically valuable contributions. Through our experiments, the\nJr. AI Scientist successfully generated new research papers that build upon\nreal NeurIPS, IJCV, and ICLR works by proposing and implementing novel methods.\nFor evaluation, we conducted automated assessments using AI Reviewers,\nauthor-led evaluations, and submissions to Agents4Science, a venue dedicated to\nAI-driven scientific contributions. The findings demonstrate that Jr. AI\nScientist generates papers receiving higher review scores than existing fully\nautomated systems. Nevertheless, we identify important limitations from both\nthe author evaluation and the Agents4Science reviews, indicating the potential\nrisks of directly applying current AI Scientist systems and key challenges for\nfuture research. Finally, we comprehensively report various risks identified\nduring development. We believe this study clarifies the current role and\nlimitations of AI Scientist systems, offering insights into the areas that\nstill require human expertise and the risks that may emerge as these systems\nevolve.",
+    "published": "2025-11-06T17:37:49Z",
+    "updated": "2025-11-10T15:05:28Z",
+    "link": "http://arxiv.org/pdf/2511.04583v2.pdf",
+    "category": [
+      "cs.AI",
+      "cs.CL",
+      "cs.CV",
+      "cs.LG"
+    ],
+    "authors": [
+      "Atsuyuki Miyai",
+      "Mashiro Toyooka",
+      "Takashi Otonari",
+      "Zaiying Zhao",
+      "Kiyoharu Aizawa"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.04307v2",
+    "title": "GUI-360$^\\circ$: A Comprehensive Dataset and Benchmark for\n  Computer-Using Agents",
+    "summary": "We introduce GUI-360$^\\circ$, a large-scale, comprehensive dataset and\nbenchmark suite designed to advance computer-using agents (CUAs). CUAs present\nunique challenges and is constrained by three persistent gaps: a scarcity of\nreal-world CUA tasks, the lack of automated collection-and-annotation pipelines\nfor multi-modal trajectories, and the absence of a unified benchmark that\njointly evaluates GUI grounding, screen parsing, and action prediction.\n  GUI-360$^\\circ$ addresses these gaps with an LLM-augmented, largely automated\npipeline for query sourcing, environment-template construction, task\ninstantiation, batched execution, and LLM-driven quality filtering. The\nreleased corpus contains over 1.2M executed action steps across thousands of\ntrajectories in popular Windows office applications, and includes\nfull-resolution screenshots, accessibility metadata when available,\ninstantiated goals, intermediate reasoning traces, and both successful and\nfailed action trajectories. The dataset supports three canonical tasks, GUI\ngrounding, screen parsing, and action prediction, and a hybrid GUI+API action\nspace that reflects modern agent designs. Benchmarking state-of-the-art\nvision--language models on GUI-360$^\\circ$ reveals substantial out-of-the-box\nshortcomings in grounding and action prediction; supervised fine-tuning and\nreinforcement learning yield significant gains but do not close the gap to\nhuman-level reliability. We release GUI-360$^\\circ$ and accompanying code to\nfacilitate reproducible research and accelerate progress on robust desktop\nCUAs.\n  The full dataset has been made public on\nhttps://huggingface.co/datasets/vyokky/GUI-360.",
+    "published": "2025-11-06T12:19:02Z",
+    "updated": "2025-11-10T12:27:15Z",
+    "link": "http://arxiv.org/pdf/2511.04307v2.pdf",
+    "category": [
+      "cs.AI"
+    ],
+    "authors": [
+      "Jian Mu",
+      "Chaoyun Zhang",
+      "Chiming Ni",
+      "Lu Wang",
+      "Bo Qiao",
+      "Kartik Mathur",
+      "Qianhui Wu",
+      "Yuhang Xie",
+      "Xiaojun Ma",
+      "Mengyu Zhou",
+      "Si Qin",
+      "Liqun Li",
+      "Yu Kang",
+      "Minghua Ma",
+      "Qingwei Lin",
+      "Saravan Rajmohan",
+      "Dongmei Zhang"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.04053v2",
+    "title": "Interpreting Multi-Attribute Confounding through Numerical Attributes in\n  Large Language Models",
+    "summary": "Although behavioral studies have documented numerical reasoning errors in\nlarge language models (LLMs), the underlying representational mechanisms remain\nunclear. We hypothesize that numerical attributes occupy shared latent\nsubspaces and investigate two questions:(1) How do LLMs internally integrate\nmultiple numerical attributes of a single entity? (2)How does irrelevant\nnumerical context perturb these representations and their downstream outputs?\nTo address these questions, we combine linear probing with partial correlation\nanalysis and prompt-based vulnerability tests across models of varying sizes.\nOur results show that LLMs encode real-world numerical correlations but tend to\nsystematically amplify them. Moreover, irrelevant context induces consistent\nshifts in magnitude representations, with downstream effects that vary by model\nsize. These findings reveal a vulnerability in LLM decision-making and lay the\ngroundwork for fairer, representation-aware control under multi-attribute\nentanglement.",
+    "published": "2025-11-06T04:47:08Z",
+    "updated": "2025-11-10T13:39:09Z",
+    "link": "http://arxiv.org/pdf/2511.04053v2.pdf",
+    "category": [
+      "cs.AI"
+    ],
+    "authors": [
+      "Hirohane Takagi",
+      "Gouki Minegishi",
+      "Shota Kizawa",
+      "Issey Sukeda",
+      "Hitomi Yanaka"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.03773v2",
+    "title": "Scaling Agent Learning via Experience Synthesis",
+    "summary": "While reinforcement learning (RL) can empower autonomous agents by enabling\nself-improvement through interaction, its practical adoption remains\nchallenging due to costly rollouts, limited task diversity, unreliable reward\nsignals, and infrastructure complexity, all of which obstruct the collection of\nscalable experience data. To address these challenges, we introduce DreamGym,\nthe first unified framework designed to synthesize diverse experiences with\nscalability in mind to enable effective online RL training for autonomous\nagents. Rather than relying on expensive real-environment rollouts, DreamGym\ndistills environment dynamics into a reasoning-based experience model that\nderives consistent state transitions and feedback signals through step-by-step\nreasoning, enabling scalable agent rollout collection for RL. To improve the\nstability and quality of transitions, DreamGym leverages an experience replay\nbuffer initialized with offline real-world data and continuously enriched with\nfresh interactions to actively support agent training. To improve knowledge\nacquisition, DreamGym adaptively generates new tasks that challenge the current\nagent policy, enabling more effective online curriculum learning. Experiments\nacross diverse environments and agent backbones demonstrate that DreamGym\nsubstantially improves RL training, both in fully synthetic settings and in\nsim-to-real transfer scenarios. On non-RL-ready tasks like WebArena, DreamGym\noutperforms all baselines by over 30%. And in RL-ready but costly settings, it\nmatches GRPO and PPO performance using only synthetic interactions. When\ntransferring a policy trained purely on synthetic experiences to\nreal-environment RL, DreamGym yields significant additional performance gains\nwhile requiring far fewer real-world interactions, providing a scalable\nwarm-start strategy for general-purpose RL.",
+    "published": "2025-11-05T18:58:48Z",
+    "updated": "2025-11-10T05:02:36Z",
+    "link": "http://arxiv.org/pdf/2511.03773v2.pdf",
+    "category": [
+      "cs.AI"
+    ],
+    "authors": [
+      "Zhaorun Chen",
+      "Zhuokai Zhao",
+      "Kai Zhang",
+      "Bo Liu",
+      "Qi Qi",
+      "Yifan Wu",
+      "Tarun Kalluri",
+      "Sara Cao",
+      "Yuanhao Xiong",
+      "Haibo Tong",
+      "Huaxiu Yao",
+      "Hengduo Li",
+      "Jiacheng Zhu",
+      "Xian Li",
+      "Dawn Song",
+      "Bo Li",
+      "Jason Weston",
+      "Dat Huynh"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.03643v2",
+    "title": "Explaining Human Choice Probabilities with Simple Vector Representations",
+    "summary": "When people pursue rewards in stochastic environments, they often match their\nchoice frequencies to the observed target frequencies, even when this policy is\ndemonstrably sub-optimal. We used a ``hide and seek'' task to evaluate this\nbehavior under conditions where pursuit (seeking) could be toggled to avoidance\n(hiding), while leaving the probability distribution fixed, or varying\ncomplexity by changing the number of possible choices. We developed a model for\nparticipant choice built from choice frequency histograms treated as vectors.\nWe posited the existence of a probability antimatching strategy for avoidance\n(hiding) rounds, and formalized this as a vector reflection of probability\nmatching. We found that only two basis policies: matching/antimatching and\nmaximizing/minimizing were sufficient to account for participant choices across\na range of room numbers and opponent probability distributions. This schema\nrequires only that people have the ability to remember the relative frequency\nof the different outcomes. With this knowledge simple operations can construct\nthe maximizing and minimizing policies as well as matching and antimatching\nstrategies. A mixture of these two policies captures human choice patterns in a\nstochastic environment.",
+    "published": "2025-11-05T17:03:03Z",
+    "updated": "2025-11-10T18:36:37Z",
+    "link": "http://arxiv.org/pdf/2511.03643v2.pdf",
+    "category": [
+      "q-bio.NC",
+      "cs.AI"
+    ],
+    "authors": [
+      "Peter DiBerardino",
+      "Britt Anderson"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.01450v3",
+    "title": "Reg-DPO: SFT-Regularized Direct Preference Optimization with GT-Pair for\n  Improving Video Generation",
+    "summary": "Recent studies have identified Direct Preference Optimization (DPO) as an\nefficient and reward-free approach to improving video generation quality.\nHowever, existing methods largely follow image-domain paradigms and are mainly\ndeveloped on small-scale models (approximately 2B parameters), limiting their\nability to address the unique challenges of video tasks, such as costly data\nconstruction, unstable training, and heavy memory consumption. To overcome\nthese limitations, we introduce a GT-Pair that automatically builds\nhigh-quality preference pairs by using real videos as positives and\nmodel-generated videos as negatives, eliminating the need for any external\nannotation. We further present Reg-DPO, which incorporates the SFT loss as a\nregularization term into the DPO loss to enhance training stability and\ngeneration fidelity. Additionally, by combining the FSDP framework with\nmultiple memory optimization techniques, our approach achieves nearly three\ntimes higher training capacity than using FSDP alone. Extensive experiments on\nboth I2V and T2V tasks across multiple datasets demonstrate that our method\nconsistently outperforms existing approaches, delivering superior video\ngeneration quality.",
+    "published": "2025-11-03T11:04:22Z",
+    "updated": "2025-11-10T03:10:25Z",
+    "link": "http://arxiv.org/pdf/2511.01450v3.pdf",
+    "category": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "authors": [
+      "Jie Du",
+      "Xinyu Gong",
+      "Qingshan Tan",
+      "Wen Li",
+      "Yangming Cheng",
+      "Weitao Wang",
+      "Chenlu Zhan",
+      "Suhui Wu",
+      "Hao Zhang",
+      "Jun Zhang"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02193v2",
+    "title": "MM-UNet: Morph Mamba U-shaped Convolutional Networks for Retinal Vessel\n  Segmentation",
+    "summary": "Accurate detection of retinal vessels plays a critical role in reflecting a\nwide range of health status indicators in the clinical diagnosis of ocular\ndiseases. Recently, advances in deep learning have led to a surge in retinal\nvessel segmentation methods, which have significantly contributed to the\nquantitative analysis of vascular morphology. However, retinal vasculature\ndiffers significantly from conventional segmentation targets in that it\nconsists of extremely thin and branching structures, whose global morphology\nvaries greatly across images. These characteristics continue to pose challenges\nto segmentation precision and robustness. To address these issues, we propose\nMM-UNet, a novel architecture tailored for efficient retinal vessel\nsegmentation. The model incorporates Morph Mamba Convolution layers, which\nreplace pointwise convolutions to enhance branching topological perception\nthrough morph, state-aware feature sampling. Additionally, Reverse Selective\nState Guidance modules integrate reverse guidance theory with state-space\nmodeling to improve geometric boundary awareness and decoding efficiency.\nExtensive experiments conducted on two public retinal vessel segmentation\ndatasets demonstrate the superior performance of the proposed method in\nsegmentation accuracy. Compared to the existing approaches, MM-UNet achieves\nF1-score gains of 1.64 % on DRIVE and 1.25 % on STARE, demonstrating its\neffectiveness and advancement. The project code is public via\nhttps://github.com/liujiawen-jpg/MM-UNet.",
+    "published": "2025-11-04T02:18:25Z",
+    "updated": "2025-11-10T12:21:53Z",
+    "link": "http://arxiv.org/pdf/2511.02193v2.pdf",
+    "category": [
+      "cs.CV",
+      "cs.AI"
+    ],
+    "authors": [
+      "Jiawen Liu",
+      "Yuanbo Zeng",
+      "Jiaming Liang",
+      "Yizhen Yang",
+      "Yiheng Zhang",
+      "Enhui Cai",
+      "Xiaoqi Sheng",
+      "Hongmin Cai"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.04910v2",
+    "title": "SDS KoPub VDR: A Benchmark Dataset for Visual Document Retrieval in\n  Korean Public Documents",
+    "summary": "Existing benchmarks for visual document retrieval (VDR) largely overlook\nnon-English languages and the structural complexity of official publications.\nTo address this gap, we introduce SDS KoPub VDR, the first large-scale, public\nbenchmark for retrieving and understanding Korean public documents. The\nbenchmark is built upon 361 real-world documents, including 256 files under the\nKOGL Type 1 license and 105 from official legal portals, capturing complex\nvisual elements like tables, charts, and multi-column layouts. To establish a\nreliable evaluation set, we constructed 600 query-page-answer triples. These\nwere initially generated using multimodal models (e.g., GPT-4o) and\nsubsequently underwent human verification to ensure factual accuracy and\ncontextual relevance. The queries span six major public domains and are\ncategorized by the reasoning modality required: text-based, visual-based, and\ncross-modal. We evaluate SDS KoPub VDR on two complementary tasks: (1)\ntext-only retrieval and (2) multimodal retrieval, which leverages visual\nfeatures alongside text. This dual-task evaluation reveals substantial\nperformance gaps, particularly in multimodal scenarios requiring cross-modal\nreasoning, even for state-of-the-art models. As a foundational resource, SDS\nKoPub VDR enables rigorous and fine-grained evaluation and provides a roadmap\nfor advancing multimodal AI in real-world document intelligence. The dataset is\navailable at\nhttps://huggingface.co/datasets/SamsungSDS-Research/SDS-KoPub-VDR-Benchmark.",
+    "published": "2025-11-07T01:16:07Z",
+    "updated": "2025-11-10T04:20:56Z",
+    "link": "http://arxiv.org/pdf/2511.04910v2.pdf",
+    "category": [
+      "cs.CL"
+    ],
+    "authors": [
+      "Jaehoon Lee",
+      "Sohyun Kim",
+      "Wanggeun Park",
+      "Geon Lee",
+      "Seungkyung Kim",
+      "Minyoung Lee"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2406.11177v4",
+    "title": "Retrieval-Augmented Feature Generation for Domain-Specific\n  Classification",
+    "summary": "Feature generation can significantly enhance learning outcomes, particularly\nfor tasks with limited data. An effective way to improve feature generation is\nto expand the current feature space using existing features and enriching the\ninformational content. However, generating new, interpretable features usually\nrequires domain-specific knowledge on top of the existing features. In this\npaper, we introduce a Retrieval-Augmented Feature Generation method, RAFG, to\ngenerate useful and explainable features specific to domain classification\ntasks. To increase the interpretability of the generated features, we conduct\nknowledge retrieval among the existing features in the domain to identify\npotential feature associations. These associations are expected to help\ngenerate useful features. Moreover, we develop a framework based on large\nlanguage models (LLMs) for feature generation with reasoning to verify the\nquality of the features during their generation process. Experiments across\nseveral datasets in medical, economic, and geographic domains show that our\nRAFG method can produce high-quality, meaningful features and significantly\nimprove classification performance compared with baseline methods.",
+    "published": "2024-06-17T03:29:14Z",
+    "updated": "2025-11-10T01:45:42Z",
+    "link": "http://arxiv.org/pdf/2406.11177v4.pdf",
+    "category": [
+      "cs.CL"
+    ],
+    "authors": [
+      "Xinhao Zhang",
+      "Jinghan Zhang",
+      "Fengran Mo",
+      "Dakshak Keerthi Chandra",
+      "Yu-Zhong Chen",
+      "Fei Xie",
+      "Kunpeng Liu"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2504.03546v3",
+    "title": "MultiMed-ST: Large-scale Many-to-many Multilingual Medical Speech\n  Translation",
+    "summary": "Multilingual speech translation (ST) and machine translation (MT) in the\nmedical domain enhances patient care by enabling efficient communication across\nlanguage barriers, alleviating specialized workforce shortages, and\nfacilitating improved diagnosis and treatment, particularly during pandemics.\nIn this work, we present the first systematic study on medical ST, to our best\nknowledge, by releasing MultiMed-ST, a large-scale ST dataset for the medical\ndomain, spanning all translation directions in five languages: Vietnamese,\nEnglish, German, French, and Simplified/Traditional Chinese, together with the\nmodels. With 290,000 samples, this is the largest medical MT dataset and the\nlargest many-to-many multilingual ST among all domains. Secondly, we present\nthe most comprehensive ST analysis in the field's history, to our best\nknowledge, including: empirical baselines, bilingual-multilingual comparative\nstudy, end-to-end vs. cascaded comparative study, task-specific vs. multi-task\nsequence-to-sequence comparative study, code-switch analysis, and\nquantitative-qualitative error analysis. All code, data, and models are\navailable online: https://github.com/leduckhai/MultiMed-ST",
+    "published": "2025-04-04T15:49:17Z",
+    "updated": "2025-11-09T20:34:22Z",
+    "link": "http://arxiv.org/pdf/2504.03546v3.pdf",
+    "category": [
+      "cs.CL",
+      "cs.AI",
+      "cs.LG",
+      "cs.SD",
+      "eess.AS"
+    ],
+    "authors": [
+      "Khai Le-Duc",
+      "Tuyen Tran",
+      "Bach Phan Tat",
+      "Nguyen Kim Hai Bui",
+      "Quan Dang",
+      "Hung-Phong Tran",
+      "Thanh-Thuy Nguyen",
+      "Ly Nguyen",
+      "Tuan-Minh Phan",
+      "Thi Thu Phuong Tran",
+      "Chris Ngo",
+      "Nguyen X. Khanh",
+      "Thanh Nguyen-Tang"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.00521v2",
+    "title": "Reasoning Planning for Language Models",
+    "summary": "Selecting an appropriate reasoning method for a given query remains a key\nchallenge in language model generation. Existing approaches typically generate\nmultiple candidate responses and use an aggregation strategy to select the\noutput answer, often assuming that more candidate answers yield higher\naccuracy. We revisit this assumption through a rigorous theoretical analysis,\nderiving accuracy bounds for standard aggregation methods under fixed\ngeneration distributions and candidate sizes. Building on these insights, we\nintroduce EPIC, an Ensemble Planning with Contrastive learning framework to\nlearn a shared representation space that captures both model reasoning\nabilities and query-method compatibility. EPIC incorporates our probability\nbounds as a regularizer in a utility-driven optimization that balances accuracy\nand computational cost. Experiments on diverse mathematical reasoning tasks\nshow that EPIC consistently selects optimal reasoning methods, improving\naccuracy while reducing computational overhead. Our code can be found at\nhttps://github.com/nguyenngocbaocmt02/EPIC.",
+    "published": "2025-11-01T11:51:53Z",
+    "updated": "2025-11-10T03:30:17Z",
+    "link": "http://arxiv.org/pdf/2511.00521v2.pdf",
+    "category": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "authors": [
+      "Bao Nguyen",
+      "Hieu Trung Nguyen",
+      "Ruifeng She",
+      "Xiaojin Fu",
+      "Viet Anh Nguyen"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.04665v2",
+    "title": "Real-to-Sim Robot Policy Evaluation with Gaussian Splatting Simulation\n  of Soft-Body Interactions",
+    "summary": "Robotic manipulation policies are advancing rapidly, but their direct\nevaluation in the real world remains costly, time-consuming, and difficult to\nreproduce, particularly for tasks involving deformable objects. Simulation\nprovides a scalable and systematic alternative, yet existing simulators often\nfail to capture the coupled visual and physical complexity of soft-body\ninteractions. We present a real-to-sim policy evaluation framework that\nconstructs soft-body digital twins from real-world videos and renders robots,\nobjects, and environments with photorealistic fidelity using 3D Gaussian\nSplatting. We validate our approach on representative deformable manipulation\ntasks, including plush toy packing, rope routing, and T-block pushing,\ndemonstrating that simulated rollouts correlate strongly with real-world\nexecution performance and reveal key behavioral patterns of learned policies.\nOur results suggest that combining physics-informed reconstruction with\nhigh-quality rendering enables reproducible, scalable, and accurate evaluation\nof robotic manipulation policies. Website: https://real2sim-eval.github.io/",
+    "published": "2025-11-06T18:52:08Z",
+    "updated": "2025-11-10T17:28:23Z",
+    "link": "http://arxiv.org/pdf/2511.04665v2.pdf",
+    "category": [
+      "cs.RO",
+      "cs.CV",
+      "cs.LG"
+    ],
+    "authors": [
+      "Kaifeng Zhang",
+      "Shuo Sha",
+      "Hanxiao Jiang",
+      "Matthew Loper",
+      "Hyunjong Song",
+      "Guangyan Cai",
+      "Zhuo Xu",
+      "Xiaochen Hu",
+      "Changxi Zheng",
+      "Yunzhu Li"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2411.00527v4",
+    "title": "MAROON: A Dataset for the Joint Characterization of Near-Field\n  High-Resolution Radio-Frequency and Optical Depth Imaging Techniques",
+    "summary": "Utilizing the complementary strengths of wavelength-specific range or depth\nsensors is crucial for robust computer-assisted tasks such as autonomous\ndriving. Despite this, there is still little research done at the intersection\nof optical depth sensors and radars operating close range, where the target is\ndecimeters away from the sensors. Together with a growing interest in\nhigh-resolution imaging radars operating in the near field, the question arises\nhow these sensors behave in comparison to their traditional optical\ncounterparts.\n  In this work, we take on the unique challenge of jointly characterizing depth\nimagers from both, the optical and radio-frequency domain using a multimodal\nspatial calibration. We collect data from four depth imagers, with three\noptical sensors of varying operation principle and an imaging radar. We provide\na comprehensive evaluation of their depth measurements with respect to distinct\nobject materials, geometries, and object-to-sensor distances. Specifically, we\nreveal scattering effects of partially transmissive materials and investigate\nthe response of radio-frequency signals. All object measurements will be made\npublic in form of a multimodal dataset, called MAROON.",
+    "published": "2024-11-01T11:53:10Z",
+    "updated": "2025-11-10T12:44:18Z",
+    "link": "http://arxiv.org/pdf/2411.00527v4.pdf",
+    "category": [
+      "eess.IV",
+      "cs.CV"
+    ],
+    "authors": [
+      "Vanessa Wirth",
+      "Johanna Bräunig",
+      "Nikolai Hofmann",
+      "Martin Vossiek",
+      "Tim Weyrich",
+      "Marc Stamminger"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2510.14270v3",
+    "title": "GauSSmart: Enhanced 3D Reconstruction through 2D Foundation Models and\n  Geometric Filtering",
+    "summary": "Scene reconstruction has emerged as a central challenge in computer vision,\nwith approaches such as Neural Radiance Fields (NeRF) and Gaussian Splatting\nachieving remarkable progress. While Gaussian Splatting demonstrates strong\nperformance on large-scale datasets, it often struggles to capture fine details\nor maintain realism in regions with sparse coverage, largely due to the\ninherent limitations of sparse 3D training data.\n  In this work, we propose GauSSmart, a hybrid method that effectively bridges\n2D foundational models and 3D Gaussian Splatting reconstruction. Our approach\nintegrates established 2D computer vision techniques, including convex\nfiltering and semantic feature supervision from foundational models such as\nDINO, to enhance Gaussian-based scene reconstruction. By leveraging 2D\nsegmentation priors and high-dimensional feature embeddings, our method guides\nthe densification and refinement of Gaussian splats, improving coverage in\nunderrepresented areas and preserving intricate structural details.\n  We validate our approach across three datasets, where GauSSmart consistently\noutperforms existing Gaussian Splatting in the majority of evaluated scenes.\nOur results demonstrate the significant potential of hybrid 2D-3D approaches,\nhighlighting how the thoughtful combination of 2D foundational models with 3D\nreconstruction pipelines can overcome the limitations inherent in either\napproach alone.",
+    "published": "2025-10-16T03:38:26Z",
+    "updated": "2025-11-10T16:16:00Z",
+    "link": "http://arxiv.org/pdf/2510.14270v3.pdf",
+    "category": [
+      "cs.CV",
+      "cs.GR"
+    ],
+    "authors": [
+      "Alexander Valverde",
+      "Brian Xu",
+      "Yuyin Zhou",
+      "Meng Xu",
+      "Hongyun Wang"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2503.10637v4",
+    "title": "Distilling Diversity and Control in Diffusion Models",
+    "summary": "Distilled diffusion models generate images in far fewer timesteps but suffer\nfrom reduced sample diversity when generating multiple outputs from the same\nprompt. To understand this phenomenon, we first investigate whether\ndistillation damages concept representations by examining if the required\ndiversity is properly learned. Surprisingly, distilled models retain the base\nmodel's representational structure: control mechanisms like Concept Sliders and\nLoRAs transfer seamlessly without retraining, and SliderSpace analysis reveals\ndistilled models possess variational directions needed for diversity yet fail\nto activate them. This redirects our investigation to understanding how the\ngeneration dynamics differ between base and distilled models. Using\n$\\hat{\\mathbf{x}}_{0}$ trajectory visualization, we discover distilled models\ncommit to their final image structure almost immediately at the first timestep,\nwhile base models distribute structural decisions across many steps. To test\nwhether this first-step commitment causes the diversity loss, we introduce\ndiversity distillation, a hybrid approach using the base model for only the\nfirst critical timestep before switching to the distilled model. This single\nintervention restores sample diversity while maintaining computational\nefficiency. We provide both causal validation and theoretical support showing\nwhy the very first timestep concentrates the diversity bottleneck in distilled\nmodels. Our code and data are available at https://distillation.baulab.info/",
+    "published": "2025-03-13T17:59:56Z",
+    "updated": "2025-11-10T15:36:25Z",
+    "link": "http://arxiv.org/pdf/2503.10637v4.pdf",
+    "category": [
+      "cs.GR",
+      "cs.CV"
+    ],
+    "authors": [
+      "Rohit Gandikota",
+      "David Bau"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02342v2",
+    "title": "Whole-body motion planning and safety-critical control for aerial\n  manipulation",
+    "summary": "Aerial manipulation combines the maneuverability of multirotors with the\ndexterity of robotic arms to perform complex tasks in cluttered spaces. Yet\nplanning safe, dynamically feasible trajectories remains difficult due to\nwhole-body collision avoidance and the conservativeness of common geometric\nabstractions such as bounding boxes or ellipsoids. We present a whole-body\nmotion planning and safety-critical control framework for aerial manipulators\nbuilt on superquadrics (SQs). Using an SQ-plus-proxy representation, we model\nboth the vehicle and obstacles with differentiable, geometry-accurate surfaces.\nLeveraging this representation, we introduce a maximum-clearance planner that\nfuses Voronoi diagrams with an equilibrium-manifold formulation to generate\nsmooth, collision-aware trajectories. We further design a safety-critical\ncontroller that jointly enforces thrust limits and collision avoidance via\nhigh-order control barrier functions. In simulation, our approach outperforms\nsampling-based planners in cluttered environments, producing faster, safer, and\nsmoother trajectories and exceeding ellipsoid-based baselines in geometric\nfidelity. Actual experiments on a physical aerial-manipulation platform confirm\nfeasibility and robustness, demonstrating consistent performance across\nsimulation and hardware settings. The video can be found at\nhttps://youtu.be/hQYKwrWf1Ak.",
+    "published": "2025-11-04T08:00:59Z",
+    "updated": "2025-11-10T05:18:06Z",
+    "link": "http://arxiv.org/pdf/2511.02342v2.pdf",
+    "category": [
+      "cs.RO"
+    ],
+    "authors": [
+      "Lin Yang",
+      "Jinwoo Lee",
+      "Domenico Campolo",
+      "H. Jin Kim",
+      "Jeonghyun Byun"
+    ]
+  },
+  {
+    "id": "http://arxiv.org/abs/2511.02097v2",
+    "title": "A Step Toward World Models: A Survey on Robotic Manipulation",
+    "summary": "Autonomous agents are increasingly expected to operate in complex, dynamic,\nand uncertain environments, performing tasks such as manipulation, navigation,\nand decision-making. Achieving these capabilities requires agents to understand\nthe underlying mechanisms and dynamics of the world, moving beyond reactive\ncontrol or simple replication of observed states. This motivates the\ndevelopment of world models as internal representations that encode\nenvironmental states, capture dynamics, and support prediction, planning, and\nreasoning. Despite growing interest, the definition, scope, architectures, and\nessential capabilities of world models remain ambiguous. In this survey, we go\nbeyond prescribing a fixed definition and limiting our scope to methods\nexplicitly labeled as world models. Instead, we examine approaches that exhibit\nthe core capabilities of world models through a review of methods in robotic\nmanipulation. We analyze their roles across perception, prediction, and\ncontrol, identify key challenges and solutions, and distill the core\ncomponents, capabilities, and functions that a fully realized world model\nshould possess. Building on this analysis, we aim to motivate further\ndevelopment toward generalizable and practical world models for robotics.",
+    "published": "2025-10-31T00:57:24Z",
+    "updated": "2025-11-10T03:45:44Z",
+    "link": "http://arxiv.org/pdf/2511.02097v2.pdf",
+    "category": [
+      "cs.RO",
+      "cs.CV"
+    ],
+    "authors": [
+      "Peng-Fei Zhang",
+      "Ying Cheng",
+      "Xiaofan Sun",
+      "Shijie Wang",
+      "Fengling Li",
+      "Lei Zhu",
+      "Heng Tao Shen"
+    ]
+  }
+]
