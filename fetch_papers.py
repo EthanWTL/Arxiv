@@ -9,6 +9,7 @@ from pathlib import Path
 
 import requests
 from zoneinfo import ZoneInfo
+from datetime import datetime, date  # at top if not already imported
 
 ARXIV_API = "https://export.arxiv.org/api/query"  # HTTPS
 NS = {"atom": "http://www.w3.org/2005/Atom"}
@@ -110,24 +111,38 @@ def fetch_recent_desc(category: str, page_cap: int = 4, page_size: int = 200):
 
 def fetch_for_announce_day(category: str, announce_day_et):
     """
-    Keep entries whose **<updated>** falls within the ET window for this announcement day.
-    Fallback to <published> if updated is missing (rare).
+    Keep entries whose <updated> (or <published> fallback) falls on this
+    *announcement calendar date in America/New_York*.
+    This corresponds to: "papers that became public on this ET day".
     """
-    start_utc, end_utc = et_issue_window(announce_day_et)
-    entries = fetch_recent_desc(category)
+    # Accept either a date or a datetime for announce_day_et
+    if isinstance(announce_day_et, datetime):
+        target_date = announce_day_et.date()
+    else:
+        target_date = announce_day_et  # assume it's already a date
 
+    entries = fetch_recent_desc(category)
     kept = []
+
     for e in entries:
-        upd = (e.find("atom:updated", NS).text or "").strip()
-        pub = (e.find("atom:published", NS).text or "").strip()
+        upd_el = e.find("atom:updated", NS)
+        pub_el = e.find("atom:published", NS)
+
+        upd = (upd_el.text if upd_el is not None and upd_el.text else "").strip()
+        pub = (pub_el.text if pub_el is not None and pub_el.text else "").strip()
+
         dt = parse_atom_date(upd) or parse_atom_date(pub)
         if dt is None:
             continue
-        if start_utc <= dt < end_utc:
+
+        # Convert the timestamp to Eastern Time and compare the *date* only
+        dt_et = dt.astimezone(ET_TZ)
+        if dt_et.date() == target_date:
             kept.append(parse_entry(e))
 
-    print(f"[DEBUG] {category}: kept {len(kept)} for announce {announce_day_et} "
-          f"(window {start_utc.isoformat()} .. {end_utc.isoformat()})")
+    print(
+        f"[DEBUG] {category}: kept {len(kept)} entries for announce_day_et={target_date}"
+    )
     return kept
 
 

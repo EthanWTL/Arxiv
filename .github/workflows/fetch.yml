@@ -3,7 +3,7 @@ name: Fetch Daily Arxiv Papers
 
 on:
   schedule:
-    - cron: "0 2 * * *"     # run at 02:00 UTC daily (~after 20:00 ET)
+    - cron: "30 1 * * *"    # run at 01:30 UTC daily (~20:30 ET, handles DST safely)
   workflow_dispatch:
     inputs:
       date:
