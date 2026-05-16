@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# fetch_papers.py — tracks arXiv daily announcement via <updated>/lastUpdatedDate
+# fetch_papers.py — tracks arXiv daily announcement dates in America/New_York.
 import argparse
 import json
 import time
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import requests
@@ -13,6 +13,8 @@ from zoneinfo import ZoneInfo
 ARXIV_API = "https://export.arxiv.org/api/query"  # HTTPS
 NS = {"atom": "http://www.w3.org/2005/Atom"}
 ET_TZ = ZoneInfo("America/New_York")
+ANNOUNCEMENT_HOUR_ET = 20
+NO_ANNOUNCEMENT_WEEKDAYS = {4, 5}  # Friday, Saturday. Sunday-Thursday announce.
 MIN_API_INTERVAL_SECONDS = 3.1
 RETRYABLE_STATUS_CODES = {429, 500, 502, 503, 504}
 _last_api_request_at = 0.0
@@ -57,16 +59,23 @@ def parse_entry(e):
     }
 
 
-def et_issue_window(announce_date_et):
+def has_announcement_day(announce_day_et: date) -> bool:
+    return announce_day_et.weekday() not in NO_ANNOUNCEMENT_WEEKDAYS
+
+
+def default_announcement_day(now_et: datetime | None = None) -> date:
     """
-    For announcement day D (ET), arXiv's batch covers updates in:
-      [D-1 14:00 ET, D 14:00 ET)
-    Returns UTC window.
+    Pick the ET calendar date whose announcement should be available now.
+
+    arXiv announces at about 20:00 ET. If this job is delayed past midnight
+    but before the next 20:00 ET announcement, use yesterday instead of
+    accidentally writing an empty file for the next calendar date.
     """
-    end_et = datetime(announce_date_et.year, announce_date_et.month, announce_date_et.day,
-                      14, 0, 0, tzinfo=ET_TZ)
-    start_et = end_et - timedelta(days=1)
-    return start_et.astimezone(timezone.utc), end_et.astimezone(timezone.utc)
+    now_et = now_et or datetime.now(ET_TZ)
+    announce_day = now_et.date()
+    if now_et.hour < ANNOUNCEMENT_HOUR_ET:
+        announce_day = announce_day - timedelta(days=1)
+    return announce_day
 
 
 def _wait_for_rate_limit():
@@ -235,18 +244,18 @@ def main():
     if args.date:
         announce_day_et = datetime.strptime(args.date, "%Y-%m-%d").date()
     else:
-        # arXiv announces each day's batch at ~14:00 ET. If the workflow fires
-        # after midnight ET but before that day's announcement, "today in ET"
-        # has no papers yet — use the previous ET day instead.
-        now_et = datetime.now(ET_TZ)
-        announce_day_et = now_et.date()
-        if now_et.hour < 14:
-            announce_day_et = announce_day_et - timedelta(days=1)
+        announce_day_et = default_announcement_day()
 
     # Gather
     all_entries = []
-    for cat in args.categories:
-        all_entries.extend(fetch_for_announce_day(cat, announce_day_et))
+    if has_announcement_day(announce_day_et):
+        for cat in args.categories:
+            all_entries.extend(fetch_for_announce_day(cat, announce_day_et))
+    else:
+        print(
+            f"[fetch_papers] AnnounceDay(ET)={announce_day_et} has no arXiv "
+            "announcement; writing an empty JSON file."
+        )
 
     # De-duplicate by id
     seen, deduped = set(), []

@@ -3,11 +3,11 @@ name: Fetch Daily Arxiv Papers
 
 on:
   schedule:
-    - cron: "0 22 * * *"    # 22:00 UTC daily = 18:00 EDT / 17:00 ET — after arXiv's 14:00 ET announcement, with ~6h buffer before midnight ET in case Actions delays the run
+    - cron: "0 3 * * *"     # 03:00 UTC daily = 22:00 EST / 23:00 EDT, after arXiv's 20:00 ET announcement.
   workflow_dispatch:
     inputs:
       date:
-        description: "UTC date (YYYY-MM-DD). Leave empty for today."
+        description: "Announcement date in America/New_York (YYYY-MM-DD). Leave empty for latest available announcement day."
         required: false
         default: ""
       categories:
@@ -76,7 +76,7 @@ jobs:
         run: |
           set -euo pipefail
           ls -la paper_json || true
-          FILE="$(ls -1 paper_json/*.json 2>/dev/null | tail -n 1 || true)"
+          FILE="$(find paper_json -maxdepth 1 -type f -name '????-??-??.json' | sort | tail -n 1 || true)"
           if [ -n "$FILE" ]; then
             echo "Latest file: $FILE"
             python -c "import json,sys; f=sys.argv[1]; d=json.load(open(f)); print('Paper count:', len(d)); print('First:', {'id': (d[0].get('id') if d else None), 'title': (d[0].get('title') if d else None), 'published': (d[0].get('published') if d else None)})" "$FILE"

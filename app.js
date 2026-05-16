@@ -2,6 +2,15 @@
 
 /** ============================== CONFIG ============================== **/
 const PRESET_TERMS = ["llm","multimodal","diffusion","video generation","reasoning"];
+const ET_FORMATTER = new Intl.DateTimeFormat("en-US", {
+  timeZone: "America/New_York",
+  year: "numeric",
+  month: "short",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZoneName: "short",
+});
 
 /** ============================== STATE =============================== **/
 let ALL = [];                // papers for the currently selected date
@@ -24,6 +33,27 @@ function fmtISO(d){ return d.toISOString().split("T")[0]; }
 function parseISO(s){ const [y,m,d] = s.split("-").map(Number); return new Date(Date.UTC(y,m-1,d)); }
 function normalize(s){ return (s || "").toLowerCase(); }
 function debounce(fn, ms=250){ let t; return (...a)=>{clearTimeout(t); t=setTimeout(()=>fn(...a),ms)}; }
+function hasAnnouncementDay(dateStr){
+  if(!dateStr || !/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return true;
+  const day = parseISO(dateStr).getUTCDay();
+  return day !== 5 && day !== 6;
+}
+function formatET(iso){
+  if(!iso) return "";
+  const d = new Date(iso);
+  if(Number.isNaN(d.getTime())) return iso;
+  return ET_FORMATTER.format(d);
+}
+function paperMeta(paper){
+  const cats = Array.isArray(paper.category) ? paper.category.join(", ") : "";
+  const updated = formatET(paper.updated);
+  const published = formatET(paper.published);
+  const parts = [];
+  if(updated) parts.push(`Updated ET: ${updated}`);
+  if(published && published !== updated) parts.push(`Published ET: ${published}`);
+  if(cats) parts.push(cats);
+  return parts.join(" | ");
+}
 
 /** ============================ LOAD ================================= **/
 async function fetchJSON(url){
@@ -93,7 +123,9 @@ function render(papers, dateStr){
 
   if(!papers || papers.length === 0){
     const empty = document.createElement("div");
-    empty.textContent = "No papers for this day (or none matched your filters).";
+    empty.textContent = hasAnnouncementDay(dateStr)
+      ? "No papers for this day (or none matched your filters)."
+      : "No arXiv announcement for this ET date.";
     section.appendChild(empty);
     els.content.appendChild(section);
     els.count.textContent = "0";
@@ -103,7 +135,7 @@ function render(papers, dateStr){
   for(const p of papers){
     const node = els.paperTpl.content.firstElementChild.cloneNode(true);
     node.querySelector(".title").textContent = p.title;
-    node.querySelector(".meta").textContent = `${p.published} | ${(p.category||[]).join(", ")}`;
+    node.querySelector(".meta").textContent = paperMeta(p);
     node.querySelector(".summary").textContent = p.summary;
     const link = node.querySelector(".link");
     link.href = p.link; link.textContent = "PDF";
