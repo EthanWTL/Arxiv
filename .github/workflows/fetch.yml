@@ -3,7 +3,7 @@ name: Fetch Daily Arxiv Papers
 
 on:
   schedule:
-    - cron: "30 1 * * *"    # run at 01:30 UTC daily (~20:30 ET, handles DST safely)
+    - cron: "0 22 * * *"    # 22:00 UTC daily = 18:00 EDT / 17:00 ET — after arXiv's 14:00 ET announcement, with ~6h buffer before midnight ET in case Actions delays the run
   workflow_dispatch:
     inputs:
       date:

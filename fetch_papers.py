@@ -182,7 +182,13 @@ def main():
     if args.date:
         announce_day_et = datetime.strptime(args.date, "%Y-%m-%d").date()
     else:
-        announce_day_et = datetime.now(ET_TZ).date()
+        # arXiv announces each day's batch at ~14:00 ET. If the workflow fires
+        # after midnight ET but before that day's announcement, "today in ET"
+        # has no papers yet — use the previous ET day instead.
+        now_et = datetime.now(ET_TZ)
+        announce_day_et = now_et.date()
+        if now_et.hour < 14:
+            announce_day_et = announce_day_et - timedelta(days=1)
 
     # Gather
     all_entries = []
