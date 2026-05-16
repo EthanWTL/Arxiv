@@ -9,11 +9,13 @@ from pathlib import Path
 
 import requests
 from zoneinfo import ZoneInfo
-from datetime import datetime, date  # at top if not already imported
 
 ARXIV_API = "https://export.arxiv.org/api/query"  # HTTPS
 NS = {"atom": "http://www.w3.org/2005/Atom"}
 ET_TZ = ZoneInfo("America/New_York")
+MIN_API_INTERVAL_SECONDS = 3.1
+RETRYABLE_STATUS_CODES = {429, 500, 502, 503, 504}
+_last_api_request_at = 0.0
 
 # Default categories (no stat.ML)
 CATEGORIES = ["cs.AI", "cs.CL", "cs.CV", "cs.LG", "cs.MM", "cs.GR", "cs.RO"]
@@ -67,21 +69,73 @@ def et_issue_window(announce_date_et):
     return start_et.astimezone(timezone.utc), end_et.astimezone(timezone.utc)
 
 
-def _get_with_retries(params, max_tries: int = 4, pause: float = 3.0) -> str:
+def _wait_for_rate_limit():
+    """Keep all arXiv API calls at least ~3 seconds apart."""
+    global _last_api_request_at
+    now = time.monotonic()
+    elapsed = now - _last_api_request_at
+    if elapsed < MIN_API_INTERVAL_SECONDS:
+        time.sleep(MIN_API_INTERVAL_SECONDS - elapsed)
+    _last_api_request_at = time.monotonic()
+
+
+def _retry_after_seconds(value: str | None) -> float | None:
+    if not value:
+        return None
+    try:
+        return min(max(0.0, float(value)), 300.0)
+    except ValueError:
+        return None
+
+
+def _response_snippet(text: str, limit: int = 300) -> str:
+    return " ".join((text or "").split())[:limit]
+
+
+def _get_with_retries(params, max_tries: int = 8, pause: float = 10.0) -> str:
     headers = {"User-Agent": _user_agent()}
-    last_exc = None
-    for i in range(max_tries):
+    last_error = None
+    for attempt in range(1, max_tries + 1):
         try:
+            _wait_for_rate_limit()
             r = requests.get(ARXIV_API, params=params, headers=headers, timeout=30)
-            if r.status_code in (429, 503):
-                time.sleep(pause * (i + 1))
-                continue
-            r.raise_for_status()
+            if r.status_code in RETRYABLE_STATUS_CODES:
+                snippet = _response_snippet(r.text)
+                last_error = f"HTTP {r.status_code}; response={snippet!r}; url={r.url}"
+                retry_after = _retry_after_seconds(r.headers.get("Retry-After"))
+                wait = (
+                    retry_after
+                    if retry_after is not None
+                    else min(pause * (2 ** (attempt - 1)), 180.0)
+                )
+                if attempt < max_tries:
+                    print(
+                        f"[WARN] arXiv API {last_error}; retrying in {wait:.0f}s "
+                        f"(attempt {attempt}/{max_tries})",
+                        flush=True,
+                    )
+                    time.sleep(wait)
+                    continue
+                break
+            if r.status_code >= 400:
+                snippet = _response_snippet(r.text)
+                raise RuntimeError(
+                    f"arXiv API returned HTTP {r.status_code}: {snippet!r}; url={r.url}"
+                )
             return r.text
-        except Exception as e:
-            last_exc = e
-            time.sleep(pause * (i + 1))
-    raise RuntimeError(f"arXiv API failed after retries: {last_exc!r}")
+        except requests.RequestException as e:
+            last_error = repr(e)
+            wait = min(pause * (2 ** (attempt - 1)), 180.0)
+            if attempt < max_tries:
+                print(
+                    f"[WARN] arXiv request failed: {last_error}; "
+                    f"retrying in {wait:.0f}s (attempt {attempt}/{max_tries})",
+                    flush=True,
+                )
+                time.sleep(wait)
+                continue
+            break
+    raise RuntimeError(f"arXiv API failed after {max_tries} attempts: {last_error}")
 
 
 def fetch_recent_desc(category: str, page_cap: int = 4, page_size: int = 200):
@@ -104,7 +158,6 @@ def fetch_recent_desc(category: str, page_cap: int = 4, page_size: int = 200):
         all_entries.extend(batch)
         if len(batch) < page_size:
             break
-        time.sleep(3)  # be polite
     print(f"[DEBUG] {category}: fetched {len(all_entries)} (lastUpdatedDate desc)")
     return all_entries
 
