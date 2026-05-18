@@ -2,6 +2,8 @@
 # fetch_papers.py — tracks arXiv daily announcement dates in America/New_York.
 import argparse
 import json
+import os
+import random
 import time
 import xml.etree.ElementTree as ET
 from datetime import date, datetime, timedelta
@@ -15,12 +17,33 @@ NS = {"atom": "http://www.w3.org/2005/Atom"}
 ET_TZ = ZoneInfo("America/New_York")
 ANNOUNCEMENT_HOUR_ET = 20
 NO_ANNOUNCEMENT_WEEKDAYS = {4, 5}  # Friday, Saturday. Sunday-Thursday announce.
-MIN_API_INTERVAL_SECONDS = 3.1
 RETRYABLE_STATUS_CODES = {429, 500, 502, 503, 504}
 _last_api_request_at = 0.0
 
-# Default categories (no stat.ML)
-CATEGORIES = ["cs.AI", "cs.CL", "cs.CV", "cs.LG", "cs.MM", "cs.GR", "cs.RO"]
+# Default categories.
+CATEGORIES = ["cs.CV", "cs.MM"]
+
+
+def _float_env(name: str, default: float) -> float:
+    try:
+        return float(os.environ.get(name, default))
+    except (TypeError, ValueError):
+        return default
+
+
+def _int_env(name: str, default: int) -> int:
+    try:
+        return int(os.environ.get(name, default))
+    except (TypeError, ValueError):
+        return default
+
+
+MIN_API_INTERVAL_SECONDS = _float_env("ARXIV_MIN_API_INTERVAL_SECONDS", 8.0)
+REQUEST_TIMEOUT_SECONDS = _float_env("ARXIV_REQUEST_TIMEOUT_SECONDS", 60.0)
+MAX_API_TRIES = _int_env("ARXIV_MAX_API_TRIES", 10)
+RETRY_BASE_SECONDS = _float_env("ARXIV_RETRY_BASE_SECONDS", 30.0)
+RATE_LIMIT_MIN_WAIT_SECONDS = _float_env("ARXIV_RATE_LIMIT_MIN_WAIT_SECONDS", 120.0)
+RETRY_JITTER_SECONDS = _float_env("ARXIV_RETRY_JITTER_SECONDS", 5.0)
 
 
 def _user_agent() -> str:
@@ -101,13 +124,22 @@ def _response_snippet(text: str, limit: int = 300) -> str:
     return " ".join((text or "").split())[:limit]
 
 
-def _get_with_retries(params, max_tries: int = 8, pause: float = 10.0) -> str:
+def _get_with_retries(
+    params,
+    max_tries: int = MAX_API_TRIES,
+    pause: float = RETRY_BASE_SECONDS,
+) -> str:
     headers = {"User-Agent": _user_agent()}
     last_error = None
     for attempt in range(1, max_tries + 1):
         try:
             _wait_for_rate_limit()
-            r = requests.get(ARXIV_API, params=params, headers=headers, timeout=30)
+            r = requests.get(
+                ARXIV_API,
+                params=params,
+                headers=headers,
+                timeout=REQUEST_TIMEOUT_SECONDS,
+            )
             if r.status_code in RETRYABLE_STATUS_CODES:
                 snippet = _response_snippet(r.text)
                 last_error = f"HTTP {r.status_code}; response={snippet!r}; url={r.url}"
@@ -117,6 +149,9 @@ def _get_with_retries(params, max_tries: int = 8, pause: float = 10.0) -> str:
                     if retry_after is not None
                     else min(pause * (2 ** (attempt - 1)), 180.0)
                 )
+                if r.status_code == 429:
+                    wait = max(wait, RATE_LIMIT_MIN_WAIT_SECONDS)
+                wait += random.uniform(0, RETRY_JITTER_SECONDS)
                 if attempt < max_tries:
                     print(
                         f"[WARN] arXiv API {last_error}; retrying in {wait:.0f}s "
@@ -135,6 +170,7 @@ def _get_with_retries(params, max_tries: int = 8, pause: float = 10.0) -> str:
         except requests.RequestException as e:
             last_error = repr(e)
             wait = min(pause * (2 ** (attempt - 1)), 180.0)
+            wait += random.uniform(0, RETRY_JITTER_SECONDS)
             if attempt < max_tries:
                 print(
                     f"[WARN] arXiv request failed: {last_error}; "
